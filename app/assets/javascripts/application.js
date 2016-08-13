@@ -19,5 +19,5 @@
 //= require angular-resource.min
 //- require angular-ui-router
 //= require app/app
-//= require app/carts/recipes.controller
-//= require app/products/ingredients.controller
+//= require app/recipes/recipes.controller
+//= require app/ingredients/ingredients.controller
