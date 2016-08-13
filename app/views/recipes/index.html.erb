@@ -1,7 +1,19 @@
-Hello
 
-<div ng-controller="RecipesController as vm">
-  <div ng-repeat="recipe in vm.recipes">
-    <h3>{{recipe.name}}</h3>
+
+<section class="container">
+<div class="recipe-index" ng-controller="RecipesController as vm">
+  <h2> All Recipes</h2>
+  <div  ng-repeat="recipe in vm.recipes">
+    <h3 class="left-half">{{recipe.name}}</h3>
   </div>
 </div>
+
+<div class="ingredient-index" ng-controller="IngredientsController as vm">
+  <h2>All Ingredients</h2>
+  <div class="right-half" ng-repeat="ingredient in vm.ingredients">
+    <h3>{{ingredient.ingredient}}</h3>
+  </div>
+</div>
+
+
+<section>
