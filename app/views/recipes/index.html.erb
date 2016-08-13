@@ -1,2 +1,7 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+Hello
+
+<div ng-controller="RecipesController as vm">
+  <div ng-repeat="recipe in vm.recipes">
+    <h3>{{recipe.name}}</h3>
+  </div>
+</div>

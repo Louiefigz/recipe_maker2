@@ -2,10 +2,10 @@ function RecipesController(){
 var vm = this;
   vm.recipes =[
     {
-      name: pad thai
+      name: 'pad thai'
     }
   ]
-}
+};
 
 angular
   .module('app')
