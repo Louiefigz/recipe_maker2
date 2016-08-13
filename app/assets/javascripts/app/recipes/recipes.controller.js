@@ -15,6 +15,12 @@ var vm = this;
     }
 
   ]
+
+var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
+  this.recipeShowPage = function(){
+    vm.name = vm.recipes[id-1];
+    
+  }
 };
 
 angular
