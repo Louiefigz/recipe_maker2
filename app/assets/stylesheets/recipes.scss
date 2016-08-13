@@ -12,14 +12,14 @@ html, body, section {
   height: 200%;
 }
 
-body {
-  color: #fff;
-  font-family: sans-serif;
-  font-size: 1rem;
-  line-height: 150%;
-  text-align: center;
-  text-shadow: 0 2px 2px #b6701e;
-}
+// body {
+//   color: #A52A2A;
+//   font-family: sans-serif;
+//   font-size: 2rem;
+//   line-height: 150%;
+//   text-align: center;
+//   text-shadow: 0 2px 2px #b6701e;
+// }
 
 div {
   display: flex;
@@ -47,4 +47,8 @@ h1 {
   background-color: #b6701e;
   flex: 1;
   padding: 1rem;
+}
+
+.ingredient-text{
+  color: #A9A9A9;
 }

@@ -2,6 +2,11 @@
 <br>
 <div ng-controller="RecipesController as vm">
   <button ng-click='vm.recipeShowPage()'>Click for recipe</button>
-  <h3>{{vm.name.name}}</h3>
+  <h3 align="center">{{vm.recipe.name}}</h3>
+<h3 class="ingredient-text">Ingredients for this recipe: </h3>
+  <div ng-repeat="ingredient in vm.recipe.ingredients">
+    <p>{{ingredient.ingredient}}</p>
+  </div>
+
 
 </div>

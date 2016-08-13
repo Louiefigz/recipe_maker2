@@ -2,7 +2,21 @@ function RecipesController(){
 var vm = this;
   vm.recipes =[
     {
-      name: 'pad thai'
+      name: 'pad thai',
+      ingredients: [
+      {
+        id: 1,
+        ingredient: "peanuts"
+      },
+      {
+        id: 2,
+        ingredient: "noodles"
+      },
+      {
+        id: 3,
+        ingredient: "chicken"
+      }
+      ]
     },
     {
       name: 'lemon chicken'
@@ -18,8 +32,8 @@ var vm = this;
 
 var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1]
   this.recipeShowPage = function(){
-    vm.name = vm.recipes[id-1];
-    
+    vm.recipe = vm.recipes[id-1];
+
   }
 };
 
