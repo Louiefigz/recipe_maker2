@@ -5,6 +5,12 @@ function IngredientsController(){
   vm.ingredients = [
     {
       ingredient: "peanuts"
+    },
+    {
+      ingredient: "noodles"
+    },
+    {
+      ingredient: "chicken"
     }
   ]
 }

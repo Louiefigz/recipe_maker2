@@ -1,4 +1,4 @@
-
+<header>Recipe Maker V 2.0</header>
 
 <section class="container">
 <div class="recipe-index" ng-controller="RecipesController as vm">
@@ -10,8 +10,8 @@
 
 <div class="ingredient-index" ng-controller="IngredientsController as vm">
   <h2>All Ingredients</h2>
-  <div class="right-half" ng-repeat="ingredient in vm.ingredients">
-    <h3>{{ingredient.ingredient}}</h3>
+  <div  ng-repeat="ingredient in vm.ingredients">
+    <h3 class="right-half">{{ingredient.ingredient}}</h3>
   </div>
 </div>
 
