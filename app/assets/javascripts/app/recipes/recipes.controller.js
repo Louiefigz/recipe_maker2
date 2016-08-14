@@ -46,8 +46,9 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
 
   }
   this.recipeShow = function(data){
-  debugger;
+  
     vm.recipe = this.recipes[data-1];
+    vm.title = 'Ingredients for '+ vm.recipe.name;
   }
 };
 
