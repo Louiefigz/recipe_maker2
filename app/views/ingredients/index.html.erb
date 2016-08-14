@@ -7,7 +7,7 @@
 
 <h3>Create a New Ingredient</h3>
 <div ng-controller="IngredientsController as vm">
-  <form ng-submit="vm.createIngredient()">
+  <form ng-submit="vm.createIngredient(vm.ingredient)">
     <input type="text" ng-model="vm.ingredient.ingredient"/>
     <input type="submit" value="Create Ingredient" />
   </form>

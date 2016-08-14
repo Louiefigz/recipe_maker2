@@ -13,6 +13,12 @@ function IngredientsController(){
       ingredient: "chicken"
     }
   ]
+
+//Form for creating new ingredients 
+  this.createIngredient = function(data){
+
+    this.ingredients.push(data);
+  }
 }
 
 angular
