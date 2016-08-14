@@ -7,5 +7,7 @@
   <div ng-repeat="ingredient in vm.recipe.ingredients">
     <p>{{ingredient.ingredient}}</p>
   </div>
-  <%= render "/layouts/form" %>
+</div>
+<div ng-controller="RecipesController as vm">
+<%= render "/layouts/form" %>
 </div>
