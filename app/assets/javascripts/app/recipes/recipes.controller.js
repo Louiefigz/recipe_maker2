@@ -21,7 +21,21 @@ var vm = this;
     },
     {
       id:2,
-      name: 'lemon chicken'
+      name: 'lemon chicken',
+      ingredients: [
+      {
+        id: 1,
+        ingredient: "chicken"
+      },
+      {
+        id: 2,
+        ingredient: "lemon"
+      },
+      {
+        id: 3,
+        ingredient: "garlic"
+      }
+      ]
     },
     {
       id:3,
@@ -46,7 +60,7 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
 
   }
   this.recipeShow = function(data){
-  
+
     vm.recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.recipe.name;
   }
