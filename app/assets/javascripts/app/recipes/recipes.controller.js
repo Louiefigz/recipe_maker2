@@ -39,9 +39,11 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
     vm.recipe = vm.recipes[id-1];
   }
 
+  //this function is not 'working' but it pushes info to the hash vm.recipes correctly
   this.newIngredient = function(data){
-    debugger;
-//Why is is that I can not access vm.recipes in the console?
+    var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    this.recipes[id-1].ingredients.push(data);
+
   }
   this.recipeShow = function(data){
   debugger;

@@ -4,22 +4,38 @@
   <div class="recipe-index" ng-controller="RecipesController as vm">
     <h2> All Recipes</h2>
     <nav>
-      <ul>
+      <!-- <ul> -->
       <div ng-repeat="recipe in vm.recipes">
-        <li><a href="/recipes/{{recipe.id}}" ng-click="vm.recipeShow(recipe.id)">{{recipe.name}}</a></li>
-    </ul>
+        <button ng-click="vm.recipeShow(recipe.id)">{{recipe.name}}</button>
+      <!-- </ul> -->
 
-  </div>
-  </nav>
-  </div>
-  </div>
-</div>
+      </div>
+    </nav>
+    <article>
+      
+      <h2>Ingredients for {{vm.recipe.name}}</h2>
 
-<!-- <article>
-<div class="ingredient-index" ng-controller="IngredientsController as vm">
-  <h2>All Ingredients</h2>
-  <div  ng-repeat="ingredient in vm.ingredients">
-    <h3 class="right-half">{{ingredient.ingredient}}</h3>
+    <div ng-repeat="ingredient in vm.recipe.ingredients">
+
+      <p>{{ingredient.ingredient}}</p>
+    </div>
+  </article>
+
+    <!-- <article>
+      <div ng-repeat="ingredient in vm.recipe.ingredients">
+        {{ingredients.ingredient}}
+      </div>
+  </article> -->
+
+   </div>
   </div>
-</div>
+
+<!--
+<article>
+  <div class="ingredient-index" ng-controller="IngredientsController as vm">
+    <h2>All Ingredients</h2>
+    <div  ng-repeat="ingredient in vm.ingredients">
+      <h3 class="right-half">{{ingredient.ingredient}}</h3>
+    </div>
+  </div>
 <article> -->
