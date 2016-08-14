@@ -61,9 +61,15 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
   }
   this.recipeShow = function(data){
 
+  
     vm.recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.recipe.name;
+    this.url = '<a href="/recipes/'+data+' " >'+"click here to edit recipe" +'</a>'
+
+
   }
+
+
 };
 
 angular
