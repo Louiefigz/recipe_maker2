@@ -14,11 +14,12 @@ function IngredientsController(){
     }
   ]
 
-//Form for creating new ingredients 
+//Form for creating new ingredients
   this.createIngredient = function(data){
-
     this.ingredients.push(data);
   }
+
+  
 }
 
 angular
