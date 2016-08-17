@@ -21,9 +21,18 @@ var vm = this;
 
   function startDeleteIngredient(data){
     var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
-  
     var ing = this.recipes[id-1];
-    delete ing.ingredients.splice(data-1, 1);
+
+
+    for(var i=0; i <ing.ingredients.length; i++){
+      if (ing.ingredients[i].id == data ){
+      
+        delete ing.ingredients.splice(i, 1);
+      }
+    }
+
+
+
   }
 
 
