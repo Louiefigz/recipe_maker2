@@ -3,12 +3,19 @@ var vm = this;
 
   vm.addRecipe = addRecipe;
   vm.startEditRecipe = startEditRecipe;
+  vm.startEditRecipeName = startEditRecipeName;
   vm.showEditRecipeForm = false;
+  vm.showEditRecipeName = false;
+  vm.showEditRecipeName = false;
   vm.editRecipe = editRecipe;
   vm.deleteRecipe =  deleteRecipe;
 
   function startEditRecipe(){
     vm.showEditRecipeForm = !vm.showEditRecipeForm;
+  }
+
+  function startEditRecipeName(){
+    vm.showEditRecipeName = !vm.showEditRecipeName;
   }
 
 

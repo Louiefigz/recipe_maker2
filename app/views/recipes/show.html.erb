@@ -3,6 +3,18 @@
 <div ng-controller="RecipesController as vm">
   <button ng-click='vm.recipeShowPage()'>Click for recipe</button>
   <h3 align="center">{{vm.recipe.name}}</h3>
+
+  <button ng-click="vm.startEditRecipeName()">Edit Recipe Name</button>
+  <div ng-show="vm.showEditRecipeName == true">
+    <form ng-model="vm.recipe"
+          ng-submit="vm.editRecipe">
+    <input type="text" ng-model="vm.recipe.name">
+    <input type="submit" />      
+    </form>
+  </div>
+
+
+
 <h3 class="ingredient-text">Ingredients for this recipe: </h3>
   <div ng-repeat="ingredient in vm.recipe.ingredients">
     <p>{{ingredient.ingredient}}</p>
@@ -10,7 +22,7 @@
     <div ng-show="vm.showEditRecipeForm == true">
       <h3>Edit Ingredient </h3>
       <form ng-model="ingredient"
-      ng-submit="vm.editRecipe">
+            ng-submit="vm.editRecipe">
       <input type="text" placeholder="ingredient.ingredient"ng-model="ingredient.ingredient">
       <input type="submit" />
     </form>
