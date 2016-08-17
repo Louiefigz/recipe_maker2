@@ -1,4 +1,4 @@
-<form ng-submit="vm.newIngredient(vm.recipe.ingredients)">
+<form ng-model="vm.recipe.ingredients" ng-submit="vm.newIngredient()">
   <input type="text" ng-model="vm.recipe.ingredients.ingredient"/>
   <input type="submit" />
 </form>

@@ -4,6 +4,7 @@ var vm = this;
   vm.addRecipe = addRecipe;
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
+  vm.startDeleteIngredient = startDeleteIngredient;
   vm.showEditRecipeForm = false;
   vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
@@ -16,6 +17,13 @@ var vm = this;
 
   function startEditRecipeName(){
     vm.showEditRecipeName = !vm.showEditRecipeName;
+  }
+
+  function startDeleteIngredient(data){
+    var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+  
+    var ing = this.recipes[id-1];
+    delete ing.ingredients.splice(data-1, 1);
   }
 
 
@@ -73,14 +81,13 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
   }
 
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
-  this.newIngredient = function(data){
+  this.newIngredient = function(){
+    debugger;
     var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
-    this.recipes[id-1].ingredients.push(data);
+    this.recipes[id-1].ingredients.push(this.recipe.ingredients);
 
   }
   this.recipeShow = function(data){
-
-
     vm.recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.recipe.name;
     this.url = '<a href="/recipes/'+data+' " >'+"click here to edit recipe" +'</a>'
@@ -93,10 +100,11 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
   }
 
   function editRecipe(){
-    debugger;
+
   }
 
   function deleteRecipe(){
+
 
   }
 
