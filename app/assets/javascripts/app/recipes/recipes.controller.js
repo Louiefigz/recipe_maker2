@@ -1,5 +1,17 @@
 function RecipesController(){
 var vm = this;
+
+  vm.addRecipe = addRecipe;
+  vm.startEditRecipe = startEditRecipe;
+  vm.showEditRecipeForm = false;
+  vm.editRecipe = editRecipe;
+  vm.deleteRecipe =  deleteRecipe;
+
+  function startEditRecipe(){
+    vm.showEditRecipeForm = !vm.showEditRecipeForm;
+  }
+
+
   vm.recipes =[
     {
       id: 1,
@@ -67,8 +79,18 @@ var id = window.location.pathname.split('/')[window.location.pathname.split('/')
     this.url = '<a href="/recipes/'+data+' " >'+"click here to edit recipe" +'</a>'
   }
 
-  this.createRecipe = function(data){
+
+
+  function addRecipe(){
+    this.recipes.push(this.newRecipe);
+  }
+
+  function editRecipe(){
     debugger;
+  }
+
+  function deleteRecipe(){
+
   }
 
 

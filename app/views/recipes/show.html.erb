@@ -6,6 +6,15 @@
 <h3 class="ingredient-text">Ingredients for this recipe: </h3>
   <div ng-repeat="ingredient in vm.recipe.ingredients">
     <p>{{ingredient.ingredient}}</p>
+    <button ng-click="vm.startEditRecipe()">Edit Product</button>
+    <div ng-show="vm.showEditRecipeForm == true">
+      <h3>Edit Ingredient </h3>
+      <form ng-model="ingredient"
+      ng-submit="vm.editRecipe">
+      <input type="text" placeholder="ingredient.ingredient"ng-model="ingredient.ingredient">
+      <input type="submit" />
+    </form>
+  </div>
   </div>
 </div>
 <div ng-controller="RecipesController as vm">
