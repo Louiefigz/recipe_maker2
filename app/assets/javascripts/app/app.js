@@ -1,5 +1,5 @@
 angular
-  .module('app', ['ui.router', 'templates'])
+  .module('app', ['ngSanitize', 'ui.router', 'templates'])
   .config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
@@ -17,7 +17,18 @@ angular
         url: 'recipes',
         templateUrl: 'recipes.html',
         controller: 'RecipesController as vm'
+      })
+      .state('home.welcome', {
+        url: 'welcome',
+        templateUrl: 'welcome.html',
+        controller: 'RecipesController as vm'
+      })
+      .state('home.recipeShow', {
+        url: 'recipe/:id',
+        templateUrl: 'recipeShow.html',
+        controller: 'RecipesController as vm'
       });
+
 
 
     $urlRouterProvider.otherwise('/');

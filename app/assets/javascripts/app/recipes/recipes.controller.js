@@ -1,4 +1,4 @@
-function RecipesController(){
+function RecipesController($stateParams){
 var vm = this;
 
   vm.addRecipe = addRecipe;
@@ -20,13 +20,13 @@ var vm = this;
   }
 
   function startDeleteIngredient(data){
-    var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    var id = window.location.hash.split('/')[window.location.hash.split('/').length - 1];
     var ing = this.recipes[id-1];
 
 
     for(var i=0; i <ing.ingredients.length; i++){
       if (ing.ingredients[i].id == data ){
-      
+
         delete ing.ingredients.splice(i, 1);
       }
     }
@@ -84,8 +84,9 @@ var vm = this;
 
   ]
 
-var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+var id = window.location.hash.split('/')[window.location.hash.split('/').length - 1];
   this.recipeShowPage = function(){
+    
     vm.recipe = vm.recipes[id-1];
   }
 
