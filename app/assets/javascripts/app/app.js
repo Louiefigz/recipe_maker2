@@ -1,2 +1,27 @@
 angular
-  .module('app', ['ngSanitize'])
+  .module('app', ['ui.router', 'templates'])
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('home', {
+        url: '/',
+        templateUrl:'home.html',
+        controller: 'HomeController as vm'
+      })
+      .state('home.ingredients', {
+        url: 'ingredients',
+        templateUrl: 'ingredients.html',
+        controller: 'IngredientsController as vm'
+      })
+      .state('home.recipes', {
+        url: 'recipes',
+        templateUrl: 'recipes.html',
+        controller: 'RecipesController as vm'
+      });
+
+
+    $urlRouterProvider.otherwise('/');
+
+
+
+  });

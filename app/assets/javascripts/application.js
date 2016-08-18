@@ -18,7 +18,6 @@
 //= require angular.min
 //= require angular-resource.min
 //= require angular-ui-router
+//= require angular-rails-templates
 //= require angular-sanitize.min
-//= require app/app
-//= require app/recipes/recipes.controller
-//= require app/ingredients/ingredients.controller
+//= require_tree .

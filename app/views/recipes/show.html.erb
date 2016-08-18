@@ -21,7 +21,7 @@
 <h3 class="ingredient-text">Ingredients for this recipe: </h3>
   <div ng-repeat="ingredient in vm.recipe.ingredients">
     <p>{{ingredient.ingredient}}</p>
-    <button ng-click="vm.startEditRecipe()">Edit Product</button>
+    <button ng-click="vm.startEditRecipe()">Edit Ingredient</button>
     <div ng-show="vm.showEditRecipeForm == true">
       <h3>Edit Ingredient </h3>
       <form ng-model="ingredient"

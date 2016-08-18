@@ -7,17 +7,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>Recipe Maker V 2.0</header>
+
+
 
   <body ng-app="app">
-  <ul class="topnav" id="myTopnav">
-    <li><a class="active" href="/">Home</a></li>
-    <li><a href="/recipes">Recipes</a></li>
-    <li><a href="/ingredients">Ingredients</a></li>
-    <li style="float:right"><a href="#about">About</a></li>
-  </ul>
-
-
 
     <%= yield %>
   </body>

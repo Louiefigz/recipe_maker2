@@ -1,0 +1,14 @@
+<h2>All Recipes</h2>
+<div ng-controller="RecipesController as vm">
+
+  <ul>
+    <div ng-repeat="recipe in vm.recipes">
+      <li>{{recipe.name}}</li>
+    </div>
+  </ul>
+
+  <form ng-model="vm.newRecipe" ng-submit="vm.addRecipe()" >
+    <input type="text" ng-model="vm.newRecipe.name">
+    <input type="submit" value="Create New Recipe"/>
+  </form>
+</div>
