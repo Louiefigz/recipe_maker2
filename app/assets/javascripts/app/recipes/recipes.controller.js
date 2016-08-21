@@ -97,8 +97,9 @@ var state = $stateParams.params.id;
 
     // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
     this.recipes[state-1].ingredients.push(this.Recipe.ingredients);
-      vm.recipe = this.recipes[$stateParams.params.id-1];
-      
+  
+
+
 
   }
   this.recipeShow = function(data){
