@@ -1,4 +1,4 @@
-function RecipesController($stateParams){
+function RecipesController($scope, $state, $stateParams){
 var vm = this;
 
   vm.addRecipe = addRecipe;
@@ -86,8 +86,9 @@ var vm = this;
 
 var id = window.location.hash.split('/')[window.location.hash.split('/').length - 1];
   this.recipeShowPage = function(){
-    
+    debugger;
     vm.recipe = vm.recipes[id-1];
+
   }
 
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
@@ -100,7 +101,8 @@ var id = window.location.hash.split('/')[window.location.hash.split('/').length 
   this.recipeShow = function(data){
     vm.recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.recipe.name;
-    this.url = '<a href="/recipes/'+data+' " >'+"click here to edit recipe" +'</a>'
+    debugger;
+    this.url = '<a ng-click="this.thisRecipePage()" href="/#/recipe/'+data+'"  >'+"click here to edit recipe" +'</a>'
   }
 
 
@@ -123,4 +125,4 @@ var id = window.location.hash.split('/')[window.location.hash.split('/').length 
 
 angular
   .module('app')
-  .controller('RecipesController', RecipesController);
+  .controller('RecipesController', ['$scope', '$state', '$stateParams', RecipesController]);
