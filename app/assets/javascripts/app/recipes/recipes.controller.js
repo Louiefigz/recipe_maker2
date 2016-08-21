@@ -91,11 +91,14 @@ var vm = this;
 
 
 
+var state = $stateParams.params.id;
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
   this.newIngredient = function(){
-    debugger;
-    var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
-    this.recipes[id-1].ingredients.push(this.recipe.ingredients);
+
+    // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    this.recipes[state-1].ingredients.push(this.Recipe.ingredients);
+      vm.recipe = this.recipes[$stateParams.params.id-1];
+      
 
   }
   this.recipeShow = function(data){

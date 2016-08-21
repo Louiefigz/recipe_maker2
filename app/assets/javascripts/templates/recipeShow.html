@@ -38,5 +38,9 @@
 </div>
 <div ng-controller="RecipesController as vm">
   <h3>Add Ingredients Below</h3>
-<%= render "/layouts/form" %>
+  <form ng-model="vm.Recipe.ingredients" ng-submit="vm.newIngredient()">
+    <input type="text" ng-model="vm.Recipe.ingredients.ingredient"/>
+    <input type="submit" />
+  </form>
+
 </div>
