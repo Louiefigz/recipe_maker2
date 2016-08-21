@@ -1,0 +1,46 @@
+<!-- <header>Recipe Maker V 2.0</header> -->
+
+<div class="container">
+  <div class="recipe-index" ng-controller="RecipesController as vm">
+    <h2> All Recipes</h2>
+
+    <nav>
+      <!-- <ul> -->
+      <div ng-repeat="recipe in vm.recipes"><br>
+        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipeShow(recipe.id)">{{recipe.name}}</button>
+      <!-- </ul> -->
+
+      </div>
+    </nav>
+    <article>
+
+      <h2>{{vm.title}}</h2>
+
+    <div ng-repeat="ingredient in vm.recipe.ingredients">
+
+      <p>{{ingredient.ingredient}}</p>
+    </div>
+    <div ng-bind-html="vm.url">{{vm.url}}</div>
+
+    <!-- <a ui-sref="home.recipeShow({id:vm.recipe.id})" >Edit this recipe</a> -->
+
+  </article>
+
+    <!-- <article>
+      <div ng-repeat="ingredient in vm.recipe.ingredients">
+        {{ingredients.ingredient}}
+      </div>
+  </article> -->
+
+   </div>
+  </div>
+
+<!--
+<article>
+  <div class="ingredient-index" ng-controller="IngredientsController as vm">
+    <h2>All Ingredients</h2>
+    <div  ng-repeat="ingredient in vm.ingredients">
+      <h3 class="right-half">{{ingredient.ingredient}}</h3>
+    </div>
+  </div>
+<article> -->
