@@ -30,10 +30,9 @@ var vm = this;
         delete ing.ingredients.splice(i, 1);
       }
     }
-
-
-
   }
+
+
 
 
   vm.recipes =[
@@ -84,12 +83,13 @@ var vm = this;
 
   ]
 
-var id = window.location.hash.split('/')[window.location.hash.split('/').length - 1];
-  this.recipeShowPage = function(){
-    debugger;
-    vm.recipe = vm.recipes[id-1];
 
+
+  if ($stateParams.current.url == "recipe/:id"){
+      vm.recipe = vm.recipes[$stateParams.params.id-1];
   }
+
+
 
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
   this.newIngredient = function(){
@@ -125,4 +125,4 @@ var id = window.location.hash.split('/')[window.location.hash.split('/').length 
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$state', '$stateParams', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', RecipesController]);
