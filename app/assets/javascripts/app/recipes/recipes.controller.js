@@ -97,15 +97,15 @@ var state = $stateParams.params.id;
 
     // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
     this.recipes[state-1].ingredients.push(this.Recipe.ingredients);
-  
+
 
 
 
   }
   this.recipeShow = function(data){
-    vm.recipe = this.recipes[data-1];
-    vm.title = 'Ingredients for '+ vm.recipe.name;
-    debugger;
+    vm.current_recipe = this.recipes[data-1];
+    vm.title = 'Ingredients for '+ vm.current_recipe.name;
+    // debugger;
     this.url = '<a ng-click="this.thisRecipePage()" href="/#/recipe/'+data+'"  >'+"click here to edit recipe" +'</a>'
   }
 
@@ -115,8 +115,19 @@ var state = $stateParams.params.id;
     this.recipes.push(this.newRecipe);
   }
 
-  function editRecipe(){
 
+  function editRecipe(recipe_id, ingredient_object){
+    // for (var i = 0; vm.recipes.length; i++) {
+    //   if vm.recipes[i] == recipe_id {
+    //     var object_id = iobject_id
+    //     for (var i = 0; vm.recipes[object_id].ingredients; i++) {
+    //       if (vm.recipes[object_id].ingredients[i] == ingredient.id) {
+    //         vm.recipes[object_id].ingredients[i].ingredient = ingrendient.ingredient;
+    //       }
+    //     }
+    //   }
+    // }
+    // console.log('I am here')
   }
 
   function deleteRecipe(){

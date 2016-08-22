@@ -1,39 +1,30 @@
 <!-- <header>Recipe Maker V 2.0</header> -->
 
-<div class="container">
+<div class="container-fluid">
   <div class="recipe-index" ng-controller="RecipesController as vm">
     <h2> All Recipes</h2>
 
-    <nav>
-      <!-- <ul> -->
-      <div ng-repeat="recipe in vm.recipes"><br>
-        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipeShow(recipe.id)">{{recipe.name}}</button>
-      <!-- </ul> -->
 
-      </div>
-    </nav>
-    <article>
 
-      <h2>{{vm.title}}</h2>
+      <div class="row-fluid">
+        <div class="col-sm-4">
+          <div ng-repeat="recipe in vm.recipes"><br>
+            <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipeShow(recipe.id)">{{recipe.name}}</button>
+          </div> <!--ng-repeat -->
+        </div> <!--span2 -->
 
-    <div ng-repeat="ingredient in vm.recipe.ingredients">
-
-      <p>{{ingredient.ingredient}}</p>
-    </div>
-    <div ng-bind-html="vm.url">{{vm.url}}</div>
-
+        <div class="col-sm-4">
+            <h2>{{vm.title}}</h2>
+            <div ng-repeat="ingredient in vm.current_recipe.ingredients">
+              <p>{{ingredient.ingredient}}</p>
+            </div><!--ng-repeat -->
+            <div ng-bind-html="vm.url">{{vm.url}}</div>
+        </div><!--span10-->
     <!-- <a ui-sref="home.recipeShow({id:vm.recipe.id})" >Edit this recipe</a> -->
 
-  </article>
-
-    <!-- <article>
-      <div ng-repeat="ingredient in vm.recipe.ingredients">
-        {{ingredients.ingredient}}
-      </div>
-  </article> -->
-
-   </div>
-  </div>
+  </div><!--row-fluid -->
+</div> <!--recipe-index -->
+</div> <!--container -fluid-->
 
 <!--
 <article>
