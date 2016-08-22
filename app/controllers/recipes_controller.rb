@@ -1,11 +1,12 @@
 class RecipesController < ApplicationController
   def index
     recipes = Recipe.all
+    render json: recipes
 
-    respond_to do |format|
-      format.html
-      format.json { render json: recipes}
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: recipes}
+    # end
   end
 
   def show
