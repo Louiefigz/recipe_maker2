@@ -1,4 +1,4 @@
-function IngredientsController(){
+function IngredientsController(Ingredient){
 
   var vm = this;
 
@@ -16,10 +16,16 @@ function IngredientsController(){
 
 //Form for creating new ingredients
   this.createIngredient = function(data){
+    // debugger;
     this.ingredients.push(data);
   }
 
-  
+
+
+Ingredient.query().$promise.then(function(response){
+    // console.log(this.allIngredients);
+    vm.allIngredients=response;
+  });
 }
 
 angular

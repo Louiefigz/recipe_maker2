@@ -1,7 +1,13 @@
 <h3>All Ingredients</h3>
-<div ng-controller="IngredientsController as vm">
+<!-- <div ng-controller="IngredientsController as vm">
   <ul>
     <li ng-repeat="ingredient in vm.ingredients">{{ingredient.ingredient}}</li>
+  </ul>
+</div> -->
+
+<div ng-controller="IngredientsController as vm">
+  <ul>
+    <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}</li>
   </ul>
 </div>
 
