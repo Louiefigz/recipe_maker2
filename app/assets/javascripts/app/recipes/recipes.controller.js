@@ -37,11 +37,12 @@ var vm = this;
  RecipeFactory.query().$promise.then(function(response){
      // console.log(this.allIngredients);
     //  debugger;
+
      vm.recipes=response;
    });
 
 
-  //
+
   // vm.recipes =[
   //   {
   //     id: 1,
@@ -93,6 +94,7 @@ var vm = this;
 
 
   if ($state.current.url == "recipe/:id"){
+
       vm.recipe = vm.recipes[parseInt($state.params.id)];
   }
 
@@ -104,9 +106,6 @@ var state = $state.params.id;
 
     // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
     this.recipes[state-1].ingredients.push(this.Recipe.ingredients);
-
-
-
 
   }
   this.recipeShow = function(data){

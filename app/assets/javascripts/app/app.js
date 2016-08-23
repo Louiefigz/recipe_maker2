@@ -31,7 +31,7 @@ angular
 
 
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/welcome');
 
 
 

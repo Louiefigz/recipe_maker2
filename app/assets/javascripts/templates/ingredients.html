@@ -1,20 +1,22 @@
-<h3>All Ingredients</h3>
-<!-- <div ng-controller="IngredientsController as vm">
-  <ul>
-    <li ng-repeat="ingredient in vm.ingredients">{{ingredient.ingredient}}</li>
-  </ul>
-</div> -->
+<div class="padding">
+  <h3>All Ingredients</h3>
+  <!-- <div ng-controller="IngredientsController as vm">
+    <ul>
+      <li ng-repeat="ingredient in vm.ingredients">{{ingredient.ingredient}}</li>
+    </ul>
+  </div> -->
 
-<div ng-controller="IngredientsController as vm">
-  <ul>
-    <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}</li>
-  </ul>
-</div>
+  <div ng-controller="IngredientsController as vm">
+    <ul>
+      <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}</li>
+    </ul>
+  </div>
 
-<h3>Create a New Ingredient</h3>
-<div ng-controller="IngredientsController as vm">
-  <form ng-submit="vm.createIngredient(vm.ingredient)">
-    <input type="text" ng-model="vm.ingredient.ingredient"/>
-    <input type="submit" value="Create Ingredient" />
-  </form>
+  <h3>Create a New Ingredient</h3>
+  <div ng-controller="IngredientsController as vm">
+    <form ng-submit="vm.createIngredient(vm.ingredient)">
+      <input type="text" ng-model="vm.ingredient.ingredient"/>
+      <input type="submit" value="Create Ingredient" />
+    </form>
+  </div>
 </div>
