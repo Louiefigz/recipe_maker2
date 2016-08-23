@@ -1,4 +1,4 @@
-function RecipesController($scope, $state, $stateParams){
+function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 var vm = this;
 
   vm.addRecipe = addRecipe;
@@ -32,66 +32,73 @@ var vm = this;
     }
   }
 
+// debugger;
+
+ RecipeFactory.query().$promise.then(function(response){
+     // console.log(this.allIngredients);
+    //  debugger;
+     vm.recipes=response;
+   });
+
+
+  //
+  // vm.recipes =[
+  //   {
+  //     id: 1,
+  //     name: 'pad thai',
+  //     ingredients: [
+  //     {
+  //       id: 1,
+  //       ingredient: "peanuts"
+  //     },
+  //     {
+  //       id: 2,
+  //       ingredient: "noodles"
+  //     },
+  //     {
+  //       id: 3,
+  //       ingredient: "chicken"
+  //     }
+  //     ]
+  //   },
+  //   {
+  //     id:2,
+  //     name: 'lemon chicken',
+  //     ingredients: [
+  //     {
+  //       id: 1,
+  //       ingredient: "chicken"
+  //     },
+  //     {
+  //       id: 2,
+  //       ingredient: "lemon"
+  //     },
+  //     {
+  //       id: 3,
+  //       ingredient: "garlic"
+  //     }
+  //     ]
+  //   },
+  //   {
+  //     id:3,
+  //     name: 'meatloaf'
+  //   },
+  //   {
+  //     id:4,
+  //     name: 'Penne al a vodka'
+  //   }
+  //
+  // ]
 
 
 
-  vm.recipes =[
-    {
-      id: 1,
-      name: 'pad thai',
-      ingredients: [
-      {
-        id: 1,
-        ingredient: "peanuts"
-      },
-      {
-        id: 2,
-        ingredient: "noodles"
-      },
-      {
-        id: 3,
-        ingredient: "chicken"
-      }
-      ]
-    },
-    {
-      id:2,
-      name: 'lemon chicken',
-      ingredients: [
-      {
-        id: 1,
-        ingredient: "chicken"
-      },
-      {
-        id: 2,
-        ingredient: "lemon"
-      },
-      {
-        id: 3,
-        ingredient: "garlic"
-      }
-      ]
-    },
-    {
-      id:3,
-      name: 'meatloaf'
-    },
-    {
-      id:4,
-      name: 'Penne al a vodka'
-    }
-
-  ]
-
-
-
-  if ($stateParams.current.url == "recipe/:id"){
-      vm.recipe = vm.recipes[$stateParams.params.id-1];
+  if ($state.current.url == "recipe/:id"){
+      vm.recipe = vm.recipes[parseInt($state.params.id)];
   }
 
 
 
-var state = $stateParams.params.id;
+var state = $state.params.id;
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
   this.newIngredient = function(){
 
@@ -140,4 +147,4 @@ var state = $stateParams.params.id;
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', RecipesController]);

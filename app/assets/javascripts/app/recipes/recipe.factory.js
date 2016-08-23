@@ -1,15 +1,15 @@
 angular
   .module('app')
-  .factory("Recipe", Recipe);
+  .factory("RecipeFactory", RecipeFactory);
 
-  function Recipe($resource){
+  function RecipeFactory($resource){
 
-    var Recipe =[];
-    Recipe = $resource('/recipes/:id', {id:'@id'},{
-      query: {method: 'GET', isArray:true},
-      save:   {method:'POST'},
+    var RecipeFactory =[];
+    RecipeFactory = $resource('/recipes/:id', {id:'@id'},{
+        query: {method: 'GET', isArray:true},
+        save:   {method:'POST'},
        update: { method: 'PUT'},
        delete: { method: 'DELETE'}
     });
-    return Recipe;
+    return RecipeFactory;
   }
