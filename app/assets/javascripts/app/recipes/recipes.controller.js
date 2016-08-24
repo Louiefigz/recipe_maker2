@@ -1,7 +1,6 @@
 function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 var vm = this;
 
-  vm.addRecipe = addRecipe;
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
   vm.startDeleteIngredient = startDeleteIngredient;
@@ -10,6 +9,13 @@ var vm = this;
   vm.showEditRecipeName = false;
   vm.editRecipe = editRecipe;
   vm.deleteRecipe =  deleteRecipe;
+  vm.addNewRecipe = addNewRecipe;
+  vm.recipes = RecipeFactory.query();
+  vm.newRecipe = new RecipeFactory();
+
+  function addNewRecipe(){
+
+  }
 
   function startEditRecipe(){
     vm.showEditRecipeForm = !vm.showEditRecipeForm;
@@ -31,67 +37,6 @@ var vm = this;
       }
     }
   }
-
-// debugger;
-
- RecipeFactory.query().$promise.then(function(response){
-     // console.log(this.allIngredients);
-    //  debugger;
-
-     vm.recipes=response;
-   });
-
-
-
-  // vm.recipes =[
-  //   {
-  //     id: 1,
-  //     name: 'pad thai',
-  //     ingredients: [
-  //     {
-  //       id: 1,
-  //       ingredient: "peanuts"
-  //     },
-  //     {
-  //       id: 2,
-  //       ingredient: "noodles"
-  //     },
-  //     {
-  //       id: 3,
-  //       ingredient: "chicken"
-  //     }
-  //     ]
-  //   },
-  //   {
-  //     id:2,
-  //     name: 'lemon chicken',
-  //     ingredients: [
-  //     {
-  //       id: 1,
-  //       ingredient: "chicken"
-  //     },
-  //     {
-  //       id: 2,
-  //       ingredient: "lemon"
-  //     },
-  //     {
-  //       id: 3,
-  //       ingredient: "garlic"
-  //     }
-  //     ]
-  //   },
-  //   {
-  //     id:3,
-  //     name: 'meatloaf'
-  //   },
-  //   {
-  //     id:4,
-  //     name: 'Penne al a vodka'
-  //   }
-  //
-  // ]
-
-
 
   if ($state.current.url == "recipe/:id"){
 
@@ -117,8 +62,11 @@ var state = $state.params.id;
 
 
 
-  function addRecipe(){
-    this.recipes.push(this.newRecipe);
+  function addNewRecipe(){
+    console.log("I am being clicked")
+    vm.newRecipe.$save(function() {
+      vm.recipes = RecipeFactory.query();
+    })
   }
 
 

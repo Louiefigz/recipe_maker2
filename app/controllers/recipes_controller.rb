@@ -11,9 +11,15 @@ class RecipesController < ApplicationController
 
   def show
     recipe = Recipe.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render json: recipe}
+    render json: recipe
+  end
+
+  def create
+    recipe = Recipe.create(params)
+    if recipe.save
+      render json: { message: 'Recipe successfully created' }
+    else
+      render json: { message: 'Recipe was not created' }
     end
   end
 end
