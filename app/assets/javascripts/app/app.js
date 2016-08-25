@@ -24,7 +24,7 @@ angular
         controller: 'RecipesController as vm'
       })
       .state('home.recipeShow', {
-        url: 'recipe/:id',
+        url: 'recipes/:id',
         templateUrl: 'recipeShow.html',
         controller: 'RecipesController as vm'
       });

@@ -10,12 +10,13 @@ var vm = this;
   vm.editRecipe = editRecipe;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
+
   vm.recipes = RecipeFactory.query();
   vm.newRecipe = new RecipeFactory();
+  // vm.Recipe.ingredients.ingredient = new RecipeFactory();
+  vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
-  function addNewRecipe(){
 
-  }
 
   function startEditRecipe(){
     vm.showEditRecipeForm = !vm.showEditRecipeForm;
@@ -48,16 +49,19 @@ var vm = this;
 var state = $state.params.id;
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
   this.newIngredient = function(){
+    console.log("This is meeee");
+    vm.Recipe.ingredients.ingredient.$save(function(){
 
+    })
     // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
-    this.recipes[state-1].ingredients.push(this.Recipe.ingredients);
+
 
   }
   this.recipeShow = function(data){
     vm.current_recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
     // debugger;
-    this.url = '<a ng-click="this.thisRecipePage()" href="/#/recipe/'+data+'"  >'+"click here to edit recipe" +'</a>'
+    this.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
   }
 
 
@@ -85,7 +89,8 @@ var state = $state.params.id;
   }
 
   function deleteRecipe(){
-
+    recipe.$delete
+    recipe.$update
 
   }
 

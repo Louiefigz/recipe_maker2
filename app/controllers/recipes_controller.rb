@@ -15,11 +15,17 @@ class RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.create(params)
+    recipe = Recipe.create(recipe_params)
     if recipe.save
       render json: { message: 'Recipe successfully created' }
     else
       render json: { message: 'Recipe was not created' }
     end
   end
+
+  private
+
+    def recipe_params
+      params.require(:recipe).permit(:name)
+    end
 end
