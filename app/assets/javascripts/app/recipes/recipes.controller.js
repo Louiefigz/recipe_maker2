@@ -1,5 +1,6 @@
 function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
-var vm = this;
+
+  var vm = this;
 
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
@@ -9,13 +10,15 @@ var vm = this;
   vm.showEditRecipeName = false;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
+  // vm.deleteRecipeIngredient = deleteRecipeIngredient;
 
-  vm.newIngredient = { ingredient: "" }
+  vm.newIngredient = { ingredient: "" };
   vm.recipes = RecipeFactory.query();
   vm.newRecipe = new RecipeFactory();
   vm.updateRecipe = updateRecipe;
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
+  vm.recipe_show = recipe_show;
 
 
   function startEditRecipe(){
@@ -26,23 +29,10 @@ var vm = this;
     vm.showEditRecipeName = !vm.showEditRecipeName;
   }
 
-  function startDeleteIngredient(data){
-    var id = window.location.hash.split('/')[window.location.hash.split('/').length - 1];
-    var ing = this.recipes[id-1];
-
-
-    for(var i=0; i <ing.ingredients.length; i++){
-      if (ing.ingredients[i].id == data ){
-
-        delete ing.ingredients.splice(i, 1);
-      }
-    }
+  function startDeleteIngredient(ingredient_id){
+    vm.recipe.$delete({ingredient_id: ingredient_id});
+      vm.recipe = RecipeFactory.get({ id: $stateParams.id })
   }
-  // 
-  // if ($state.current.url == "recipe/:id"){
-  //
-  //     vm.recipe = vm.recipes[parseInt($state.params.id)];
-  // }
 
 
 
@@ -56,7 +46,7 @@ var state = $state.params.id;
 
     }
 
-  this.recipeShow = function(data){
+  function recipe_show(data){
     vm.current_recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
     // debugger;
@@ -78,15 +68,20 @@ var state = $state.params.id;
     vm.recipe.ingredients.push(vm.newIngredient);
     console.log(vm.recipe);
     vm.recipe.$update(function() {
-      debugger;
-    vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+      RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
+        var vm = this;
+      vm.recipe = resp;
+    })
   });
-
+  vm.recipe
   }
 
   function deleteRecipe(){
     recipe.$delete
     recipe.$update
+  }
+
+  function deleteRecipeIngredient(){
 
   }
 

@@ -22,6 +22,8 @@
   <h3 class="ingredient-text">Ingredients for this recipe: </h3>
     <div ng-repeat="ingredient in vm.recipe.ingredients">
       <p >{{ingredient.ingredient}}</p>
+
+      {{ ingredient.id }}
       <button ng-click="vm.startEditRecipe()">Edit Ingredient</button>
       <div ng-show="vm.showEditRecipeForm == true">
         <h3>Edit Ingredient </h3>
