@@ -1,3 +1,4 @@
+require 'pry'
 class RecipesController < ApplicationController
   def index
     recipes = Recipe.all
@@ -15,6 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    binding.pry
     recipe = Recipe.create(recipe_params)
     if recipe.save
       render json: { message: 'Recipe successfully created' }
@@ -23,9 +25,20 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    recipe = Recipe.find(params[:id])
+    if ingredient_params.present?
+      recipe.ingredients.find_or_create_by(ingredient: ingredient_params)
+    end
+  end
+
   private
 
     def recipe_params
       params.require(:recipe).permit(:name)
+    end
+
+    def ingredient_params
+      params.require(:ingredients).last[:ingredient]
     end
 end

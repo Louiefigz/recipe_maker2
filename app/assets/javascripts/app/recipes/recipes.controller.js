@@ -7,13 +7,13 @@ var vm = this;
   vm.showEditRecipeForm = false;
   vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
-  vm.editRecipe = editRecipe;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
 
+  vm.newIngredient = { ingredient: "" }
   vm.recipes = RecipeFactory.query();
   vm.newRecipe = new RecipeFactory();
-  // vm.Recipe.ingredients.ingredient = new RecipeFactory();
+  vm.updateRecipe = updateRecipe;
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
 
@@ -38,25 +38,24 @@ var vm = this;
       }
     }
   }
-
-  if ($state.current.url == "recipe/:id"){
-
-      vm.recipe = vm.recipes[parseInt($state.params.id)];
-  }
+  // 
+  // if ($state.current.url == "recipe/:id"){
+  //
+  //     vm.recipe = vm.recipes[parseInt($state.params.id)];
+  // }
 
 
 
 var state = $state.params.id;
   //this function is not 'working' but it pushes info to the hash vm.recipes correctly
-  this.newIngredient = function(){
+  this.newRecipeIngredient = function(){
     console.log("This is meeee");
-    vm.Recipe.ingredients.ingredient.$save(function(){
+      // vm.recipe.$update
+      debugger;
+      vm.addRecipeIngredient.$update;
 
-    })
-    // var id = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    }
 
-
-  }
   this.recipeShow = function(data){
     vm.current_recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
@@ -74,18 +73,15 @@ var state = $state.params.id;
   }
 
 
-  function editRecipe(recipe_id, ingredient_object){
-    // for (var i = 0; vm.recipes.length; i++) {
-    //   if vm.recipes[i] == recipe_id {
-    //     var object_id = iobject_id
-    //     for (var i = 0; vm.recipes[object_id].ingredients; i++) {
-    //       if (vm.recipes[object_id].ingredients[i] == ingredient.id) {
-    //         vm.recipes[object_id].ingredients[i].ingredient = ingrendient.ingredient;
-    //       }
-    //     }
-    //   }
-    // }
-    // console.log('I am here')
+  function updateRecipe(){
+
+    vm.recipe.ingredients.push(vm.newIngredient);
+    console.log(vm.recipe);
+    vm.recipe.$update(function() {
+      debugger;
+    vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+  });
+
   }
 
   function deleteRecipe(){
