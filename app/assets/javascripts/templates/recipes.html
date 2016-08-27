@@ -1,15 +1,17 @@
 <div class="padding">
   <h2>All Recipes</h2>
-  <div ng-controller="RecipesController as vm">
+  <div>
 
     <ul>
       <div ng-repeat="recipe in vm.recipes">
-        <li>{{recipe.name}}</li>
+
+        <!-- add link to recipe --><li>{{recipe.name}}</li>
+
       </div>
     </ul>
 
     <form ng-submit="vm.addNewRecipe()" >
-      <input type="text" ng-model="vm.newIngredient">
+      <input type="text" ng-model="vm.newRecipe.name">
       <input type="submit" value="Create New Recipe"/>
     </form>
   </div>

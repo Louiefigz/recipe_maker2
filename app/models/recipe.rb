@@ -4,7 +4,7 @@ class Recipe < ApplicationRecord
 
 
   def ingredients_attributes=(attr)
-    binding.pry
+     
   end
 
 end

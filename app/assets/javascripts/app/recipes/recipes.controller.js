@@ -10,6 +10,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.showEditRecipeName = false;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
+  vm.editRecipe = editRecipe;
   // vm.deleteRecipeIngredient = deleteRecipeIngredient;
 
   vm.newIngredient = { ingredient: "" };
@@ -20,6 +21,13 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   vm.recipe_show = recipe_show;
 
+  function editRecipe(){
+    vm.recipe.$update(getRecipe);
+  }
+
+  function getRecipe(){
+    vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+  }
 
   function startEditRecipe(){
     vm.showEditRecipeForm = !vm.showEditRecipeForm;
@@ -34,46 +42,24 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
       vm.recipe = RecipeFactory.get({ id: $stateParams.id })
   }
 
-
-
-var state = $state.params.id;
-  //this function is not 'working' but it pushes info to the hash vm.recipes correctly
-  this.newRecipeIngredient = function(){
-    console.log("This is meeee");
-      // vm.recipe.$update
-      debugger;
-      vm.addRecipeIngredient.$update;
-
-    }
-
   function recipe_show(data){
     vm.current_recipe = this.recipes[data-1];
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
-    // debugger;
-    this.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+    vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
   }
-
-
 
   function addNewRecipe(){
-    console.log("I am being clicked")
     vm.newRecipe.$save(function() {
       vm.recipes = RecipeFactory.query();
-    })
+    });
   }
 
-
   function updateRecipe(){
-
     vm.recipe.ingredients.push(vm.newIngredient);
-    console.log(vm.recipe);
     vm.recipe.$update(function() {
-      RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
-        var vm = this;
-      vm.recipe = resp;
-    })
-  });
-  vm.recipe
+      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
+      vm.newIngredient = { ingredient: "" };
+    });
   }
 
   function deleteRecipe(){

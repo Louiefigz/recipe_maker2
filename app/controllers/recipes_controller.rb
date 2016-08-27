@@ -16,7 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def create
-    binding.pry
+    # add more validations here so repeate recipes aren't made
     recipe = Recipe.create(recipe_params)
     if recipe.save
       render json: { message: 'Recipe successfully created' }
@@ -27,13 +27,16 @@ class RecipesController < ApplicationController
 
   def update
     recipe = Recipe.find(params[:id])
-    if ingredient_params.present?
-      recipe.ingredients.find_or_create_by(ingredient: ingredient_params)
+    recipe.update(recipe_params)
+    if recipe.save
+      if ingredient_params.present?
+        recipe.ingredients.find_or_create_by(ingredient: ingredient_params)
+      end
     end
   end
 
   def destroy
-  
+
     RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
   end
 
