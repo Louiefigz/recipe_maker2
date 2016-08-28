@@ -23,6 +23,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   function editRecipe(){
     vm.recipe.$update(getRecipe);
+     vm.showEditRecipeName = false;
   }
 
   function getRecipe(){
