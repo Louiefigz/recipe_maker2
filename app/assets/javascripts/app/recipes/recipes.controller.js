@@ -11,7 +11,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
   vm.editRecipe = editRecipe;
-  // vm.deleteRecipeIngredient = deleteRecipeIngredient;
+
 
   vm.newIngredient = { ingredient: "" };
   vm.recipes = RecipeFactory.query();
