@@ -1,13 +1,13 @@
 angular
   .module('app')
-  .factory("Ingredient", Ingredient);
+  .factory("IngredientFactory", IngredientFactory);
 
-  function Ingredient($resource){
+  function IngredientFactory($resource){
 
-    var Ingredient =[];
-    Ingredient = $resource('/ingredients/:id', {id:'@id'},{
-      query: {method: 'GET', isArray:true},
-      save:   {method:'POST'},
+   
+    var Ingredient = $resource('/ingredients/:id', {id:'@id'},{
+      // query: {method: 'GET', isArray:true},
+      // save:   {method:'POST'},
        update: { method: 'PUT'},
        delete: { method: 'DELETE'}
     });

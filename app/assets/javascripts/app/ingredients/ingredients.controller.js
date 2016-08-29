@@ -1,33 +1,29 @@
-function IngredientsController(Ingredient){
+function IngredientsController($scope, $http, $state, $stateParams, IngredientFactory){
 
   var vm = this;
 
-  vm.ingredients = [
-    {
-      ingredient: "peanuts"
-    },
-    {
-      ingredient: "noodles"
-    },
-    {
-      ingredient: "chicken"
-    }
-  ]
+
+  vm.allIngredients = IngredientFactory.query();
+  vm.createIngredient = createIngredient;
+  vm.newIngredient = new IngredientFactory();
+  // vm.newIngredient = { ingredient: "" };
+
 
 //Form for creating new ingredients
-  this.createIngredient = function(data){
+  function createIngredient(){
     // debugger;
-    this.ingredients.push(data);
+    vm.newIngredient.$save(function(){
+      vm.allIngredients = IngredientFactory.query();
+    });
   }
 
 
 
-Ingredient.query().$promise.then(function(response){
-    // console.log(this.allIngredients);
-    vm.allIngredients=response;
-  });
+
+   
+  
 }
 
 angular
   .module('app')
-  .controller('IngredientsController', IngredientsController);
+  .controller('IngredientsController', ['$scope', '$http', '$state', '$stateParams', 'IngredientFactory', IngredientsController]);
