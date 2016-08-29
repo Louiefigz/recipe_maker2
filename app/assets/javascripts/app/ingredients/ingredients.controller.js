@@ -14,14 +14,15 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
     // debugger;
     vm.newIngredient.$save(function(){
       vm.allIngredients = IngredientFactory.query();
+      vm.newIngredient.ingredient ="";
     });
   }
 
 
 
 
-   
-  
+
+
 }
 
 angular

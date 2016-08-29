@@ -50,7 +50,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function addNewRecipe(){
-    debugger;
+
     vm.newRecipe.$save(function() {
 
       vm.recipes = RecipeFactory.query();
