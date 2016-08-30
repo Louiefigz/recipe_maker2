@@ -36,10 +36,13 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-
-    RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
+  
+    if params[:ingredient_id]
+      RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
+    else
+      Recipe.find(params[:recipe_id].to_i).delete
+    end
   end
-
   private
 
     def recipe_params

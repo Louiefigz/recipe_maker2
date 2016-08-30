@@ -4,9 +4,8 @@
 
     <ul>
       <div ng-repeat="recipe in vm.recipes">
-
-        <!-- add link to recipe --><a ui-sref="home.recipeShow({id: recipe.id})"><li>{{recipe.name}}</li></a>
-
+        <a ui-sref="home.recipeShow({id: recipe.id})"><li>{{recipe.name}}</li></a>
+        <button ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
 
       </div>
     </ul>

@@ -58,10 +58,8 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
 
   function addNewRecipe(){
-
     vm.newRecipe.$save(function() {
-
-      vm.recipes = RecipeFactory.query();
+    vm.recipes = RecipeFactory.query();
     });
   }
 
@@ -70,12 +68,19 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     vm.recipe.$update(function() {
       vm.recipe = RecipeFactory.get({ id: $stateParams.id });
       vm.newIngredient = { ingredient: "" };
-    });
+    })
   }
 
-  function deleteRecipe(){
-    recipe.$delete
-    recipe.$update
+  function deleteRecipe(recipe_id){
+
+    for(var i=0; i<this.recipes.length; i++){
+      if (this.recipes[i].id == recipe_id){
+        this.recipes[i].$delete({recipe_id: recipe_id})
+      }
+    }
+    vm.recipes = RecipeFactory.query();
+    // vm.recipe.$delete({recipe_id: recipe_id});
+    //   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
   }
 
   function deleteRecipeIngredient(){
