@@ -15,6 +15,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.editRecipe = editRecipe;
 
 
+
   vm.newIngredient = { ingredient: "" };
   vm.recipes = RecipeFactory.query();
   vm.newRecipe = new RecipeFactory();
@@ -99,7 +100,8 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     vm.showDeleteRecipe = !vm.showDeleteRecipe;
   }
 
-
+// vm.search ="";
+// vm.filteredList = $filter('filter')(this.contacts, this.search);
 };
 
 angular

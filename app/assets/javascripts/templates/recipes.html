@@ -3,18 +3,37 @@
   <button ng-click="vm.startDeleteRecipe()">Delete any Recipe</button>
   <!-- <div> -->
 
-    <ul>
+    <!-- <ul>
       <div ng-repeat="recipe in vm.recipes">
         <li><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
-        <!-- <div ng-show="vm.showDeleteRecipe == true"> -->
+
           <button ng-show= "vm.showDeleteRecipe == true"  ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
-        <!-- <div> -->
+
       </div>
-    </ul>
+    </ul> -->
 
     <form ng-submit="vm.addNewRecipe()" >
       <input type="text" ng-model="vm.newRecipe.name" required>
       <input type="submit" value="Create New Recipe"/>
     </form>
+
+
+    <div class="row">  
+       <div class ="col-sm-4 col-sm-offset-8">
+          <input class ="form-control input-lg"
+          placeholder ="Search"
+          ng-model ="searchKey" />
+    </div>
+  </div>
+
+  <div ng-repeat="recipe in vm.recipes | filter: searchKey ">
+
+    <li><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
+    <!-- <div ng-show="vm.showDeleteRecipe == true"> -->
+      <button ng-show= "vm.showDeleteRecipe == true"  ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
+    <!-- <div> -->
+  </div>
+
+
   </div>
 <!-- </div> -->

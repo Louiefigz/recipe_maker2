@@ -22,7 +22,9 @@
     </div>
 
     <div ng-repeat="ingredient in vm.recipe.ingredients">
-      <p >{{ingredient.ingredient}}</p>
+      <!-- <recipe-info
+      ingredient="ingredient.ingredient"/> -->
+      <p>{{ingredient.ingredient}}</p>
       <button ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
     </div>
 
