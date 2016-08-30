@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+
     # add more validations here so repeate recipes aren't made
     recipe = Recipe.create(recipe_params)
     if recipe.save
@@ -26,17 +27,23 @@ class RecipesController < ApplicationController
   end
 
   def update
+    # binding.pry
+
     recipe = Recipe.find(params[:id])
+    ingredient = Ingredient.find_or_create_by(ingredient: ingredient_params)
+
     recipe.update(recipe_params)
     if recipe.save
-      if ingredient_params.present?
-        recipe.ingredients.find_or_create_by(ingredient: ingredient_params)
+      binding.pry
+      if ingredient.present?
+        # binding.pry
+        recipe.recipe_ingredients.find_or_create_by(ingredient_id: ingredient.id)
       end
     end
   end
 
   def destroy
-  
+
     if params[:ingredient_id]
       RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
     else

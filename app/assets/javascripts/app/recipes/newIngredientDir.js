@@ -1,11 +1,12 @@
 angular
   .module('app')
-  .directive('newIngredientDir', newIngredientDir){
+  .directive('newIngredientDir', function(){
+    return {
+      controller: 'RecipesController as vm',
+      templateUrl: 'newIngredientForm.html'
 
-
-
-
-  };
+    }
+  });
 
 //
 //
