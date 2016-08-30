@@ -8,7 +8,9 @@
 
   <!-- <div ng-controller="IngredientsController as vm"> -->
     <ul>
-      <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}</li>
+      <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}
+      <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
+      </li>
     </ul>
   <!-- </div> -->
 

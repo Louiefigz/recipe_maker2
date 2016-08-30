@@ -11,12 +11,17 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    
+
     ingredient = Ingredient.find_or_create_by(ingredient: params[:ingredient].strip)
   end
 
   def show
     ingredient = Ingredient.find(params[:id])
+  end
+
+  def destroy
+
+    Ingredient.find(params[:ingredient_id].to_i).delete
   end
 
 
