@@ -44,9 +44,15 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function recipe_show(data){
-    vm.current_recipe = this.recipes[data-1];
-    vm.title = 'Ingredients for '+ vm.current_recipe.name;
-    vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+
+    for(var i=0; i< this.recipes.length; i++){
+      if(this.recipes[i].id == data){
+
+        vm.current_recipe = this.recipes[i];
+        vm.title = 'Ingredients for '+ vm.current_recipe.name;
+        vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+      }
+    }
   }
 
   function recipe_link(data){
