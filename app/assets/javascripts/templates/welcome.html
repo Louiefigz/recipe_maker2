@@ -17,10 +17,13 @@
 
         <div class="col-sm-4">
           <div class="padding">
+            
             <h2>{{vm.title}}</h2>
+            <ul class="list-group">
             <div ng-repeat="ingredient in vm.current_recipe.ingredients">
-              <p>{{ingredient.ingredient}}</p>
+              <li class ="list-group-item">{{ingredient.ingredient}}</li>
             </div><!--ng-repeat -->
+          </ul>
             <div ng-bind-html="vm.url">{{vm.url}}</div>
           </div>
         </div><!--span10-->

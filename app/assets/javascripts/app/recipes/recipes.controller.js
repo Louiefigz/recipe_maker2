@@ -49,6 +49,14 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
   }
 
+  function recipe_link(data){
+    vm.current_recipe = this.recipes[data-1];
+    vm.title = 'Ingredients for '+ vm.current_recipe.name;
+    vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+  }
+
+
+
   function addNewRecipe(){
 
     vm.newRecipe.$save(function() {

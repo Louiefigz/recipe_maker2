@@ -5,7 +5,8 @@
     <ul>
       <div ng-repeat="recipe in vm.recipes">
 
-        <!-- add link to recipe --><li>{{recipe.name}}</li>
+        <!-- add link to recipe --><a ui-sref="home.recipeShow({id: recipe.id})"><li>{{recipe.name}}</li></a>
+
 
       </div>
     </ul>
