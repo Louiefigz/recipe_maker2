@@ -7,6 +7,8 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
   vm.createIngredient = createIngredient;
   vm.newIngredient = new IngredientFactory();
   vm.deleteIngredient = deleteIngredient;
+  vm.startDeleteButton = startDeleteButton;
+  vm.showDeleteButton = false;
   // vm.newIngredient = { ingredient: "" };
 
 
@@ -29,7 +31,10 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
     vm.allIngredients = IngredientFactory.query();
   }
 
-
+  function startDeleteButton(){
+  
+    vm.showDeleteButton = !vm.showDeleteButton;
+  }
 
 
 

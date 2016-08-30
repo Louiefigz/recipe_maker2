@@ -1,5 +1,5 @@
 <div class="padding">
-  <h3>All Ingredients</h3>
+  <h3>All Ingredients</h3><button ng-click="vm.startDeleteButton()">Delete Any Ingredient</button>
   <!-- <div ng-controller="IngredientsController as vm">
     <ul>
       <li ng-repeat="ingredient in vm.ingredients">{{ingredient.ingredient}}</li>
@@ -8,9 +8,12 @@
 
   <!-- <div ng-controller="IngredientsController as vm"> -->
     <ul>
-      <li ng-repeat="ing in vm.allIngredients">{{ing.ingredient}}
-      <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
-      </li>
+      <div ng-repeat="ing in vm.allIngredients">
+        <li>{{ing.ingredient}}</li>
+        <div ng-show="vm.showDeleteButton == true">
+          <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
+      </div>
+    </div>
     </ul>
   <!-- </div> -->
 

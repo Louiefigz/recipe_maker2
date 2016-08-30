@@ -1,12 +1,14 @@
 <div class="padding">
-  <h2>All Recipes</h2>
-  <div>
+  <h3>All Recipes</h3>
+  <button ng-click="vm.startDeleteRecipe()">Delete any Recipe</button>
+  <!-- <div> -->
 
     <ul>
       <div ng-repeat="recipe in vm.recipes">
-        <a ui-sref="home.recipeShow({id: recipe.id})"><li>{{recipe.name}}</li></a>
-        <button ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
-
+        <li><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
+        <!-- <div ng-show="vm.showDeleteRecipe == true"> -->
+          <button ng-show= "vm.showDeleteRecipe == true"  ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
+        <!-- <div> -->
       </div>
     </ul>
 
@@ -15,4 +17,4 @@
       <input type="submit" value="Create New Recipe"/>
     </form>
   </div>
-</div>
+<!-- </div> -->

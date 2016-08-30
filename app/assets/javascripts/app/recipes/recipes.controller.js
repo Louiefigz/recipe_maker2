@@ -5,9 +5,11 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
   vm.startDeleteIngredient = startDeleteIngredient;
+  vm.startDeleteRecipe= startDeleteRecipe;
   vm.showEditRecipeForm = false;
   vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
+  vm.showDeleteRecipe = false;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
   vm.editRecipe = editRecipe;
@@ -88,9 +90,13 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     // vm.recipe.$delete({recipe_id: recipe_id});
     //   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
   }
-
+  //
   function deleteRecipeIngredient(){
 
+  }
+
+  function startDeleteRecipe(){
+    vm.showDeleteRecipe = !vm.showDeleteRecipe;
   }
 
 
