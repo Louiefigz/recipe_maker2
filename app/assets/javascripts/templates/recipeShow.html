@@ -33,8 +33,6 @@
         </div>
 
         <div ng-repeat="ingredient in vm.recipe.ingredients">
-          <!-- <recipe-info
-          ingredient="ingredient.ingredient"/> -->
           <p>{{ingredient.ingredient}}</p>
           <button ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
         </div>
@@ -51,13 +49,10 @@
         <div class="well">
           <button ng-click="vm.deleteRecipeShow(vm.recipe.id)">Delete Recipe</button>
         </div>
-        <div class="well">
-          <p>ADS</p>
-        <!-- </div> -->
-      </div>
     </div>
 </div>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
+</div>
