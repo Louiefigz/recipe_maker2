@@ -6,8 +6,8 @@
       <div class="col-sm-2 sidenav">
         <h2> All Recipes</h2>
       <div ng-repeat="recipe in vm.recipes"><br>
-        <!-- <p><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></p> -->
-        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+        <!-- <p><a ui-sref="home.welcome">{{recipe.name}}</a></p> -->
+        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.reloadWelcomePageRecipe(recipe.id)">{{recipe.name}}</button>
       </div> <!--ng-repeat -->
       </div>
 

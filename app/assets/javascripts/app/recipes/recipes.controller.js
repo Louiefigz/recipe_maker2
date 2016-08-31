@@ -15,6 +15,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
   vm.editRecipe = editRecipe;
+  vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
   vm.deleteRecipeShow = deleteRecipeShow = deleteRecipeShow;
 
 
@@ -60,12 +61,12 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
       }
     }
   }
-
-  function recipe_link(data){
-    vm.current_recipe = this.recipes[data-1];
-    vm.title = 'Ingredients for '+ vm.current_recipe.name;
-    vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
-  }
+  //
+  // function recipe_link(data){
+  //   vm.current_recipe = this.recipes[data-1];
+  //   vm.title = 'Ingredients for '+ vm.current_recipe.name;
+  //   vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+  // }
 
 
 
@@ -111,11 +112,13 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function deleteRecipeShow(recipe_id){
-
-
     this.recipe.$delete({recipe_id: recipe_id});
-
     $state.go('home.welcome');
+  }
+
+  function  reloadWelcomePageRecipe(data){
+    $state.go("home.welcome");
+    recipe_show(data);
   }
 
 // vm.search ="";
