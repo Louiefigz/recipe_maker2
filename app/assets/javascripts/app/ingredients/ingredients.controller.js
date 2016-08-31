@@ -17,7 +17,9 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
 
 function startAddIngredient(){
   vm.showAddIngredient = !vm.showAddIngredient;
+  vm.searchKey ="";
   vm.showSearch = !vm.showSearch;
+
 }
 
 
