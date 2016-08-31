@@ -54,11 +54,13 @@
       </div>
 
         <div class="padding">
+          <div class="list-group">
           <div ng-repeat="ing in vm.allIngredients | filter: searchKey">
-            <p>{{ing.ingredient}}</p>
+            <li class="list-group-item">{{ing.ingredient}}</li>
             <div ng-show="vm.showDeleteButton == true">
               <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -76,6 +78,6 @@
   </div>
 
   <footer class="container-fluid text-center">
-    <p>Footer Text</p>
+    <p>"Pick Ingredients that are questionable"</p>
   </footer>
 </div>

@@ -31,10 +31,12 @@
 
 
         <div class="padding">
-          <div ng-repeat="recipe in vm.recipes | filter: searchKey ">
-            <li><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
-              <button ng-show= "vm.showDeleteRecipe == true"  ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
-          </div>
+          <ul class="list-group">
+            <div ng-repeat="recipe in vm.recipes | filter: searchKey ">
+              <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
+                <button ng-show= "vm.showDeleteRecipe == true"  ng-click="vm.deleteRecipe(recipe.id)">Delete Recipe</button>
+            </div>
+          </ul>
         </div>
 
 
@@ -52,6 +54,6 @@
   </div>
 
   <footer class="container-fluid text-center">
-    <p>Footer Text</p>
+    <p>"All of these recipes are not cooked yet"</p>
   </footer>
 </div>
