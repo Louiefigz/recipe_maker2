@@ -8,13 +8,21 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
   vm.newIngredient = new IngredientFactory();
   vm.deleteIngredient = deleteIngredient;
   vm.startDeleteButton = startDeleteButton;
+  vm.startAddIngredient = startAddIngredient;
+
   vm.showDeleteButton = false;
+  vm.showSearch = true;
+  vm.showAddIngredient = false;
   // vm.newIngredient = { ingredient: "" };
+
+function startAddIngredient(){
+  vm.showAddIngredient = !vm.showAddIngredient;
+  vm.showSearch = !vm.showSearch;
+}
 
 
 //Form for creating new ingredients
   function createIngredient(){
-    // debugger;
     vm.newIngredient.$save(function(){
       vm.allIngredients = IngredientFactory.query();
       vm.newIngredient.ingredient ="";
