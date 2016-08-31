@@ -6,11 +6,14 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.startEditRecipeName = startEditRecipeName;
   vm.startDeleteIngredient = startDeleteIngredient;
   vm.startDeleteRecipe= startDeleteRecipe;
+  vm.startAddRecipe = startAddRecipe;
   vm.showEditRecipeForm = false;
   vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
   vm.showDeleteRecipe = false;
   vm.showFullRecipe = false;
+  vm.showAddRecipe = false;
+  vm.showSearch = true;
   vm.startFullRecipe = startFullRecipe;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
@@ -27,6 +30,11 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
   vm.recipe_show = recipe_show;
+
+  function startAddRecipe(){
+    vm.showAddRecipe = !vm.showAddRecipe;
+    vm.showSearch = !vm.showSearch;
+  }
 
   function editRecipe(){
     vm.recipe.$update(getRecipe);
