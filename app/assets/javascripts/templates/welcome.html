@@ -1,23 +1,24 @@
 <!-- <header>Recipe Maker V 2.0</header> -->
 
-<div class="container-fluid">
+<div class="container-fluid text-center">
   <div class="recipe-index" ng-controller="RecipesController as vm">
 
 
 
-      <div class="row-fluid">
-        <div class="col-sm-4">
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
           <div class="padding">
             <h2> All Recipes</h2>
           <div ng-repeat="recipe in vm.recipes"><br>
-            <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+            <p><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></p>
+            <!-- <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button> -->
           </div> <!--ng-repeat -->
         </div> <!--span2 -->
       </div>
 
         <div class="col-sm-4">
           <div class="padding">
-            
+
             <h2>{{vm.title}}</h2>
             <ul class="list-group">
             <div ng-repeat="ingredient in vm.current_recipe.ingredients">
