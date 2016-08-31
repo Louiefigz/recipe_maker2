@@ -10,9 +10,12 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
   vm.showDeleteRecipe = false;
+  vm.showFullRecipe = false;
+  vm.startFullRecipe = startFullRecipe;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
   vm.editRecipe = editRecipe;
+  vm.deleteRecipeShow = deleteRecipeShow = deleteRecipeShow;
 
 
 
@@ -82,6 +85,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   function deleteRecipe(recipe_id){
 
+
     for(var i=0; i<this.recipes.length; i++){
       if (this.recipes[i].id == recipe_id){
         this.recipes[i].$delete({recipe_id: recipe_id})
@@ -98,6 +102,20 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   function startDeleteRecipe(){
     vm.showDeleteRecipe = !vm.showDeleteRecipe;
+  }
+
+  function startFullRecipe(){
+    debugger;
+    vm.showFullRecipe = !vm.showFullRecipe;
+
+  }
+
+  function deleteRecipeShow(recipe_id){
+
+
+    this.recipe.$delete({recipe_id: recipe_id});
+
+    $state.go('home.welcome');
   }
 
 // vm.search ="";

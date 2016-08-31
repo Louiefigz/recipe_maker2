@@ -1,50 +1,63 @@
+
+
 <div class="padding">
-  <div>
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <h2> All Recipes</h2>
+      <div ng-repeat="recipe in vm.recipes"><br>
+        <!-- <p><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></p> -->
+        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+      </div> <!--ng-repeat -->
+      </div>
 
-    <h3 align="center">{{vm.recipe.name}}</h3>
-    <button ng-click="vm.startEditRecipeName()">Edit Recipe Name</button>
+      <div class="col-sm-8 text-left">
+        <h3 align="center">{{vm.recipe.name}}</h3>
+        <button ng-click="vm.startEditRecipeName()">Edit Recipe Name</button>
 
-    <!-- edit name form -->
+        <!-- edit name form -->
 
-    <div ng-show="vm.showEditRecipeName == true">
-      <form ng-model="vm.recipe"
-            ng-submit="vm.editRecipe()">
-        <input type="text" ng-model="vm.recipe.name">
-        <input type="submit" />
-      </form>
+        <div ng-show="vm.showEditRecipeName == true">
+          <form ng-model="vm.recipe"
+                ng-submit="vm.editRecipe()">
+            <input type="text" ng-model="vm.recipe.name">
+            <input type="submit" />
+          </form>
+        </div>
+
+        <!-- end of edit name form -->
+
+        <!-- recipe's ingredients -->
+        <div ng-if="vm.recipe.ingredients.length >0">
+        <h3 class="ingredient-text">Ingredients for this recipe: </h3>
+        </div>
+
+        <div ng-repeat="ingredient in vm.recipe.ingredients">
+          <!-- <recipe-info
+          ingredient="ingredient.ingredient"/> -->
+          <p>{{ingredient.ingredient}}</p>
+          <button ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
+        </div>
+
+        <!-- end of recipe's ingredients -->
+
+
+      <!-- add ingredient form -->
+
+      <new-ingredient-dir></new-ingredient-dir>
+
+      </div>
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <button ng-click="vm.deleteRecipeShow(vm.recipe.id)">Delete Recipe</button>
+        </div>
+        <div class="well">
+          <p>ADS</p>
+        <!-- </div> -->
+      </div>
     </div>
-
-    <!-- end of edit name form -->
-
-    <!-- recipe's ingredients -->
-    <div ng-if="vm.recipe.ingredients.length >0">
-    <h3 class="ingredient-text">Ingredients for this recipe: </h3>
-    </div>
-
-    <div ng-repeat="ingredient in vm.recipe.ingredients">
-      <!-- <recipe-info
-      ingredient="ingredient.ingredient"/> -->
-      <p>{{ingredient.ingredient}}</p>
-      <button ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
-    </div>
-
-    <!-- end of recipe's ingredients -->
-
-  </div>
-
-  <!-- add ingredient form -->
-
-  <!-- <div>
-    <h3>Add Ingredients Below</h3>
-    <form ng-submit="vm.updateRecipe()">
-        <input type="text"
-               ng-model="vm.newIngredient.ingredient" required/>
-      <input type="submit" />
-    </form>
-  </div> -->
-
-  <new-ingredient-dir></new-ingredient-dir>
-
-  <!-- end of add ingredient form -->
-
 </div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
