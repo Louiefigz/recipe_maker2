@@ -1,27 +1,81 @@
-<div class="padding">
-  <h3>All Ingredients</h3><button ng-click="vm.startDeleteButton()">Delete Any Ingredient</button>
-  <!-- <div ng-controller="IngredientsController as vm">
-    <ul>
-      <li ng-repeat="ingredient in vm.ingredients">{{ingredient.ingredient}}</li>
-    </ul>
-  </div> -->
+<!-- <div class="padding">
+  <h3>All Ingredients</h3><button ng-click="vm.startDeleteButton()">Delete Any Ingredient</button> -->
 
-  <!-- <div ng-controller="IngredientsController as vm"> -->
-    <ul>
+    <!-- <ul>
       <div ng-repeat="ing in vm.allIngredients">
         <li>{{ing.ingredient}}</li>
         <div ng-show="vm.showDeleteButton == true">
           <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
       </div>
     </div>
-    </ul>
-  <!-- </div> -->
+    </ul> -->
 
-  <h3>Create a New Ingredient</h3>
-  <!-- <div ng-controller="IngredientsController as vm"> -->
+
+  <!-- <h3>Create a New Ingredient</h3>
+
     <form ng-submit="vm.createIngredient()">
       <input type="text" ng-model="vm.newIngredient.ingredient" required>
       <input type="submit" value="Create Ingredient" />
     </form>
-  <!-- </div> -->
+
+</div> -->
+
+
+
+
+
+<div class="padding">
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+      </div>
+      <div class="col-sm-8 text-left">
+        <h3 align="center">All Ingredients</h3>
+
+          <div ng-show="vm.showSearch==true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search For Ingredient "
+              ng-model ="searchKey" />
+            </div>
+          </div>
+
+        <div ng-show="vm.showAddIngredient == true">
+          <div class="col-sm-6 col-sm-offset-4">
+            <form  ng-submit="vm.addNewIngredient()" >
+              <input class="form-control input-lg"
+                      type="text"
+                      ng-model="vm.newRecipe.name"
+                      placeholder="Add New Ingredient"
+                      required>
+              <!-- <input type="submit" value="Create New Recipe"/> -->
+            </form>
+          </div>
+        </div>
+
+        <div class="padding">
+          <div ng-repeat="ing in vm.allIngredients | filter: searchKey">
+            <p>{{ing.ingredient}}</p>
+            <div ng-show="vm.showDeleteButton == true">
+              <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <button ng-click="vm.startDeleteRecipe()">Delete any Recipe</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.startAddRecipe()">Create Recipe</button>
+        </div>
+      </div>
+
+  </div>
+  </div>
+
+  <footer class="container-fluid text-center">
+    <p>Footer Text</p>
+  </footer>
 </div>

@@ -20,10 +20,9 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
       vm.newIngredient.ingredient ="";
     });
   }
+
   function deleteIngredient(ingredient_id){
     for(var i=0; i< this.allIngredients.length; i++){
-
-
       if(this.allIngredients[i].id == ingredient_id){
         this.allIngredients[i].$delete({ingredient_id: ingredient_id});
       }
@@ -32,7 +31,6 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
   }
 
   function startDeleteButton(){
-  
     vm.showDeleteButton = !vm.showDeleteButton;
   }
 
