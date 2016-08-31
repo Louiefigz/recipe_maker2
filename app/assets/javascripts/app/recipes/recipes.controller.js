@@ -33,6 +33,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   function startAddRecipe(){
     vm.showAddRecipe = !vm.showAddRecipe;
+    vm.searchKey ="";
     vm.showSearch = !vm.showSearch;
   }
 
