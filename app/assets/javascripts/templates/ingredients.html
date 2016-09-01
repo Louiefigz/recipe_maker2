@@ -71,11 +71,15 @@
 
 
       <div class="col-sm-2 sidenav">
+
         <div class="well">
-          <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
+          <button  ng-click="vm.startAddIngredient()">Create Ingredient</button>
         </div>
         <div class="well">
-          <button ng-click="vm.startAddIngredient()">Create Ingredient</button>
+          <button ng-click="vm.filterIngredients()">Search Ingredient</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
         </div>
       </div>
 
