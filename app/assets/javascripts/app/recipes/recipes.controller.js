@@ -14,6 +14,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.showFullRecipe = false;
   vm.showAddRecipe = false;
   vm.showSearch = true;
+  vm.showEditRecipeButton = false;
   vm.startFullRecipe = startFullRecipe;
   vm.deleteRecipe =  deleteRecipe;
   vm.addNewRecipe = addNewRecipe;
@@ -21,6 +22,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
   vm.deleteRecipeShow = deleteRecipeShow = deleteRecipeShow;
   vm.filterRecipes = filterRecipes;
+  vm.editRecipeShow = editRecipeShow;
 
 
 
@@ -33,9 +35,12 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.recipe_show = recipe_show;
 
   RecipeFactory.query().$promise.then(function(data){
-
     vm.lastRecipes = data.splice(-5);
-  })
+  });
+
+  function editRecipeShow(){
+    vm.showEditRecipeButton = !vm.showEditRecipeButton;
+  };
 
 
   function startAddRecipe(){
@@ -45,7 +50,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function filterRecipes(){
-    
+
     vm.showAddRecipe = false;
     vm.showSearch = true;
   }
