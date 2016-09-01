@@ -19,5 +19,6 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-sanitize.min
+//= require angular-ui-bootstrap-tpls
 //= require bootstrap-sprockets
 //= require_tree .
