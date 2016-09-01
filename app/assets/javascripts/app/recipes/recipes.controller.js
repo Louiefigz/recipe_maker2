@@ -20,6 +20,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.editRecipe = editRecipe;
   vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
   vm.deleteRecipeShow = deleteRecipeShow = deleteRecipeShow;
+  vm.filterRecipes = filterRecipes;
 
 
 
@@ -38,9 +39,15 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
 
   function startAddRecipe(){
-    vm.showAddRecipe = !vm.showAddRecipe;
+    vm.showAddRecipe = true;
     vm.searchKey ="";
-    vm.showSearch = !vm.showSearch;
+    vm.showSearch = false;
+  }
+
+  function filterRecipes(){
+    
+    vm.showAddRecipe = false;
+    vm.showSearch = true;
   }
 
   function editRecipe(){
@@ -75,14 +82,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
       }
     }
   }
-  //
-  // function recipe_link(data){
-  //   vm.current_recipe = this.recipes[data-1];
-  //   vm.title = 'Ingredients for '+ vm.current_recipe.name;
-  //   vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
-  // }
-
-
 
   function addNewRecipe(){
     vm.newRecipe.$save(function() {
