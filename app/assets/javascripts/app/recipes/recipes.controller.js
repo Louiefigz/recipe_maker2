@@ -32,7 +32,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.recipe_show = recipe_show;
 
   RecipeFactory.query().$promise.then(function(data){
-    
+
     vm.lastRecipes = data.splice(-5);
   })
 
@@ -62,15 +62,14 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   function startDeleteIngredient(ingredient_id){
     vm.recipe.$delete({ingredient_id: ingredient_id});
-      vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
   }
 
   function recipe_show(data){
+    for(var i=0; i< vm.recipes.length; i++){
+      if(vm.recipes[i].id == data){
 
-    for(var i=0; i< this.recipes.length; i++){
-      if(this.recipes[i].id == data){
-
-        vm.current_recipe = this.recipes[i];
+        vm.current_recipe = vm.recipes[i];
         vm.title = 'Ingredients for '+ vm.current_recipe.name;
         vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
       }
@@ -96,15 +95,16 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     vm.recipe.$update(function() {
       vm.recipe = RecipeFactory.get({ id: $stateParams.id });
       vm.newIngredient = { ingredient: "" };
-    })
+    });
   }
 
   function deleteRecipe(recipe_id){
 
 
-    for(var i=0; i<this.recipes.length; i++){
-      if (this.recipes[i].id == recipe_id){
-        this.recipes[i].$delete({recipe_id: recipe_id})
+    for(var i=0; i<vm.recipes.length; i++){
+
+      if (vm.recipes[i].id == recipe_id){
+        vm.recipes[i].$delete({recipe_id: recipe_id})
       }
     }
     vm.recipes = RecipeFactory.query();
@@ -121,13 +121,12 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function startFullRecipe(){
-    debugger;
     vm.showFullRecipe = !vm.showFullRecipe;
 
   }
 
   function deleteRecipeShow(recipe_id){
-    this.recipe.$delete({recipe_id: recipe_id});
+    vm.recipe.$delete({recipe_id: recipe_id});
     $state.go('home.welcome');
   }
 
@@ -136,8 +135,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
     recipe_show(data);
   }
 
-// vm.search ="";
-// vm.filteredList = $filter('filter')(this.contacts, this.search);
+
 };
 
 angular
