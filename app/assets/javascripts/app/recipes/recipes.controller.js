@@ -31,6 +31,12 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
 
   vm.recipe_show = recipe_show;
 
+  RecipeFactory.query().$promise.then(function(data){
+    
+    vm.lastRecipes = data.splice(-5);
+  })
+
+
   function startAddRecipe(){
     vm.showAddRecipe = !vm.showAddRecipe;
     vm.searchKey ="";
