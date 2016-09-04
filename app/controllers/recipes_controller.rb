@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
     # binding.pry
 
     recipe = Recipe.find(params[:id])
-    ingredient = Ingredient.find_or_create_by(ingredient: ingredient_params)
+    ingredient = Ingredient.find_or_create_by(name: ingredient_params)
 
     recipe.update(recipe_params)
     if recipe.save
@@ -43,7 +43,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    # binding.pry 
+    # binding.pry
     if params[:ingredient_id].present?
       RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
     else
@@ -57,6 +57,6 @@ class RecipesController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredients).last[:ingredient]
+      params.require(:ingredients).last[:name]
     end
 end

@@ -11,7 +11,7 @@ class IngredientsController < ApplicationController
   end
 
   def create
-    ingredient = Ingredient.find_or_create_by(ingredient: params[:ingredient].strip)
+    ingredient = Ingredient.find_or_create_by(name: params[:name].strip)
   end
 
   def show
