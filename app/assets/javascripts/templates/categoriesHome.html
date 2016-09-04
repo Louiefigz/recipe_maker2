@@ -9,6 +9,8 @@
 
         <h3 align="center">All Categories</h3>
           <div class="col-sm-6 col-sm-offset-4">
+
+            <div ng-show="vm.showCreateCategory==true">
             <form ng-submit="vm.createCategory()">
               <input class="form-control input-lg"
                     type="text"
@@ -17,13 +19,16 @@
                     required>
             </form>
           </div>
+        </div>
 
-          <!-- <div ng-show="vm.showSearch==true">
+
+          <div ng-show="vm.showSearch==true">
             <div class ="col-sm-6 col-sm-offset-4">
               <input class ="form-control input-lg"
-              placeholder ="Search For Ingredient "
+              placeholder ="Search For Category"
               ng-model ="vm.searchKey" />
-            </div> -->
+            </div>
+          </div>
 
 
 

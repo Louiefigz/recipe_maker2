@@ -9,12 +9,15 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.category = CategoryFactory.get({ id: $stateParams.id });
   vm.newCategory = new CategoryFactory();
   vm.createCategory = createCategory;
+  vm.showCreateCategory = false;
+  vm.showSearch = true;
 
 
   function createCategory(){
     vm.newCategory.$save(function (){
       vm.allCategories= CategoryFactory.query();
     });
+    vm.newCategory = "";
   }
 
 };
