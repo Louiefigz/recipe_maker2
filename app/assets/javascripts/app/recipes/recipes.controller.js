@@ -26,7 +26,20 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, c
 
 
   vm.newIngredient = { ingredient: "" };
-  vm.recipes = RecipeFactory.query();
+
+  RecipeFactory.query().$promise.then(function(data){
+    vm.recipes = data;
+    vm.totalItems = data.length;
+    vm.currentPage = 1;
+    vm.PerPage = 10;
+    $scope.$watch('currentPage + itemsPerPage', function() {
+      var begin = (($scope.currentPage - 1) * vm.PerPage),
+        end = begin + vm.PerPage;
+      vm.filteredIngredients = vm.recipes.slice(begin, end);
+    });
+
+  });
+
   vm.newRecipe = new RecipeFactory();
   vm.updateRecipe = updateRecipe;
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
@@ -80,11 +93,8 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, c
 
     for(var i=0; i< vm.recipes.length; i++){
       if(vm.recipes[i].id == data){
-
         vm.current_recipe = vm.recipes[i];
-      
         currentRecipeService.setRecipe(vm.current_recipe);
-
         vm.title = 'Ingredients for '+ vm.current_recipe.name;
         vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>';
 
