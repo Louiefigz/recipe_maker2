@@ -1,5 +1,4 @@
-###Baller on a Budget
-
+###Recipe Maker
 ##Overview
 
 This is a simple recipe maker Using Rails with AngularJs. You're able to create recipes, associate them with ingredients and update the backend seamlessly with this single page application.
