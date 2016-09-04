@@ -36,7 +36,7 @@
           <div ng-repeat="ing in (vm.allIngredients | filter: vm.searchKey).slice((vm.currentPage - 1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
 
 
-            <li  class="list-group-item">{{ing.ingredient}}</li>
+            <li  class="list-group-item">{{ing.name}}</li>
 
             <div ng-show="vm.showDeleteButton == true">
               <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>

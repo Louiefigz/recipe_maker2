@@ -53,7 +53,7 @@ function filterIngredients(){
 
     vm.newIngredient.$save(function(){
       vm.allIngredients = IngredientFactory.query();
-      vm.newIngredient.ingredient ="";
+      vm.newIngredient.name ="";
     });
   }
 
