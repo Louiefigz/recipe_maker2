@@ -20,13 +20,14 @@
 
       <div ng-show="vm.showAddIngredient == true">
         <div class="col-sm-6 col-sm-offset-4">
-          <form ng-submit="vm.createIngredient()">
+          <!-- <form ng-submit="vm.createIngredient()">
             <input class="form-control input-lg"
                   type="text"
                   ng-model="vm.newIngredient.ingredient"
                   placeholder="Add New Ingredient"
                   required>
-          </form>
+          </form> -->
+          <add-ingredient-form></add-ingredient-form>
         </div>
       </div>
 

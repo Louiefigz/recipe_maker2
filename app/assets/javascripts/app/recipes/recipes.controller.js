@@ -37,7 +37,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, c
         end = begin + vm.PerPage;
       vm.filteredIngredients = vm.recipes.slice(begin, end);
     });
-
   });
 
   vm.newRecipe = new RecipeFactory();
