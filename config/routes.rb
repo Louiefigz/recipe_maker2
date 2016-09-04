@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
 resources :recipes
 resources :ingredients
+resources :categories
 
 root 'home#index'
 
