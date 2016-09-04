@@ -31,7 +31,7 @@ angular
       .state('home.categories', {
         url: 'categories',
         templateUrl: 'categoriesHome.html',
-        controller: 'CategoriessController as vm'
+        controller: 'CategoriesController as vm'
       });
 
 
