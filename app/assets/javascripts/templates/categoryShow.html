@@ -7,7 +7,7 @@
 
 
 
-        <h3 align="center">All Categories</h3>
+        <h3 align="center">{{vm.category.name}}</h3>
 
           <!-- <div ng-show="vm.showSearch==true">
             <div class ="col-sm-6 col-sm-offset-4">
@@ -32,22 +32,22 @@
         <!-- </div> -->
       </div> <!--col-sm-6 col-sm-offset-4-->
 
-        <div class="padding">
-          <div class="list-group">
-       <div ng-repeat="cat in vm.allCategories">
+        <!-- <div class="padding"> -->
+          <!-- <div class="list-group"> -->
+       <!-- <div ng-repeat="cat in vm.allCategories"> -->
 
 
-            <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li>
+            <!-- <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li> -->
 
             <!-- <div ng-show="vm.showDeleteButton == true">
               <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
             </div> -->
-        </div>
+        <!-- </div> -->
 
-      </div>
+      <!-- </div> -->
             <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
           <!-- </div> -->
-        </div>
+        <!-- </div> -->
     </div>
 
 

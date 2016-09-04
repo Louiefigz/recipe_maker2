@@ -1,13 +1,13 @@
 function CategoriesController($scope, $http, $state, $stateParams, CategoryFactory){
 
   var vm = this;
-  debugger;
+  // debugger;
 
   CategoryFactory.query().$promise.then(function(data){
-    debugger;
     vm.allCategories = data;
+  });
 
-  })
+  vm.category = CategoryFactory.get({ id: $stateParams.id })
 
 };
 

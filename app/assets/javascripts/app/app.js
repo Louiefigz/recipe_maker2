@@ -32,6 +32,11 @@ angular
         url: 'categories',
         templateUrl: 'categoriesHome.html',
         controller: 'CategoriesController as vm'
+      })
+      .state('home.categoryShow', {
+        url: 'categories/:id',
+        templateUrl: 'categoryShow.html',
+        controller: 'CategoriesController as vm'
       });
 
 
