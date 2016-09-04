@@ -7,11 +7,13 @@
       <h2> Recent Recipes</h2>
     <div ng-repeat="recipe in vm.lastRecipes"><br>
       <!-- <p><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></p> -->
-      <button style="font-family: sans-serif; font-size:20px;" id="recipeClick" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+      <button id='recipeSelector' style="font-family: sans-serif; font-size:18px;" id="recipeClick" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+
     </div> <!--ng-repeat -->
     </div>
 
     <div class="col-sm-8 text-left">
+      <div ng-if="vm.current_recipe.name !== undefined">
       <h2>{{vm.title}}</h2>
       <ul class="list-group">
       <div ng-repeat="ingredient in vm.current_recipe.ingredients">
@@ -20,6 +22,7 @@
     </ul>
 
       <div ng-bind-html="vm.url">{{vm.url}}</div>
+    </div>
       <!-- <button ng-click="vm.startFullRecipe(recipe.id)">Edit Recipe</button>
         <div ng-show="vm.showFullRecipe == true">
           <div ng-include=" 'recipeShow.html' "></div>

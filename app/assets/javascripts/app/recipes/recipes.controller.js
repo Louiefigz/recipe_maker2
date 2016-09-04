@@ -1,4 +1,4 @@
-function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
+function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, currentRecipeService){
 
   var vm = this;
 
@@ -8,7 +8,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   vm.startDeleteRecipe= startDeleteRecipe;
   vm.startAddRecipe = startAddRecipe;
   vm.showEditRecipeForm = false;
-  vm.showEditRecipeName = false;
   vm.showEditRecipeName = false;
   vm.showDeleteRecipe = false;
   vm.showFullRecipe = false;
@@ -78,12 +77,17 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function recipe_show(data){
+
     for(var i=0; i< vm.recipes.length; i++){
       if(vm.recipes[i].id == data){
 
         vm.current_recipe = vm.recipes[i];
+      
+        currentRecipeService.setRecipe(vm.current_recipe);
+
         vm.title = 'Ingredients for '+ vm.current_recipe.name;
-        vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>'
+        vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>';
+
       }
     }
   }
@@ -135,13 +139,17 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory){
   }
 
   function  reloadWelcomePageRecipe(data){
-    $state.go("home.welcome");
     recipe_show(data);
+    $state.go("home.welcome");
   }
 
+
+    vm.current_recipe = currentRecipeService.getRecipe();
+    vm.title = 'Ingredients for '+ vm.current_recipe.name;
+    vm.url = '<a href="/#/recipes/'+vm.current_recipe.id+'"  >'+"click here to edit recipe" +'</a>';
 
 };
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'currentRecipeService', RecipesController]);
