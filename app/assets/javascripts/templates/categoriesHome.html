@@ -1,0 +1,75 @@
+<div class="padding">
+  <div class="container-fluid text-center">
+    <div class="row content" style="">
+      <div class="col-sm-2 sidenav">
+      </div>
+      <div class="col-sm-8 text-left">
+
+
+
+        <h3 align="center">All Categories</h3>
+
+          <!-- <div ng-show="vm.showSearch==true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search For Ingredient "
+              ng-model ="vm.searchKey" />
+            </div> -->
+          </div>
+
+
+      <!-- <div ng-show="vm.showAddIngredient == true"> -->
+        <div class="col-sm-6 col-sm-offset-4">
+          <!-- <form ng-submit="vm.createIngredient()">
+            <input class="form-control input-lg"
+                  type="text"
+                  ng-model="vm.newIngredient.ingredient"
+                  placeholder="Add New Ingredient"
+                  required>
+          </form> -->
+          <!-- <add-ingredient-form></add-ingredient-form> -->
+        </div>
+      </div>
+
+        <div class="padding">
+          <div class="list-group">
+          <!-- <div ng-repeat="ing in (vm.allIngredients | filter: vm.searchKey).slice((vm.currentPage - 1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
+
+
+            <li  class="list-group-item">{{ing.name}}</li>
+
+            <div ng-show="vm.showDeleteButton == true">
+              <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
+            </div> -->
+          <!-- </div> -->
+
+            <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
+          <!-- </div> -->
+        </div>
+    </div>
+
+
+
+      <div class="col-sm-2 sidenav">
+
+        <div class="well">
+          <button  ng-click="vm.startAddIngredient()">Create Ingredient</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.filterIngredients()">Search Ingredient</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+
+
+
+  <footer id="footer_help" class="container-fluid text-center">
+    <p>"Pick Ingredients that are questionable"</p>
+  </footer>
+</div>

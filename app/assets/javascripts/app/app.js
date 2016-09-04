@@ -27,7 +27,13 @@ angular
         url: 'recipes/:id',
         templateUrl: 'recipeShow.html',
         controller: 'RecipesController as vm'
+      })
+      .state('home.categories', {
+        url: 'categories',
+        templateUrl: 'categoriesHome.html',
+        controller: 'CategoriessController as vm'
       });
+
 
 
 
