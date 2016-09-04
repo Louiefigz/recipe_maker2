@@ -28,26 +28,31 @@
                   placeholder="Add New Ingredient"
                   required>
           </form> -->
-          <!-- <add-ingredient-form></add-ingredient-form> -->
+
+
+        
+
+
+
         <!-- </div> -->
       </div> <!--col-sm-6 col-sm-offset-4-->
 
-        <!-- <div class="padding"> -->
-          <!-- <div class="list-group"> -->
-       <!-- <div ng-repeat="cat in vm.allCategories"> -->
+        <div class="padding">
+          <div class="list-group">
+       <div ng-repeat="recipe in vm.category.recipes">
 
 
-            <!-- <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li> -->
+            <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
 
             <!-- <div ng-show="vm.showDeleteButton == true">
               <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
             </div> -->
-        <!-- </div> -->
+        </div>
 
-      <!-- </div> -->
+      </div>
             <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
           <!-- </div> -->
-        <!-- </div> -->
+        </div>
     </div>
 
 
@@ -55,7 +60,7 @@
       <div class="col-sm-2 sidenav">
 
         <div class="well">
-          <button  ng-click="vm.startAddIngredient()">Create Ingredient</button>
+          <button  ng-click="vm.startAddCategory()">Create Category</button>
         </div>
         <div class="well">
           <button ng-click="vm.filterIngredients()">Search Ingredient</button>

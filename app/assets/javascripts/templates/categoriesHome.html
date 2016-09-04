@@ -8,6 +8,15 @@
 
 
         <h3 align="center">All Categories</h3>
+          <div class="col-sm-6 col-sm-offset-4">
+            <form ng-submit="vm.createCategory()">
+              <input class="form-control input-lg"
+                    type="text"
+                    ng-model="vm.newCategory.name"
+                    placeholder="Add New Category"
+                    required>
+            </form>
+          </div>
 
           <!-- <div ng-show="vm.showSearch==true">
             <div class ="col-sm-6 col-sm-offset-4">
@@ -48,6 +57,8 @@
             <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
           <!-- </div> -->
         </div>
+
+
     </div>
 
 
@@ -55,7 +66,7 @@
       <div class="col-sm-2 sidenav">
 
         <div class="well">
-          <button  ng-click="vm.startAddIngredient()">Create Ingredient</button>
+          <button  ng-click="vm.startAddCategory()">Create Category</button>
         </div>
         <div class="well">
           <button ng-click="vm.filterIngredients()">Search Ingredient</button>
