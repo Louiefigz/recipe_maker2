@@ -65,6 +65,13 @@
             items-per-page="vm.PerPage">
           </uib-pagination>
           <!-- </div>  -->
+
+          <form ng-submt="vm.selectCatRecipe()">
+            <select  ng-model="vm.selectedRecipe.name" ng-options="y.name for (x,y) in vm.recipes">
+            </select>
+          </form>
+
+
         </div>
 
 

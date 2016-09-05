@@ -43,15 +43,21 @@
 
         <div class="padding">
           <div class="list-group">
-       <div ng-repeat="recipe in vm.category.recipes">
+            <div ng-show="vm.showAllAssociatedRecipes == true">
+             <div ng-repeat="recipe in vm.category.recipes">
+                  <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
 
+                  <div ng-show="vm.showDeleteButtonRecipeCategory == true">
+                    <button ng-click="vm.deleteRecipeCategory(recipe.id)">Delete Ingredient</button>
+                  </div>
+              </div>
+            </div>
+            <div ng-show="vm.showAllRecipesInDatabase== true">
+              <div ng-repeat="recipe in vm.allRecipes">
 
-            <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
-
-            <!-- <div ng-show="vm.showDeleteButton == true">
-              <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
-            </div> -->
-        </div>
+                   <a ng-click="vm.selectedRecipe(recipe.id)" class="list-group-item list-group-item-action  {{vm.active}} ">{{recipe.name}}</a>
+              </div>
+          </div>
 
       </div>
             <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
@@ -71,6 +77,9 @@
         </div>
         <div class="well">
           <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.browseAllRecipes()">Browse all Recipes</button>
         </div>
       </div>
 </div>

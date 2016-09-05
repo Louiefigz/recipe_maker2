@@ -3,6 +3,8 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   var vm = this;
   // debugger;
 
+  vm.allRecipes = RecipeFactory.query();
+
   vm.createRecipeCategory = createRecipeCategory;
   vm.newRecipeCategory = new RecipeFactory();
   CategoryFactory.query().$promise.then(function(data){
@@ -31,6 +33,38 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.showSearch = true;
   vm.showDeleteButton = false;
   vm.showAddRecipe = false;
+  vm.showAllAssociatedRecipes = true;
+  vm.showAllRecipesInDatabase = false;
+  vm.showDeleteButtonRecipeCategory = false;
+  vm.selectCatRecipe = selectCatRecipe;
+  vm.browseAllRecipes = browseAllRecipes;
+  vm.selectedRecipe = selectedRecipe;
+  vm.deleteRecipeCategory = deleteRecipeCategory
+
+  function deleteRecipeCategory(recipe_id){
+    // debugger;
+    vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id});
+    vm.category = CategoryFactory.get({id: $stateParams.id});
+  }
+
+  function selectedRecipe(recipe_id){
+
+    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id});
+    vm.category = CategoryFactory.get({id: $stateParams.id});
+
+    // vm.active = "active";
+  };
+
+  function browseAllRecipes(){
+    vm.showAllRecipesInDatabase = !vm.showAllRecipesInDatabase;
+  };
+
+
+  function selectCatRecipe(){
+    debugger;
+    vm.selectedRecipe
+  }
+
 
 
   function createRecipeCategory(){
@@ -60,7 +94,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
 
   function startDeleteButton(){
-    vm.showDeleteButton = !vm.showDeleteButton;
+    vm.showDeleteButtonRecipeCategory = !vm.showDeleteButtonRecipeCategory;
   }
 
   function createCategory(){
