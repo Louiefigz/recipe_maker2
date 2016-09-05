@@ -1,8 +1,10 @@
-function CategoriesController($scope, $http, $state, $stateParams, CategoryFactory){
+function CategoriesController($scope, $http, $state, $stateParams, CategoryFactory, RecipeFactory){
 
   var vm = this;
   // debugger;
 
+  vm.createRecipeCategory = createRecipeCategory;
+  vm.newRecipeCategory = new RecipeFactory();
   CategoryFactory.query().$promise.then(function(data){
     vm.allCategories = data;
   });
@@ -22,6 +24,15 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.showDeleteButton = false;
   vm.showAddRecipe = false;
 
+
+  function createRecipeCategory(){
+    vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
+      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
+        vm.category= data;
+      });
+    });
+    vm.newCategory.name = "";
+  }
 
 
   function startAddRecipe(){
@@ -65,4 +76,4 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
 angular
   .module('app')
-  .controller("CategoriesController", ['$scope', '$http', '$state', '$stateParams', 'CategoryFactory', CategoriesController]);
+  .controller("CategoriesController", ['$scope', '$http', '$state', '$stateParams', 'CategoryFactory', 'RecipeFactory', CategoriesController]);

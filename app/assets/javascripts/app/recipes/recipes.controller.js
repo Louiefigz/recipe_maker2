@@ -3,9 +3,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   var vm = this;
 
 
-  vm.createRecipeCategory = createRecipeCategory;
-    vm.newRecipeCategory = new RecipeFactory();
-
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
   vm.startDeleteIngredient = startDeleteIngredient;
@@ -154,18 +151,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   function  reloadWelcomePageRecipe(data){
     recipe_show(data);
     $state.go("home.welcome");
-  }
-
-  function createRecipeCategory(){
-  
-    vm.newRecipeCategory.$save({category_id: $stateParams.id}).$promise.then(function(){
-
-
-       CategoryFactory.query().$promise.then(function(data){
-        vm.allCategories = data;
-        vm.newRecipeCategory.name = "";
-      });
-    });
   }
 
 

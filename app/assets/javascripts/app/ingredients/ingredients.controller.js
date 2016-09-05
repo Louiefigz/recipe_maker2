@@ -4,6 +4,7 @@ function IngredientsController($scope, $http, $state, $stateParams, IngredientFa
 
   // vm.makePage = makePage;
 
+
    IngredientFactory.query().$promise.then(function(data){
      vm.allIngredients= data;
     //  vm.totalPages = Math.ceil(vm.allIngredients.length/5.0);
@@ -70,34 +71,6 @@ function filterIngredients(){
   function startDeleteButton(){
     vm.showDeleteButton = !vm.showDeleteButton;
   }
-
-
-//
-//
-//     vm.pgNumber = 0;
-//
-// function makePage(){
-//         // debugger;
-//         // vm.totPages = ;
-//           var start=vm.pgNumber*5
-//           var selection= start + 5
-//           vm.thisPage = vm.allIngredients.slice(start, selection)
-//     }
-//
-//
-//     vm.nextPage = function(){
-//       vm.pgNumber ++
-//       vm.makePage()
-//     }
-//
-//     vm.prevPage = function(){
-//       vm.pgNumber --
-//       vm.makePage()
-//     }
-//
-//     $scope.$watch(function (){
-//         return vm.pgNumber
-//     });
 
 
 
