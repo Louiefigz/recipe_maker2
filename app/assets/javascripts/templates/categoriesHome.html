@@ -48,7 +48,7 @@
 
         <div class="padding">
           <div class="list-group">
-       <div ng-repeat="cat in vm.allCategories">
+       <div ng-repeat="cat in (vm.allCategories | filter: vm.searchKey).slice((vm.currentPage - 1) * vm.PerPage, vm.currentPage * vm.PerPage)">
 
 
             <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li>
@@ -57,10 +57,14 @@
               <button ng-click="vm.deleteCategory(cat.id)">Delete Category</button>
             </div>
         </div>
-
       </div>
-            <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
-          <!-- </div> -->
+
+            <uib-pagination
+            total-items="(vm.allCategories | filter: vm.searchKey).length"
+            ng-model="vm.currentPage"
+            items-per-page="vm.PerPage">
+          </uib-pagination>
+          <!-- </div>  -->
         </div>
 
 

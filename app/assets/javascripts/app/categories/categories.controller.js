@@ -7,6 +7,14 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.newRecipeCategory = new RecipeFactory();
   CategoryFactory.query().$promise.then(function(data){
     vm.allCategories = data;
+    vm.totalItems = data.length;
+    vm.currentPage = 1;
+    vm.PerPage = 10;
+    $scope.$watch('currentPage + itemsPerPage', function() {
+      var begin = (($scope.currentPage - 1) * vm.PerPage),
+        end = begin + vm.PerPage;
+      vm.filteredIngredients = vm.allCategories.slice(begin, end);
+    });
   });
   vm.category = CategoryFactory.get({ id: $stateParams.id });
   vm.newCategory = "";
