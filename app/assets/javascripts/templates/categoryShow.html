@@ -21,16 +21,20 @@
 
       <!-- <div ng-show="vm.showAddIngredient == true"> -->
         <div class="col-sm-6 col-sm-offset-4">
-          <!-- <form ng-submit="vm.createIngredient()">
-            <input class="form-control input-lg"
-                  type="text"
-                  ng-model="vm.newIngredient.ingredient"
-                  placeholder="Add New Ingredient"
-                  required>
-          </form> -->
+        <div ng-show="vm.showAddRecipe==true">
+          <div ng-controller="RecipesController as vm">
+            <form ng-submit="vm.createRecipeCategory()">
+              <input class="form-control input-lg"
+                    type="text"
+                    ng-model="vm.newRecipeCategory.name"
+                    placeholder="Create New Recipe"
+                    required>
+            </form>
+          </div>
+        </div>
 
 
-        
+
 
 
 
@@ -60,7 +64,7 @@
       <div class="col-sm-2 sidenav">
 
         <div class="well">
-          <button  ng-click="vm.startAddCategory()">Create Category</button>
+          <button  ng-click="vm.startAddRecipe()">Add Recipe</button>
         </div>
         <div class="well">
           <button ng-click="vm.filterIngredients()">Search Ingredient</button>

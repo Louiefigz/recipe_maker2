@@ -1,6 +1,10 @@
-function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, currentRecipeService){
+function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, CategoryFactory, currentRecipeService){
 
   var vm = this;
+
+
+  vm.createRecipeCategory = createRecipeCategory;
+    vm.newRecipeCategory = new RecipeFactory();
 
   vm.startEditRecipe = startEditRecipe;
   vm.startEditRecipeName = startEditRecipeName;
@@ -152,6 +156,18 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, c
     $state.go("home.welcome");
   }
 
+  function createRecipeCategory(){
+  
+    vm.newRecipeCategory.$save({category_id: $stateParams.id}).$promise.then(function(){
+
+
+       CategoryFactory.query().$promise.then(function(data){
+        vm.allCategories = data;
+        vm.newRecipeCategory.name = "";
+      });
+    });
+  }
+
 
     vm.current_recipe = currentRecipeService.getRecipe();
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
@@ -161,4 +177,4 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, c
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'currentRecipeService', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'CategoryFactory', 'currentRecipeService', RecipesController]);

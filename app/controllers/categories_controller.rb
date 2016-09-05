@@ -5,7 +5,11 @@ class CategoriesController < ApplicationController
   end
 
   def create
+    binding.pry
     category = Category.find_or_create_by(category_params)
+    # if params[:recipe].present?
+    #
+    # end
   end
 
   def show
@@ -18,7 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    
+
     Category.where(:id=>params[:category_id]).destroy_all
   end
 

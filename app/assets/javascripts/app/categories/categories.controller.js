@@ -9,14 +9,24 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.category = CategoryFactory.get({ id: $stateParams.id });
   vm.newCategory = "";
   vm.newCategory = new CategoryFactory();
+
+
   vm.createCategory = createCategory;
   vm.startAddCategory = startAddCategory;
   vm.startDeleteButton = startDeleteButton;
   vm.filterCategories = filterCategories;
+  vm.startAddRecipe = startAddRecipe;
   vm.deleteCategory = deleteCategory;
   vm.showCreateCategory = false;
   vm.showSearch = true;
   vm.showDeleteButton = false;
+  vm.showAddRecipe = false;
+
+
+
+  function startAddRecipe(){
+    vm.showAddRecipe = !vm.showAddRecipe;
+  }
 
   function filterCategories(){
     vm.showCreateCategory = false;
@@ -35,7 +45,6 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   }
 
   function createCategory(){
-    // debugger;
     vm.newCategory.$save(function (){
       vm.allCategories= CategoryFactory.query();
       vm.newCategory.name = "";
@@ -49,9 +58,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
         vm.allCategories[i].$delete({category_id: category_id})
       }
     }
-    debugger;
     vm.allCategories = CategoryFactory.query();
-    // console.log(vm.allCategories);
   };
 
 };
