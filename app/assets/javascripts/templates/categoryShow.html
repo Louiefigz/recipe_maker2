@@ -9,12 +9,13 @@
 
         <h3 align="center">{{vm.category.name}}</h3>
 
-          <!-- <div ng-show="vm.showSearch==true">
+          <div ng-show="vm.showRecipeCategorySearch==true">
             <div class ="col-sm-6 col-sm-offset-4">
               <input class ="form-control input-lg"
-              placeholder ="Search For Ingredient "
-              ng-model ="vm.searchKey" />
-            </div> -->
+              placeholder ="Search For Recipes"
+              ng-model ="vm.searchRecipeKey" />
+            </div>
+          </div>
 
 
 
@@ -59,8 +60,13 @@
               </div>
           </div>
 
-      </div>
-            <!-- <uib-pagination total-items="(vm.allIngredients | filter: vm.searchKey).length" ng-model="vm.currentPage" items-per-page="vm.PerPage"></uib-pagination> -->
+        </div>
+        <div ng-show="vm.showRecipeCategorySearch==true">
+            <uib-pagination total-items="(vm.allRecipes | filter: vm.searchRecipeKey).length"
+            ng-model="vm.currentPage"
+            items-per-page="vm.PerPage">
+          </uib-pagination>
+        </div>
           <!-- </div> -->
         </div>
     </div>
@@ -72,9 +78,9 @@
         <div class="well">
           <button  ng-click="vm.startAddRecipe()">Add Recipe</button>
         </div>
-        <div class="well">
-          <button ng-click="vm.filterIngredients()">Search Ingredient</button>
-        </div>
+        <!-- <div class="well">
+          <button ng-click="vm.filterRecipeCategory()">Search All Recipes</button>
+        </div> -->
         <div class="well">
           <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
         </div>

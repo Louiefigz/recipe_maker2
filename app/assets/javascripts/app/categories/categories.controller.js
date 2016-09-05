@@ -3,7 +3,10 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   var vm = this;
   // debugger;
 
-  vm.allRecipes = RecipeFactory.query();
+  RecipeFactory.query().$promise.then(function(data){
+    vm.allRecipes = data;
+  });
+  vm.showRecipeCategorySearch = false;
 
   vm.createRecipeCategory = createRecipeCategory;
   vm.newRecipeCategory = new RecipeFactory();
@@ -56,6 +59,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   };
 
   function browseAllRecipes(){
+    vm.showRecipeCategorySearch = true;
     vm.showAllRecipesInDatabase = !vm.showAllRecipesInDatabase;
   };
 
