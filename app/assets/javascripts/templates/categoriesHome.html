@@ -53,9 +53,9 @@
 
             <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li>
 
-            <!-- <div ng-show="vm.showDeleteButton == true">
-              <button ng-click="vm.deleteIngredient(ing.id)">Delete Ingredient</button>
-            </div> -->
+            <div ng-show="vm.showDeleteButton == true">
+              <button ng-click="vm.deleteCategory(cat.id)">Delete Category</button>
+            </div>
         </div>
 
       </div>
@@ -74,7 +74,7 @@
           <button  ng-click="vm.startAddCategory()">Create Category</button>
         </div>
         <div class="well">
-          <button ng-click="vm.filterIngredients()">Search Ingredient</button>
+          <button ng-click="vm.filterCategories()">Search Category</button>
         </div>
         <div class="well">
           <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
