@@ -51,11 +51,11 @@
        <div ng-repeat="cat in (vm.allCategories | filter: vm.searchKey).slice((vm.currentPage - 1) * vm.PerPage, vm.currentPage * vm.PerPage)">
 
 
-            <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a></li>
+            <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a>
 
-            <div ng-show="vm.showDeleteButton == true">
-              <button ng-click="vm.deleteCategory(cat.id)">Delete Category</button>
-            </div>
+              <button class="button" ng-show="vm.showDeleteButton == true" ng-click="vm.deleteCategory(cat.id)">Delete Category</button>
+            </li>
+
         </div>
       </div>
 
@@ -66,7 +66,7 @@
           </uib-pagination>
           <!-- </div>  -->
 
-        
+
 
 
         </div>
@@ -85,7 +85,7 @@
           <button ng-click="vm.filterCategories()">Search Category</button>
         </div>
         <div class="well">
-          <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
+          <button ng-click="vm.startDeleteButton()">Delete any Recipe</button>
         </div>
       </div>
 </div>

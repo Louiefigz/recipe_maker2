@@ -144,6 +144,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
   function startDeleteButton(){
     vm.showDeleteButtonRecipeCategory = !vm.showDeleteButtonRecipeCategory;
+    vm.showDeleteButton = !vm.showDeleteButton;
   }
 
   function createCategory(){
