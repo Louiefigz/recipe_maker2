@@ -2,6 +2,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
   var vm = this;
   // debugger;
+  vm.showAlert = false;
 
   RecipeFactory.query().$promise.then(function(data){
     vm.allRecipes = data;
@@ -51,11 +52,14 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   }
 
   function selectedRecipe(recipe_id){
-
-    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id});
-    vm.category = CategoryFactory.get({id: $stateParams.id});
-
-    // vm.active = "active";
+    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(){
+      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
+        vm.category = data;
+        vm.showAlert = true;
+        vm.success = "";
+        vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
+      });
+    });
   };
 
   function browseAllRecipes(){

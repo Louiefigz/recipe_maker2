@@ -5,7 +5,7 @@
   <div class="container-fluid text-center">
     <div class="alert" ng-show="vm.showAlert==true">
       <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-      This is an alert box.
+      {{vm.success}}
     </div>
     <div class="row content" style="">
       <div class="col-sm-2 sidenav">
@@ -89,7 +89,7 @@
           <button ng-click="vm.filterRecipeCategory()">Search All Recipes</button>
         </div> -->
         <div class="well">
-          <button ng-click="vm.startDeleteButton()">Delete A Recipe</button>
+          <button ng-click="vm.startDeleteButton()">Delete a Recipe</button>
         </div>
         <div class="well">
           <button ng-click="vm.browseAllRecipes()">Browse all Recipes</button>
