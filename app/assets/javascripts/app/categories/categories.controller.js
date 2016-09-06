@@ -71,10 +71,12 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
           // debugger;
         if(data.recipes.length !== alertCheck.recipes.length){
           vm.showAlertSuccess = true;
+          vm.showAlertFail = false;
           vm.success = "";
           vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
         } else {
           vm.showAlertFail = true;
+          vm.showAlertSuccess = false;
           vm.fail = "";
           vm.fail = vm.category.recipes[vm.category.recipes.length-1].name + " is already in the " + vm.category.name + " category";
         };
@@ -85,6 +87,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   function browseAllRecipes(){
     vm.showRecipeCategorySearch = !vm.showRecipeCategorySearch;
     vm.showAllRecipesInDatabase = !vm.showAllRecipesInDatabase;
+    vm.showAllAssociatedRecipes = !vm.showAllAssociatedRecipes;
   };
 
 
