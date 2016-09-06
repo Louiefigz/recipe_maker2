@@ -7,6 +7,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   RecipeFactory.query().$promise.then(function(data){
     vm.allRecipes = data;
   });
+  vm.hideAlert = hideAlert;
   vm.showRecipeCategorySearch = false;
 
   vm.createRecipeCategory = createRecipeCategory;
@@ -44,6 +45,10 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.browseAllRecipes = browseAllRecipes;
   vm.selectedRecipe = selectedRecipe;
   vm.deleteRecipeCategory = deleteRecipeCategory
+
+  function hideAlert(){
+    vm.showAlert = false;
+  }
 
   function deleteRecipeCategory(recipe_id){
     // debugger;

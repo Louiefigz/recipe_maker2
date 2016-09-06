@@ -4,9 +4,10 @@
 
   <div class="container-fluid text-center">
     <div class="alert" ng-show="vm.showAlert==true">
-      <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+      <span class="closebtn" ng-click="vm.hideAlert()">&times;</span>
       {{vm.success}}
     </div>
+
     <div class="row content" style="">
       <div class="col-sm-2 sidenav">
       </div> <!-- sidenav-->
