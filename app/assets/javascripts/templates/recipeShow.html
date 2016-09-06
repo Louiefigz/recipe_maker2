@@ -34,8 +34,9 @@
         </div>
         <ul class="list-group">
           <div ng-repeat="ingredient in vm.recipe.ingredients">
-            <li class="list-group-item">{{ingredient.name}}</li>
-            <button ng-show="vm.showEditRecipeButton" ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
+            <li class="list-group-item">{{ingredient.name}}
+              <button class="button" ng-show="vm.showEditRecipeButton == true" ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
+            </li>
           </div>
         </ul>
 
