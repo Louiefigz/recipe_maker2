@@ -2,6 +2,9 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
   var vm = this;
   // debugger;
+  vm.startEditCategoryName = startEditCategoryName;
+  vm.showEditCategoryName = false;
+  vm.editCategoryName = editCategoryName;
   vm.showAlertSuccess = false;
   vm.showAlertFail = false;
   vm.hideAlertFail = hideAlertFail;
@@ -50,6 +53,32 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.selectedRecipe = selectedRecipe;
   vm.deleteRecipeCategory = deleteRecipeCategory
 
+
+
+  function startEditCategoryName(){
+    vm.showEditCategoryName = true;
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipesSearch = false;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
+    vm.showAllAssociatedRecipes = false;
+
+  }
+
+  function editCategoryName(){
+    vm.category.$update(getCategory);
+    vm.showEditCategoryName = false;
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipesSearch = true;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
+    vm.showAllAssociatedRecipes = true;
+  }
+
+  function getCategory(){
+    vm.category = CategoryFactory.get({id: $stateParams.id})
+  }
+
   function hideAlertSuccess(){
     vm.showAlertSuccess = false;
   }
@@ -93,6 +122,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
     vm.showRecipeCategorySearch = true;
     vm.showAllRecipesInDatabase = true;
     vm.showAllAssociatedRecipes = false;
+    vm.showEditCategoryName = false;
   };
 
   function startCategoryShowPage(){
@@ -101,6 +131,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
     vm.showAllAssociatedRecipesSearch = true;
     vm.showRecipeCategorySearch = false;
     vm.showAllRecipesInDatabase = false;
+    vm.showEditCategoryName = false;
   };
 
 
@@ -127,6 +158,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
     vm.showAllAssociatedRecipes = true;
     vm.showRecipeCategorySearch = false;
     vm.showAllRecipesInDatabase = false;
+    vm.showEditCategoryName = false;
 
   }
 
