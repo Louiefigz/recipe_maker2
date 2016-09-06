@@ -18,14 +18,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    binding.pry
     category = Category.find(params[:category_id].to_i)
     category.recipe_categories.create(recipe_id: params[:recipe_id].to_i)
   end
 
   def destroy
     if params[:recipe_id].present?
-      
+
       RecipeCategory.where(:recipe_id=>params[:recipe_id], :category_id=>params[:category_id]).destroy_all
     else
         Category.where(:id=>params[:category_id]).destroy_all

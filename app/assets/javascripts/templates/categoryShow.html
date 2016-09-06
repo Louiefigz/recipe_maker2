@@ -54,7 +54,7 @@
               </div>
             </div>
             <div ng-show="vm.showAllRecipesInDatabase== true">
-              <div ng-repeat="recipe in vm.allRecipes">
+              <div ng-repeat="recipe in (vm.allRecipes | filter: vm.searchRecipeKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
 
                    <a ng-click="vm.selectedRecipe(recipe.id)" class="list-group-item list-group-item-action  {{vm.active}} ">{{recipe.name}}</a>
               </div>
@@ -82,7 +82,7 @@
           <button ng-click="vm.filterRecipeCategory()">Search All Recipes</button>
         </div> -->
         <div class="well">
-          <button ng-click="vm.startDeleteButton()">Delete any Ingredient</button>
+          <button ng-click="vm.startDeleteButton()">Delete A Recipe</button>
         </div>
         <div class="well">
           <button ng-click="vm.browseAllRecipes()">Browse all Recipes</button>

@@ -59,7 +59,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   };
 
   function browseAllRecipes(){
-    vm.showRecipeCategorySearch = true;
+    vm.showRecipeCategorySearch = !vm.showRecipeCategorySearch;
     vm.showAllRecipesInDatabase = !vm.showAllRecipesInDatabase;
   };
 
