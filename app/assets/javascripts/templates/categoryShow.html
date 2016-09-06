@@ -3,9 +3,14 @@
 
 
   <div class="container-fluid text-center">
-    <div class="alert" ng-show="vm.showAlert==true">
-      <span class="closebtn" ng-click="vm.hideAlert()">&times;</span>
+    <div class="alert_success" ng-show="vm.showAlertSuccess==true">
+      <span class="closebtn" ng-click="vm.hideAlertSuccess()">&times;</span>
       {{vm.success}}
+    </div>
+
+    <div class="alert_fail" ng-show="vm.showAlertFail==true">
+      <span class="closebtn" ng-click="vm.hideAlertFail()">&times;</span>
+      {{vm.fail}}
     </div>
 
     <div class="row content" style="">

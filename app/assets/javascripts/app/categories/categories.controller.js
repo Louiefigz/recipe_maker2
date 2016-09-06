@@ -2,12 +2,14 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
   var vm = this;
   // debugger;
-  vm.showAlert = false;
+  vm.showAlertSuccess = false;
+  vm.showAlertFail = false;
+  vm.hideAlertFail = hideAlertFail;
 
   RecipeFactory.query().$promise.then(function(data){
     vm.allRecipes = data;
   });
-  vm.hideAlert = hideAlert;
+  vm.hideAlertSuccess = hideAlertSuccess;
   vm.showRecipeCategorySearch = false;
 
   vm.createRecipeCategory = createRecipeCategory;
@@ -46,8 +48,12 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.selectedRecipe = selectedRecipe;
   vm.deleteRecipeCategory = deleteRecipeCategory
 
-  function hideAlert(){
-    vm.showAlert = false;
+  function hideAlertSuccess(){
+    vm.showAlertSuccess = false;
+  }
+
+  function hideAlertFail(){
+    vm.showAlertFail = false;
   }
 
   function deleteRecipeCategory(recipe_id){
@@ -57,12 +63,21 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   }
 
   function selectedRecipe(recipe_id){
-    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(){
+    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(check){
+      var alertCheck = check;
+
       CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
         vm.category = data;
-        vm.showAlert = true;
-        vm.success = "";
-        vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
+          // debugger;
+        if(data.recipes.length !== alertCheck.recipes.length){
+          vm.showAlertSuccess = true;
+          vm.success = "";
+          vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
+        } else {
+          vm.showAlertFail = true;
+          vm.fail = "";
+          vm.fail = vm.category.recipes[vm.category.recipes.length-1].name + " is already in the " + vm.category.name + " category";
+        };
       });
     });
   };

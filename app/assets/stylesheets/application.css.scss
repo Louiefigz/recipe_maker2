@@ -45,9 +45,15 @@
    }
 
    /* The alert message box */
-.alert {
+.alert_success {
     padding: 20px;
-    background-color: #5B8BB8; 
+    background-color: #5B8BB8;
+    color: white;
+    margin-bottom: 0px;
+}
+.alert_fail {
+    padding: 20px;
+    background-color: #f44336;
     color: white;
     margin-bottom: 0px;
 }
