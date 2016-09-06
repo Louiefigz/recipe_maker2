@@ -18,9 +18,13 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    
-    category = Category.find(params[:category_id].to_i)
-    category.recipe_categories.find_or_create_by(recipe_id: params[:recipe_id].to_i)
+    if params[:category_id].present?
+      category = Category.find(params[:category_id].to_i)
+      category.recipe_categories.find_or_create_by(recipe_id: params[:recipe_id].to_i)
+    else
+      category = Category.find(params[:id])
+      category.update(name: params[:name])
+    end
   end
 
   def destroy

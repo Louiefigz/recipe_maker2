@@ -15,6 +15,7 @@
         <h3 align="center">{{vm.category.name}}</h3>
 
         <div class ="col-sm-6 col-sm-offset-4" ng-show="vm.showEditCategoryName == true">
+          <h5>Edit the Category name below and then press enter.</h5>
           <form ng-model="vm.category"
                 ng-submit="vm.editCategoryName()">
             <input class ="form-control input-lg"
