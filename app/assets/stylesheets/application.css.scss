@@ -10,6 +10,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+@import 'https://fonts.googleapis.com/css?family=Niconne|Patrick+Hand';
+
+
 // body{
 //   padding-top: 50px;
 // }
@@ -17,7 +20,7 @@
 .padding{
   padding-top: 50px;
   padding-bottom: 50px;
-  padding-left: 25px;
+  padding-left: 0px;
 }
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -27,7 +30,7 @@
    .sidenav {
      padding-top: 20px;
      background-color: #f1f1f1;
-     height: 150%;
+     height: 170%;
    }
    /* On small screens, set height to 'auto' for sidenav and grid */
     @media screen and (max-width: 767px) {
@@ -78,9 +81,19 @@
 .button{
 
   float: right;
+  font-family: Sans-serif;
+  font-size: 15px;
   background-color: #5B8BB8;
   color: white;
   text-align: center;
   display: inline-block;
+}
 
+li{
+  font-family: 'Patrick Hand', cursive;
+  font-size: 20px;
+}
+
+h3, h2, h4, h5{
+  font-family: 'Patrick Hand', cursive;
 }
