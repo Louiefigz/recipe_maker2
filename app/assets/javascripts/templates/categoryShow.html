@@ -17,8 +17,15 @@
           <div ng-show="vm.showRecipeCategorySearch==true">
             <div class ="col-sm-6 col-sm-offset-4">
               <input class ="form-control input-lg"
-              placeholder ="Search For Recipes"
+              placeholder ="Search All Recipes In Database"
               ng-model ="vm.searchRecipeKey" />
+            </div>
+          </div>
+          <div ng-show="vm.showAllAssociatedRecipesSearch == true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search All Recipes In Category"
+              ng-model ="vm.searchKey" />
             </div>
           </div>
 
@@ -50,18 +57,23 @@
         <div class="padding">
           <div class="list-group">
             <div ng-show="vm.showAllAssociatedRecipes == true">
-             <div ng-repeat="recipe in vm.category.recipes">
+             <div ng-repeat="recipe in (vm.category.recipes | filter: vm.searchKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
                   <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></li>
-
                   <div ng-show="vm.showDeleteButtonRecipeCategory == true">
                     <button ng-click="vm.deleteRecipeCategory(recipe.id)">Delete Ingredient</button>
                   </div>
               </div>
+
+              <uib-pagination total-items="(vm.category.recipes | filter: vm.searchKey).length"
+                ng-model="vm.currentPage"
+                items-per-page="vm.PerPage">
+              </uib-pagination>
+
             </div>
             <div ng-show="vm.showAllRecipesInDatabase== true">
+              <h4>Click on a recipe to add it to this category</h4>
               <div ng-repeat="recipe in (vm.allRecipes | filter: vm.searchRecipeKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
-
-                   <a ng-click="vm.selectedRecipe(recipe.id)" class="list-group-item list-group-item-action  {{vm.active}} ">{{recipe.name}}</a>
+                   <a ng-click="vm.selectedRecipe(recipe.id)" class="list-group-item list-group-item-action">{{recipe.name}}</a>
               </div>
           </div>
 
@@ -79,6 +91,9 @@
 
 
       <div class="col-sm-2 sidenav">
+        <div class="well">
+          <button ng-click="vm.startCategoryShowPage()">View This Category</button>
+        </div>
 
         <div class="well">
           <button  ng-click="vm.startAddRecipe()">Add Recipe</button>

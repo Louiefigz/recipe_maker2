@@ -5,12 +5,14 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.showAlertSuccess = false;
   vm.showAlertFail = false;
   vm.hideAlertFail = hideAlertFail;
+  vm.startCategoryShowPage = startCategoryShowPage;
 
   RecipeFactory.query().$promise.then(function(data){
     vm.allRecipes = data;
   });
   vm.hideAlertSuccess = hideAlertSuccess;
   vm.showRecipeCategorySearch = false;
+  vm.showAllAssociatedRecipesSearch = true;
 
   vm.createRecipeCategory = createRecipeCategory;
   vm.newRecipeCategory = new RecipeFactory();
@@ -78,16 +80,27 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
           vm.showAlertFail = true;
           vm.showAlertSuccess = false;
           vm.fail = "";
-          vm.fail = vm.category.recipes[vm.category.recipes.length-1].name + " is already in the " + vm.category.name + " category";
+          vm.fail = "This Recipe is already in the " + vm.category.name + " category";
         };
       });
     });
   };
 
   function browseAllRecipes(){
-    vm.showRecipeCategorySearch = !vm.showRecipeCategorySearch;
-    vm.showAllRecipesInDatabase = !vm.showAllRecipesInDatabase;
-    vm.showAllAssociatedRecipes = !vm.showAllAssociatedRecipes;
+
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipesSearch = false;
+    vm.showRecipeCategorySearch = true;
+    vm.showAllRecipesInDatabase = true;
+    vm.showAllAssociatedRecipes = false;
+  };
+
+  function startCategoryShowPage(){
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipes = true;
+    vm.showAllAssociatedRecipesSearch = true;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
   };
 
 
@@ -109,7 +122,12 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
 
   function startAddRecipe(){
-    vm.showAddRecipe = !vm.showAddRecipe;
+    vm.showAddRecipe = true;
+    vm.showAllAssociatedRecipesSearch = false;
+    vm.showAllAssociatedRecipes = true;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
+
   }
 
   function filterCategories(){
