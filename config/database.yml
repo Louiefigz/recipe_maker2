@@ -27,6 +27,12 @@ test:
   pool: 5
   timeout: 5000
 
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: recipe_maker_production
+  pool: 5
+  timeout: 5000  
 # production:
 #   <<: *default
 #   database: db/production.sqlite3

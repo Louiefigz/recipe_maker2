@@ -1,0 +1,136 @@
+<div class="padding">
+
+
+
+  <div class="container-fluid text-center">
+    <div ng-include="'alerts/alerts.html'"></div>
+
+    <div class="row content" style="">
+      <div class="col-sm-2 sidenav">
+      </div> <!-- sidenav-->
+      <div class="col-sm-8 text-left">
+
+
+
+        <h3 align="center">{{vm.category.name}}</h3>
+
+        <div class ="col-sm-6 col-sm-offset-4" ng-show="vm.showEditCategoryName == true">
+          <h5>Edit the Category name below and then press enter.</h5>
+          <form ng-model="vm.category"
+                ng-submit="vm.editCategoryName()">
+            <input class ="form-control input-lg"
+                  type="text"
+                  ng-model="vm.category.name" />
+          </form>
+        </div>
+
+
+          <div ng-show="vm.showRecipeCategorySearch==true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search All Recipes In Database"
+              ng-model ="vm.searchRecipeKey" />
+            </div>
+          </div>
+          <div ng-show="vm.showAllAssociatedRecipesSearch == true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search All Recipes In Category"
+              ng-model ="vm.searchKey" />
+            </div>
+          </div>
+
+
+
+
+      <!-- <div ng-show="vm.showAddIngredient == true"> -->
+        <div class="col-sm-6 col-sm-offset-4">
+        <div ng-show="vm.showAddRecipe==true">
+          <!-- <div ng-controller="RecipesController as vm"> -->
+            <form ng-submit="vm.createRecipeCategory()">
+              <input class="form-control input-lg"
+                    type="text"
+                    ng-model="vm.newRecipeCategory.name"
+                    placeholder="Create New Recipe"
+                    required>
+            </form>
+          <!-- </div> -->
+        </div>
+
+
+
+
+
+
+        <!-- </div> -->
+      </div> <!--col-sm-6 col-sm-offset-4-->
+
+        <div class="padding">
+          <div class="list-group">
+            <div ng-show="vm.showAllAssociatedRecipes == true">
+             <div ng-repeat="recipe in (vm.category.recipes | filter: vm.searchKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
+                  <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a>
+                    <button class="button" ng-show="vm.showDeleteButtonRecipeCategory == true" ng-click="vm.deleteRecipeCategory(recipe.id)">Delete Ingredient</button>
+                  </li>
+
+              </div>
+
+              <uib-pagination total-items="(vm.category.recipes | filter: vm.searchKey).length"
+                ng-model="vm.currentPage"
+                items-per-page="vm.PerPage">
+              </uib-pagination>
+
+            </div>
+            <div ng-show="vm.showAllRecipesInDatabase== true">
+              <h4>Click on a recipe to add it to this category</h4>
+              <div ng-repeat="recipe in (vm.allRecipes | filter: vm.searchRecipeKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
+                   <a ng-click="vm.selectedRecipe(recipe.id)" class="list-group-item list-group-item-action">{{recipe.name}}</a>
+              </div>
+          </div>
+
+        </div>
+        <div ng-show="vm.showRecipeCategorySearch==true">
+            <uib-pagination total-items="(vm.allRecipes | filter: vm.searchRecipeKey).length"
+            ng-model="vm.currentPage"
+            items-per-page="vm.PerPage">
+          </uib-pagination>
+        </div>
+          <!-- </div> -->
+        </div>
+    </div>
+
+
+
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <button ng-click="vm.startCategoryShowPage()">View This Category</button>
+        </div>
+
+        <div class="well">
+          <button  ng-click="vm.startAddRecipe()">Add Recipe</button>
+        </div>
+        <!-- <div class="well">
+          <button ng-click="vm.filterRecipeCategory()">Search All Recipes</button>
+        </div> -->
+        <div class="well">
+          <button ng-click="vm.startDeleteButton()">Delete a Recipe</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.browseAllRecipes()">Browse all Recipes</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.startEditCategoryName()">Edit Category Name</button>
+        </div>
+      </div>
+</div>
+</div>
+
+
+
+
+
+
+  <footer id="footer_help" class="container-fluid text-center">
+    <p>"Pick Ingredients that are questionable"</p>
+  </footer>
+</div>

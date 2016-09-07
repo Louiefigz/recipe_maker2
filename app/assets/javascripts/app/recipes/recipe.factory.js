@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .factory("RecipeFactory", RecipeFactory);
+  .factory("RecipeFactory", ['$resource', RecipeFactory]);
 
   function RecipeFactory($resource){
 

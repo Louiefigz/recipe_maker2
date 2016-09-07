@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .factory("CategoryFactory", CategoryFactory);
+  .factory("CategoryFactory", ['$resource', CategoryFactory]);
 
   function CategoryFactory($resource){
 

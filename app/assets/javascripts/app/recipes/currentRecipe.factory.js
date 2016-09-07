@@ -1,6 +1,6 @@
 angular
   .module('app')
-  .service("currentRecipeService", currentRecipeService);
+  .service("currentRecipeService", [currentRecipeService]);
 
   function currentRecipeService(){
     var currentRecipe = {};

@@ -1,6 +1,6 @@
 angular
   .module('app', ['ngSanitize', 'ui.router', 'templates', 'ngResource', 'ui.bootstrap'])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
       .state('home', {
@@ -46,4 +46,4 @@ angular
 
 
 
-  });
+  }]);

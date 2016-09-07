@@ -1,0 +1,65 @@
+
+
+<div class="padding">
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <div class="col-sm-2 sidenav">
+        <h2> Recent Recipes</h2>
+      <div ng-repeat="recipe in vm.lastRecipes"><br>
+        <!-- <p><a ui-sref="home.welcome">{{recipe.name}}</a></p> -->
+        <button style="font-family: sans-serif; font-size:20px;" ng-click="vm.reloadWelcomePageRecipe(recipe.id)">{{recipe.name}}</button>
+      </div> <!--ng-repeat -->
+      </div>
+
+      <div class="col-sm-8 text-left">
+        <h3 align="center">{{vm.recipe.name}}</h3>
+        <button ng-show="vm.showEditRecipeButton == true" ng-click="vm.startEditRecipeName()">Edit Recipe Name</button>
+
+        <!-- edit name form -->
+
+          <div ng-show="vm.showEditRecipeName == true">
+            <form ng-model="vm.recipe"
+                  ng-submit="vm.editRecipe()">
+              <input type="text" ng-model="vm.recipe.name">
+              <input type="submit" />
+            </form>
+          </div>
+
+
+        <!-- end of edit name form -->
+
+        <!-- recipe's ingredients -->
+        <div ng-if="vm.recipe.ingredients.length >0">
+        <h3 class="ingredient-text">Ingredients for this recipe: </h3>
+        </div>
+        <ul class="list-group">
+          <div ng-repeat="ingredient in vm.recipe.ingredients">
+            <li class="list-group-item">{{ingredient.name}}
+              <button class="button" ng-show="vm.showEditRecipeButton == true" ng-click="vm.startDeleteIngredient(ingredient.id)">Delete Ingredient</button>
+            </li>
+          </div>
+        </ul>
+
+        <!-- end of recipe's ingredients -->
+
+
+      <!-- add ingredient form -->
+
+      <new-ingredient-dir></new-ingredient-dir>
+
+      </div>
+      <div class="col-sm-2 sidenav">
+        <div class="well">
+          <button ng-click="vm.deleteRecipeShow(vm.recipe.id)">Delete Recipe</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.editRecipeShow()">Edit Recipe</button>
+        </div>
+    </div>
+</div>
+</div>
+<footer class="container-fluid text-center">
+  <p> "Cook Like a Chef"</p>
+</footer>
+
+</div>

@@ -1,0 +1,39 @@
+
+
+<div class="padding">
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <h2> Recent Recipes</h2>
+    <div ng-repeat="recipe in vm.lastRecipes"><br>
+      <!-- <p><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a></p> -->
+      <button id='recipeSelector' style="font-family: sans-serif; font-size:18px;" id="recipeClick" ng-click="vm.recipe_show(recipe.id)">{{recipe.name}}</button>
+
+    </div> <!--ng-repeat -->
+    </div>
+
+    <div class="col-sm-8 text-left">
+      <div ng-if="vm.current_recipe.name !== undefined">
+      <h2>{{vm.title}}</h2>
+      <ul class="list-group">
+      <div ng-repeat="ingredient in vm.current_recipe.ingredients">
+        <li class ="list-group-item">{{ingredient.name}}</li>
+      </div><!--ng-repeat -->
+    </ul>
+
+      <div ng-bind-html="vm.url">{{vm.url}}</div>
+    </div>
+      <!-- <button ng-click="vm.startFullRecipe(recipe.id)">Edit Recipe</button>
+        <div ng-show="vm.showFullRecipe == true">
+          <div ng-include=" 'recipeShow.html' "></div>
+        </div> -->
+    </div>
+    <div class="col-sm-2 sidenav">
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>"Everyone is a chef if cereal is made properly"</p>
+</footer>
+</div>
