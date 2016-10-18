@@ -7,17 +7,65 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.showAlertSuccess = false;
   vm.showAlertFail = false;
   vm.hideAlertFail = hideAlertFail;
+  vm.hideAlertSuccess = hideAlertSuccess;
 
+
+//-------------------------------------------//
+
+  ////// START OF CategoryHome.html TEMPLATE FUNCTIONS ///////
+
+  vm.startAddCategory = startAddCategory;
+  vm.filterCategories = filterCategories;
+
+
+  vm.deleteCategory = deleteCategory;
+  vm.createCategory = createCategory;
+  vm.newCategory = "";
+  vm.newCategory = new CategoryFactory();
+
+  //Hidden and Shown Fields in CategoryHome.html Page
+  vm.showCreateCategory = false;
+  vm.showSearch = true;
+  vm.showDeleteButton = false;
+
+/////END OF CATEGORY.HTML TEMPLATE FUNCTIONS ///////
+
+
+//-------------------------------------------//
+
+//***** FUNCTIONS USED IN CATEGORYSHOW AND CategoryHome
+  vm.showDeleteButtonRecipeCategory = false;
+vm.startDeleteButton = startDeleteButton;
+vm.startAddRecipe = startAddRecipe;
+//*****END OF FUNCTIONS
+
+//-------------------------------------------//
+
+
+////////START CATEGORYSHOW.HTML TEMPLATE
+vm.showEditCategoryName = false;
+  vm.editCategoryName = editCategoryName;
+  vm.showRecipeCategorySearch = false;
+  vm.showAllAssociatedRecipesSearch = true;
+  vm.showAddRecipe = false;
+vm.createRecipeCategory = createRecipeCategory;
+vm.showAllAssociatedRecipes = true;
+
+  vm.deleteRecipeCategory = deleteRecipeCategory
+  vm.startCategoryShowPage = startCategoryShowPage;
+  vm.browseAllRecipes = browseAllRecipes;
+  vm.startEditCategoryName = startEditCategoryName;
+  vm.showAllRecipesInDatabase = false;
+
+  vm.selectCatRecipe = selectCatRecipe;
+  vm.selectedRecipe = selectedRecipe;
+  vm.category = CategoryFactory.get({ id: $stateParams.id });
+  vm.newRecipeCategory = new RecipeFactory();
 
   RecipeFactory.query().$promise.then(function(data){
     vm.allRecipes = data;
   });
-  vm.hideAlertSuccess = hideAlertSuccess;
 
-
-
-
-  vm.newRecipeCategory = new RecipeFactory();
   // PAGINATION FOR THE CATEGORIES SHOW PAGES
       CategoryFactory.query().$promise.then(function(data){
         vm.allCategories = data;
@@ -30,58 +78,13 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
             vm.filteredIngredients = vm.allCategories.slice(begin, end);
           });
       });
-  vm.category = CategoryFactory.get({ id: $stateParams.id });
-  vm.newCategory = "";
-  vm.newCategory = new CategoryFactory();
 
-
-
-
-  vm.showAllRecipesInDatabase = false;
-
-  vm.selectCatRecipe = selectCatRecipe;
-  vm.selectedRecipe = selectedRecipe;
-
-
-
-  ////// START OF CategoryHome.html TEMPLATE FUNCTIONS ///////
-
-  vm.startAddCategory = startAddCategory;
-  vm.filterCategories = filterCategories;
-
-
-  vm.deleteCategory = deleteCategory;
-  vm.createCategory = createCategory;
-  //Hidden and Shown Fields in CategoryHome.html Page
-  vm.showCreateCategory = false;
-  vm.showSearch = true;
-  vm.showDeleteButton = false;
-
-/////END OF CATEGORY.HTML TEMPLATE FUNCTIONS ///////
-
-//***** FUNCTIONS USED IN CATEGORYSHOW AND CategoryHome
-vm.startDeleteButton = startDeleteButton;
-  vm.startAddRecipe = startAddRecipe;
-//*****END OF FUNCTIONS
-
-
-////////START CATEGORYSHOW.HTML TEMPLATE
-vm.showEditCategoryName = false;
-  vm.editCategoryName = editCategoryName;
-  vm.showRecipeCategorySearch = false;
-  vm.showAllAssociatedRecipesSearch = true;
-  vm.showAddRecipe = false;
-vm.createRecipeCategory = createRecipeCategory;
-vm.showAllAssociatedRecipes = true;
-  vm.showDeleteButtonRecipeCategory = false;
-  vm.deleteRecipeCategory = deleteRecipeCategory
-  vm.startCategoryShowPage = startCategoryShowPage;
-  vm.browseAllRecipes = browseAllRecipes;
-  vm.startEditCategoryName = startEditCategoryName;
 
 
 ///////END OF CATEGORYSHOW.HTML TEMPLATE
 
+
+//-------------------------------------------//
 
 
   function startEditCategoryName(){
