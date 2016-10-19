@@ -3,26 +3,11 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   var vm = this;
 
 
-  vm.startEditRecipe = startEditRecipe;
-  vm.startEditRecipeName = startEditRecipeName;
-  vm.startDeleteIngredient = startDeleteIngredient;
-  vm.startDeleteRecipe= startDeleteRecipe;
-  vm.startAddRecipe = startAddRecipe;
-  vm.showEditRecipeForm = false;
-  vm.showEditRecipeName = false;
-  vm.showDeleteRecipe = false;
-  vm.showFullRecipe = false;
-  vm.showAddRecipe = false;
-  vm.showSearch = true;
-  vm.showEditRecipeButton = false;
-  vm.startFullRecipe = startFullRecipe;
-  vm.deleteRecipe =  deleteRecipe;
-  vm.addNewRecipe = addNewRecipe;
-  vm.editRecipe = editRecipe;
-  vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
-  vm.deleteRecipeShow = deleteRecipeShow = deleteRecipeShow;
-  vm.filterRecipes = filterRecipes;
-  vm.editRecipeShow = editRecipeShow;
+  // vm.startEditRecipe = startEditRecipe;
+  // vm.showEditRecipeForm = false;
+
+  // vm.startFullRecipe = startFullRecipe;
+
 
 
 
@@ -41,14 +26,55 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   });
 
   vm.newRecipe = new RecipeFactory();
-  vm.updateRecipe = updateRecipe;
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
-  vm.recipe_show = recipe_show;
 
-  RecipeFactory.query().$promise.then(function(data){
-    vm.lastRecipes = data.splice(-5);
-  });
+//WELCOME.HTML FUNCTIONS //
+vm.recipe_show = recipe_show;
+vm.showFullRecipe = false;
+
+//END OF WELCOME.HTML FUNCTIONS //
+
+
+
+//Recipes.html functions //
+vm.showSearch = true;
+vm.showAddRecipe = false;
+vm.addNewRecipe = addNewRecipe;
+vm.showDeleteRecipe = false;
+vm.deleteRecipe =  deleteRecipe;
+  //** side nav bar **//
+vm.startAddRecipe = startAddRecipe;
+vm.filterRecipes = filterRecipes;
+vm.startDeleteRecipe= startDeleteRecipe;
+  //** end of side nav bar **//
+//END OF RECIPES.HTML FUNCTIONS //
+
+
+
+
+//RecipeShow.html functions //
+  //** newIngredientForm.html directive **//
+vm.updateRecipe = updateRecipe;
+  //** end of directive ** //
+RecipeFactory.query().$promise.then(function(data){
+  vm.lastRecipes = data.splice(-5);
+});
+vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
+vm.showEditRecipeButton = false;
+vm.showEditRecipeName = false;
+
+vm.startEditRecipeName = startEditRecipeName;
+vm.startDeleteIngredient = startDeleteIngredient;
+
+  //** side nav bar **//
+vm.deleteRecipeShow = deleteRecipeShow;
+vm.editRecipeShow = editRecipeShow;
+
+  //** end of side nav bar **//
+vm.editRecipe = editRecipe;
+// END OF RECIPESHOW.HTML FUNCTIONS //
+
 
   function editRecipeShow(){
     vm.showEditRecipeButton = !vm.showEditRecipeButton;
