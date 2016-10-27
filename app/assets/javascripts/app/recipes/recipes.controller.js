@@ -29,15 +29,13 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
 
-//WELCOME.HTML FUNCTIONS //
+//////////////////// WELCOME.HTML ////////////////////
 vm.recipe_show = recipe_show;
 vm.showFullRecipe = false;
 
-//END OF WELCOME.HTML FUNCTIONS //
+////////////////////END OF WELCOME.HTML ////////////////////
 
-
-
-//Recipes.html functions //
+///////////////// RECIPES.HTML ///////////////////////////
 vm.showSearch = true;
 vm.showAddRecipe = false;
 vm.addNewRecipe = addNewRecipe;
@@ -48,12 +46,9 @@ vm.startAddRecipe = startAddRecipe;
 vm.filterRecipes = filterRecipes;
 vm.startDeleteRecipe= startDeleteRecipe;
   //** end of side nav bar **//
-//END OF RECIPES.HTML FUNCTIONS //
+////////////////////END OF RECIPES.HTML ////////////////////
 
-
-
-
-//RecipeShow.html functions //
+//////////////////// RECIPESHOW.HTML /////////////////////////
   //** newIngredientForm.html directive **//
 vm.updateRecipe = updateRecipe;
   //** end of directive ** //
@@ -66,66 +61,34 @@ vm.showEditRecipeName = false;
 
 vm.startEditRecipeName = startEditRecipeName;
 vm.startDeleteIngredient = startDeleteIngredient;
-
   //** side nav bar **//
 vm.deleteRecipeShow = deleteRecipeShow;
 vm.editRecipeShow = editRecipeShow;
-
   //** end of side nav bar **//
 vm.editRecipe = editRecipe;
-// END OF RECIPESHOW.HTML FUNCTIONS //
+//////////////////// END OF RECIPESHOW.HTML ////////////////////
+
+//---------------------------------------------------------------//
+
+// ++++++++++++++++++++  LOGIC FUNCTIONS  +++++++++++++++++++++++++++++//
 
 
+/////////////////////  RECIPESHOW.HTML FUNCTIONS  /////////////////////////
   function editRecipeShow(){
     vm.showEditRecipeButton = !vm.showEditRecipeButton;
   };
 
-
-  function startAddRecipe(){
-    vm.showAddRecipe = true;
-    vm.searchKey ="";
-    vm.showSearch = false;
-  }
-
   function filterRecipes(){
-
     vm.showAddRecipe = false;
     vm.showSearch = true;
   }
 
-  function editRecipe(){
-    vm.recipe.$update(getRecipe);
-     vm.showEditRecipeName = false;
-  }
 
-  function getRecipe(){
-    vm.recipe = RecipeFactory.get({ id: $stateParams.id })
-  }
-
-  function startEditRecipe(){
-    vm.showEditRecipeForm = !vm.showEditRecipeForm;
-  }
-
-  function startEditRecipeName(){
-    vm.showEditRecipeName = !vm.showEditRecipeName;
-  }
-
-  function startDeleteIngredient(ingredient_id){
-    vm.recipe.$delete({ingredient_id: ingredient_id});
-      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
-  }
-
-  function recipe_show(data){
-
-    for(var i=0; i< vm.recipes.length; i++){
-      if(vm.recipes[i].id == data){
-        vm.current_recipe = vm.recipes[i];
-        currentRecipeService.setRecipe(vm.current_recipe);
-        vm.title = 'Ingredients for '+ vm.current_recipe.name;
-        vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>';
-
-      }
-    }
+////////////////////// RECIPE.HTML AND CATEGORYSHOW.HTML /////////////////////////
+  function startAddRecipe(){
+    vm.showAddRecipe = true;
+    vm.searchKey ="";
+    vm.showSearch = false;
   }
 
   function addNewRecipe(){
@@ -134,39 +97,26 @@ vm.editRecipe = editRecipe;
     });
   }
 
-  function updateRecipe(){
-    vm.recipe.ingredients.push(vm.newIngredient);
-    vm.recipe.$update(function() {
-      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
-      vm.newIngredient = { ingredient: "" };
-    });
-  }
-
-  function deleteRecipe(recipe_id){
-
-
-    for(var i=0; i<vm.recipes.length; i++){
-
-      if (vm.recipes[i].id == recipe_id){
-        vm.recipes[i].$delete({recipe_id: recipe_id})
-      }
-    }
-    vm.recipes = RecipeFactory.query();
-    // vm.recipe.$delete({recipe_id: recipe_id});
-    //   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
-  }
-  //
-  function deleteRecipeIngredient(){
-
-  }
-
   function startDeleteRecipe(){
     vm.showDeleteRecipe = !vm.showDeleteRecipe;
   }
 
-  function startFullRecipe(){
-    vm.showFullRecipe = !vm.showFullRecipe;
 
+/////////////////// RECIPESHOW.HTML ///////////////////////////
+
+
+  function editRecipe(){
+    vm.recipe.$update(getRecipe);
+     vm.showEditRecipeName = false;
+  }
+
+  function startEditRecipeName(){
+    vm.showEditRecipeName = !vm.showEditRecipeName;
+  }
+
+  function startDeleteIngredient(ingredient_id){
+    vm.recipe.$delete({ingredient_id: ingredient_id});
+    vm.recipe = RecipeFactory.get({ id: $stateParams.id });
   }
 
   function deleteRecipeShow(recipe_id){
@@ -179,12 +129,68 @@ vm.editRecipe = editRecipe;
     $state.go("home.welcome");
   }
 
+  function startEditRecipe(){
+    vm.showEditRecipeForm = !vm.showEditRecipeForm;
+  }
+
+
+  function getRecipe(){
+    debugger;
+    vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+  }
+
+/////////////// NEW-INGREDIENT-DIRECTIVE /////////////////
+  function updateRecipe(){
+    vm.recipe.ingredients.push(vm.newIngredient);
+    vm.recipe.$update(function() {
+      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
+      vm.newIngredient = { ingredient: "" };
+    });
+  }
+
+///////////// CATEGORYSHOW.HTML AND RECIPE.HTML //////////
+  function deleteRecipe(recipe_id){
+    for(var i=0; i<vm.recipes.length; i++){
+      if (vm.recipes[i].id == recipe_id){
+        vm.recipes[i].$delete({recipe_id: recipe_id})
+      }
+    }
+    vm.recipes = RecipeFactory.query();
+    // vm.recipe.$delete({recipe_id: recipe_id});
+    //   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+  }
+
+
+
+  function deleteRecipeIngredient(){
+
+  }
+
+
+////////////////////  WELCOME.HTML ////////////////////////
+function startFullRecipe(){
+  vm.showFullRecipe = !vm.showFullRecipe;
+}
+
+function recipe_show(data){
+  for(var i=0; i< vm.recipes.length; i++){
+    if(vm.recipes[i].id == data){
+      vm.current_recipe = vm.recipes[i];
+      currentRecipeService.setRecipe(vm.current_recipe);
+      vm.title = 'Ingredients for '+ vm.current_recipe.name;
+      vm.url = '<a href="/#/recipes/'+data+'"  >'+"click here to edit recipe" +'</a>';
+    }
+  }
+}
+
 
     vm.current_recipe = currentRecipeService.getRecipe();
     vm.title = 'Ingredients for '+ vm.current_recipe.name;
     vm.url = '<a href="/#/recipes/'+vm.current_recipe.id+'"  >'+"click here to edit recipe" +'</a>';
 
 };
+
+//+++++++++++++++++++++++ END OF LOGIC FUNCTIONS ++++++++++++++++++++++++++//
 
 angular
   .module('app')

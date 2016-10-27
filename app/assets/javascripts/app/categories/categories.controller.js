@@ -30,7 +30,7 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 
 //-------------------------------------------//
 
-//***** FUNCTIONS USED IN CATEGORYSHOW AND CategoryHome
+//***** FUNCTIONS USED IN CATEGORYSHOW AND CategoryHome *********//
 vm.showDeleteButtonRecipeCategory = false;
 vm.startDeleteButton = startDeleteButton;
 vm.startAddRecipe = startAddRecipe;
@@ -38,7 +38,7 @@ vm.startAddRecipe = startAddRecipe;
 
 
 
-//*****END OF FUNCTIONS
+//*****END OF FUNCTIONS USED IN CATEGORYSHOW AND CategoryHome **********//
 
 //-------------------------------------------//
 
@@ -85,6 +85,7 @@ CategoryFactory.query().$promise.then(function(data){
 
 
 //-------------------------------------------//
+
   // ++++++++++++++++++++  LOGIC FUNCTIONS  +++++++++++++++++++++++++++++//
 
 
@@ -104,9 +105,9 @@ CategoryFactory.query().$promise.then(function(data){
     vm.showDeleteButton = !vm.showDeleteButton;
   }
 
-  //////////////// END OF CATEGORYSHOW.HTML AND CATEGORYHOME.HTML FUNCTIONS ///////////////
+//////////////// END OF CATEGORYSHOW.HTML AND CATEGORYHOME.HTML FUNCTIONS ///////////////
 
-  /////////////////// CATEGORYSHOW.HTML /////////////////////////////////
+/////////////////// CATEGORYSHOW.HTML /////////////////////////////////
 
   function startEditCategoryName(){
     vm.showEditCategoryName = true;
@@ -195,10 +196,10 @@ CategoryFactory.query().$promise.then(function(data){
   };
 
 
-  //////////////////////// END OF CATEGORYSHOW.HTML ////////////////////////////
+//////////////////////// END OF CATEGORYSHOW.HTML ////////////////////////////
 
 
-/////////////////////////  CATEGORY HOME //////////////////////////////////
+/////////////////////////  CATEGORYHOME.HTML //////////////////////////////////
 function startAddCategory(){
   vm.showSearch = false;
   vm.showCreateCategory = true;
@@ -228,11 +229,7 @@ function startAddCategory(){
     vm.allCategories = CategoryFactory.query();
   };
 
-};
-
-//////////////////////// END OF CATEGORY HOME ////////////////////////////
-
-
+//////////////////////// END OF CATEGORYHOME.HTML  ////////////////////////////
 
 ///////////////////////// RECIPE SHOW DIRECTIVE /////// //////////////////
   function hideAlertSuccess(){
@@ -245,7 +242,8 @@ function startAddCategory(){
 
   ///////////////////////// RECIPE SHOW DIRECTIVE /////// //////////////////
 
-//+++++++++++++++++++++++ END OF FUNCTIONS ++++++++++++++++++++++++++//
+};
+//+++++++++++++++++++++++ END OF LOGIC FUNCTIONS ++++++++++++++++++++++++++//
 
 
 
