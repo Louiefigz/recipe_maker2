@@ -34,6 +34,10 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
 vm.showDeleteButtonRecipeCategory = false;
 vm.startDeleteButton = startDeleteButton;
 vm.startAddRecipe = startAddRecipe;
+
+
+
+
 //*****END OF FUNCTIONS
 
 //-------------------------------------------//
@@ -51,7 +55,7 @@ vm.showAllAssociatedRecipes = true;
 vm.deleteRecipeCategory = deleteRecipeCategory
 vm.startCategoryShowPage = startCategoryShowPage;
 vm.browseAllRecipes = browseAllRecipes;
-vm.startEditCategoryName = startEditCategoryName;
+// vm.startEditCategoryName = startEditCategoryName;
 vm.showAllRecipesInDatabase = false;
 
 vm.selectCatRecipe = selectCatRecipe;
@@ -63,7 +67,7 @@ RecipeFactory.query().$promise.then(function(data){
   vm.allRecipes = data;
 });
 
-// PAGINATION FOR THE CATEGORIES SHOW PAGES
+// PAGINATION FOR THE CATEGORIES SHOW PAGE
 CategoryFactory.query().$promise.then(function(data){
   vm.allCategories = data;
   vm.totalItems = data.length;
@@ -81,7 +85,28 @@ CategoryFactory.query().$promise.then(function(data){
 
 
 //-------------------------------------------//
+  // ++++++++++++++++++++  LOGIC FUNCTIONS  +++++++++++++++++++++++++++++//
 
+
+///////////// CATEGORYSHOW.HTML AND CATEGORYHOME.HTML FUNCTIONS ////////////////
+  function startAddRecipe(){
+    vm.showAddRecipe = true;
+    vm.showAllAssociatedRecipesSearch = false;
+    vm.showAllAssociatedRecipes = true;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
+    vm.showEditCategoryName = false;
+
+  }
+
+  function startDeleteButton(){
+    vm.showDeleteButtonRecipeCategory = !vm.showDeleteButtonRecipeCategory;
+    vm.showDeleteButton = !vm.showDeleteButton;
+  }
+
+  //////////////// END OF CATEGORYSHOW.HTML AND CATEGORYHOME.HTML FUNCTIONS ///////////////
+
+  /////////////////// CATEGORYSHOW.HTML /////////////////////////////////
 
   function startEditCategoryName(){
     vm.showEditCategoryName = true;
@@ -107,12 +132,13 @@ CategoryFactory.query().$promise.then(function(data){
     vm.category = CategoryFactory.get({id: $stateParams.id})
   }
 
-  function hideAlertSuccess(){
-    vm.showAlertSuccess = false;
-  }
-
-  function hideAlertFail(){
-    vm.showAlertFail = false;
+  function createRecipeCategory(){
+    vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
+      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
+        vm.category= data;
+      });
+    });
+    vm.newCategory.name = "";
   }
 
   function deleteRecipeCategory(recipe_id){
@@ -120,6 +146,31 @@ CategoryFactory.query().$promise.then(function(data){
     vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id});
     vm.category = CategoryFactory.get({id: $stateParams.id});
   }
+
+  function startCategoryShowPage(){
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipes = true;
+    vm.showAllAssociatedRecipesSearch = true;
+    vm.showRecipeCategorySearch = false;
+    vm.showAllRecipesInDatabase = false;
+    vm.showEditCategoryName = false;
+  };
+
+  function browseAllRecipes(){
+
+    vm.showAddRecipe = false;
+    vm.showAllAssociatedRecipesSearch = false;
+    vm.showRecipeCategorySearch = true;
+    vm.showAllRecipesInDatabase = true;
+    vm.showAllAssociatedRecipes = false;
+    vm.showEditCategoryName = false;
+  };
+
+  function selectCatRecipe(){
+    debugger;
+    vm.selectedRecipe
+  }
+
 
   function selectedRecipe(recipe_id){
     this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(check){
@@ -143,69 +194,22 @@ CategoryFactory.query().$promise.then(function(data){
     });
   };
 
-  function browseAllRecipes(){
 
-    vm.showAddRecipe = false;
-    vm.showAllAssociatedRecipesSearch = false;
-    vm.showRecipeCategorySearch = true;
-    vm.showAllRecipesInDatabase = true;
-    vm.showAllAssociatedRecipes = false;
-    vm.showEditCategoryName = false;
-  };
-
-  function startCategoryShowPage(){
-    vm.showAddRecipe = false;
-    vm.showAllAssociatedRecipes = true;
-    vm.showAllAssociatedRecipesSearch = true;
-    vm.showRecipeCategorySearch = false;
-    vm.showAllRecipesInDatabase = false;
-    vm.showEditCategoryName = false;
-  };
+  //////////////////////// END OF CATEGORYSHOW.HTML ////////////////////////////
 
 
-  function selectCatRecipe(){
-    debugger;
-    vm.selectedRecipe
-  }
+/////////////////////////  CATEGORY HOME //////////////////////////////////
+function startAddCategory(){
+  vm.showSearch = false;
+  vm.showCreateCategory = true;
+}
 
-
-
-  function createRecipeCategory(){
-    vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
-      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
-        vm.category= data;
-      });
-    });
-    vm.newCategory.name = "";
-  }
-
-
-  function startAddRecipe(){
-    vm.showAddRecipe = true;
-    vm.showAllAssociatedRecipesSearch = false;
-    vm.showAllAssociatedRecipes = true;
-    vm.showRecipeCategorySearch = false;
-    vm.showAllRecipesInDatabase = false;
-    vm.showEditCategoryName = false;
-
-  }
 
   function filterCategories(){
     vm.showCreateCategory = false;
     vm.showSearch = true;
   }
 
-
-  function startAddCategory(){
-    vm.showSearch = false;
-    vm.showCreateCategory = true;
-  }
-
-
-  function startDeleteButton(){
-    vm.showDeleteButtonRecipeCategory = !vm.showDeleteButtonRecipeCategory;
-    vm.showDeleteButton = !vm.showDeleteButton;
-  }
 
   function createCategory(){
     vm.newCategory.$save(function (){
@@ -225,6 +229,26 @@ CategoryFactory.query().$promise.then(function(data){
   };
 
 };
+
+//////////////////////// END OF CATEGORY HOME ////////////////////////////
+
+
+
+///////////////////////// RECIPE SHOW DIRECTIVE /////// //////////////////
+  function hideAlertSuccess(){
+    vm.showAlertSuccess = false;
+  }
+
+  function hideAlertFail(){
+    vm.showAlertFail = false;
+  }
+
+  ///////////////////////// RECIPE SHOW DIRECTIVE /////// //////////////////
+
+//+++++++++++++++++++++++ END OF FUNCTIONS ++++++++++++++++++++++++++//
+
+
+
 
 angular
   .module('app')
