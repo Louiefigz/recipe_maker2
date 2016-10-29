@@ -221,12 +221,12 @@ function startAddCategory(){
 
   function deleteCategory(category_id){
     for(var i=0; i< vm.allCategories.length; i++){
-
       if(vm.allCategories[i].id == category_id){
-        vm.allCategories[i].$delete({category_id: category_id})
+        vm.allCategories[i].$delete({category_id: category_id}).then(function(){
+          vm.allCategories = CategoryFactory.query();
+        });
       }
     }
-    vm.allCategories = CategoryFactory.query();
   };
 
 //////////////////////// END OF CATEGORYHOME.HTML  ////////////////////////////
