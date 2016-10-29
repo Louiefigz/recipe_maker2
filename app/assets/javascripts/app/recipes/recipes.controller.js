@@ -115,8 +115,11 @@ vm.editRecipe = editRecipe;
   }
 
   function startDeleteIngredient(ingredient_id){
-    vm.recipe.$delete({ingredient_id: ingredient_id});
-    vm.recipe = RecipeFactory.get({ id: $stateParams.id });
+    vm.recipe.$delete({ingredient_id: ingredient_id}).then(function(info){
+      RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
+        vm.recipe = resp;
+      });
+    });
   }
 
   function deleteRecipeShow(recipe_id){

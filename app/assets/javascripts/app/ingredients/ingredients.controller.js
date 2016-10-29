@@ -60,14 +60,14 @@ function filterIngredients(){
 
   function deleteIngredient(ingredient_id){
     for(var i=0; i< vm.allIngredients.length; i++){
-
       if(vm.allIngredients[i].id == ingredient_id){
-        vm.allIngredients[i].$delete({ingredient_id: ingredient_id});
+        vm.allIngredients[i].$delete({ingredient_id: ingredient_id}).then(function(){
+          vm.allIngredients = IngredientFactory.query();
+        });
       }
     }
-    vm.allIngredients = IngredientFactory.query();
   }
-
+  
   function startDeleteButton(){
     vm.showDeleteButton = !vm.showDeleteButton;
   }
