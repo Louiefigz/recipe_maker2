@@ -1,4 +1,4 @@
-function CategoriesController($scope, $http, $state, $stateParams, CategoryFactory, RecipeFactory){
+function CategoriesController($scope, $http, $state, $stateParams, CategoryFactory, RecipeFactory, catAlertService){
 
   var vm = this;
 
@@ -143,7 +143,7 @@ CategoryFactory.query().$promise.then(function(data){
   }
 
   function deleteRecipeCategory(recipe_id){
-    debugger;
+    // debugger;
     vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id});
     vm.category = CategoryFactory.get({id: $stateParams.id});
   }
@@ -177,14 +177,19 @@ CategoryFactory.query().$promise.then(function(data){
     this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(check){
       var alertCheck = check;
 
-      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
-        vm.category = data;
+      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category){
+        vm.category = category;
           // debugger;
-        if(data.recipes.length !== alertCheck.recipes.length){
+        if(category.recipes.length !== alertCheck.recipes.length){
           vm.showAlertSuccess = true;
           vm.showAlertFail = false;
-          vm.success = "";
-          vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
+          var recipe = vm.category.recipes[category.recipes.length -1].name;
+          catAlertService.setSuccess(category.name, recipe);
+          vm.success ="";
+          vm.success = catAlertService.getSuccess();
+
+          // vm.success = "";
+          // vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
         } else {
           vm.showAlertFail = true;
           vm.showAlertSuccess = false;
@@ -250,4 +255,4 @@ function startAddCategory(){
 
 angular
   .module('app')
-  .controller("CategoriesController", ['$scope', '$http', '$state', '$stateParams', 'CategoryFactory', 'RecipeFactory', CategoriesController]);
+  .controller("CategoriesController", ['$scope', '$http', '$state', '$stateParams', 'CategoryFactory', 'RecipeFactory', 'catAlertService',  CategoriesController]);

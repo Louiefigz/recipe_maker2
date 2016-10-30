@@ -8,9 +8,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
 
   // vm.startFullRecipe = startFullRecipe;
 
-
-
-
   vm.newIngredient = { ingredient: "" };
 
   RecipeFactory.query().$promise.then(function(data){
