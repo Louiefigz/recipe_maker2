@@ -142,12 +142,20 @@ CategoryFactory.query().$promise.then(function(data){
     vm.newCategory.name = "";
   }
 
-  function deleteRecipeCategory(recipe_id){
-    vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id}).then(function(){
-      vm.category = CategoryFactory.get({id: $stateParams.id});
-    })
-  }
 
+///// HTTP TEST /////
+  // function deleteRecipeCategory(recipe_id){
+  //   vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id}).then(function(){
+  //     vm.category = CategoryFactory.get({id: $stateParams.id});
+  //   })
+  // }
+
+  function deleteRecipeCategory(recipe_id){
+    $http.delete("categories/" + recipe_id, {params: {recipe_id: recipe_id, category_id: $stateParams.id}}).then(function(){
+        vm.category = CategoryFactory.get({id: $stateParams.id})
+      });
+  }
+//// HTTP TEST //////
   function startCategoryShowPage(){
     vm.showAddRecipe = false;
     vm.showAllAssociatedRecipes = true;

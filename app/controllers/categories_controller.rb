@@ -33,6 +33,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
+    # binding.pry 
     if params[:recipe_id].present?
       RecipeCategory.where(:recipe_id=>params[:recipe_id], :category_id=>params[:category_id]).destroy_all
     else
