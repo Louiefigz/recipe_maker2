@@ -143,9 +143,9 @@ CategoryFactory.query().$promise.then(function(data){
   }
 
   function deleteRecipeCategory(recipe_id){
-    // debugger;
-    vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id});
-    vm.category = CategoryFactory.get({id: $stateParams.id});
+    vm.category.$delete({recipe_id: recipe_id, category_id: $stateParams.id}).then(function(){
+      vm.category = CategoryFactory.get({id: $stateParams.id});
+    })
   }
 
   function startCategoryShowPage(){
@@ -176,21 +176,16 @@ CategoryFactory.query().$promise.then(function(data){
   function selectedRecipe(recipe_id){
     this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(check){
       var alertCheck = check;
-
       CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category){
-        vm.category = category;
-          // debugger;
         if(category.recipes.length !== alertCheck.recipes.length){
           vm.showAlertSuccess = true;
           vm.showAlertFail = false;
-          var recipe = vm.category.recipes[category.recipes.length -1].name;
+          var recipe = category.recipes[category.recipes.length -1].name;
           catAlertService.setSuccess(category.name, recipe);
           vm.success ="";
           vm.success = catAlertService.getSuccess();
 
-          // vm.success = "";
-          // vm.success = vm.category.recipes[vm.category.recipes.length-1].name + " was added to " +  vm.category.name;
-        } else {
+        }else{
           vm.showAlertFail = true;
           vm.showAlertSuccess = false;
           vm.fail = "";
@@ -199,6 +194,7 @@ CategoryFactory.query().$promise.then(function(data){
       });
     });
   };
+
 
 
 //////////////////////// END OF CATEGORYSHOW.HTML ////////////////////////////
