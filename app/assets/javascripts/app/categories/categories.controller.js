@@ -260,10 +260,16 @@ function startAddCategory(){
 
   function deleteCategory(category_id){
     for(var i=0; i< vm.allCategories.length; i++){
-      if(vm.allCategories[i].id == category_id){
-        vm.allCategories[i].$delete({category_id: category_id}).then(function(){
-          vm.allCategories = CategoryFactory.query();
+      if(vm.allCategories[i].id === category_id){
+        $http.delete('categories/'+ category_id, {params:{category_id: category_id}}).then(function(resp){
+           $http.get('categories').then(function(response){
+            vm.allCategories = response.data;
+          });
         });
+
+        // vm.allCategories[i].$delete({category_id: category_id}).then(function(){
+        //   vm.allCategories = CategoryFactory.query();
+        // });
       }
     }
   };
