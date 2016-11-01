@@ -63,9 +63,14 @@ vm.selectedRecipe = selectedRecipe;
 vm.category = CategoryFactory.get({ id: $stateParams.id });
 // vm.newRecipeCategory = new RecipeFactory();
 
-RecipeFactory.query().$promise.then(function(data){
-  vm.allRecipes = data;
+$http.get('recipes').then(function(resp){
+  vm.allRecipes = resp.data;
 });
+
+
+// RecipeFactory.query().$promise.then(function(data){
+//   vm.allRecipes = data;
+// });
 
 // PAGINATION FOR THE CATEGORIES SHOW PAGE
 CategoryFactory.query().$promise.then(function(data){
@@ -208,10 +213,11 @@ CategoryFactory.query().$promise.then(function(data){
     //               console.log("B");
     //               debugger;
     //        })
+    var firstLength= vm.category.recipes.length;
     vm.category.$update({category_id: $stateParams.id, recipe_id: recipe_id})
                 .then(function(response){
                   CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category) {
-                    if(category.recipes.length !== response.recipes.length){
+                    if(category.recipes.length > firstLength){
                       vm.showAlertSuccess = true;
                       vm.showAlertFail = false;
                       var recipe = category.recipes[category.recipes.length -1].name;

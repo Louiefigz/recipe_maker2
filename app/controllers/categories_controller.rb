@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
 
 # Change this method
   def update
-    binding.pry
+    # binding.pry
     if params[:category_id].present?
       category = Category.find(params[:category_id].to_i)
       if category.recipe_categories.where(recipe_id: params[:recipe_id].to_i).present?
