@@ -45,27 +45,6 @@
           </ul>
         </div>
 
-
-        <div ng-show="vm.showSearch==true">
-          <!-- <form ng-submit="vm.keyupPress()" > -->
-            <div class ="col-sm-6 col-sm-offset-4">
-              <input class ="form-control input-lg"
-              id="key"
-              placeholder ="Search For Recipe "
-              ng-keypress="vm.goToOnSpace($event.keyCode ==='32')"
-              ng-model ="vm.searchRecipeKeyword" />
-            </div>
-          <!-- </form> -->
-        </div>
-
-
-        <div ng-repeat="recipe in (vm.recipes | filter:vm.searchRecipeKeyword | filter:vm.searchRecipeKey2 ) ">
-          <li>{{recipe.name}}</li>
-        </div>
-
-
-
-
       </div>
       <div class="col-sm-2 sidenav">
 

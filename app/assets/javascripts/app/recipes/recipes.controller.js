@@ -1,19 +1,6 @@
 function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, CategoryFactory, currentRecipeService){
 
   var vm = this;
-  vm.searchRecipekey2 = "";
-
-  vm.goToOnSpace = goToOnSpace;
-
-  function goToOnSpace(){
-    // debugger;
-    if(event.keyCode === 32){
-      console.log('vm is ', vm)
-      console.log('this is ', this)
-      vm.searchRecipekey2 = vm.searchRecipeKeyword;
-    };
-  };
-
 
   // vm.startEditRecipe = startEditRecipe;
   // vm.showEditRecipeForm = false;
@@ -39,9 +26,10 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   ////////////  $resource call  ////////
   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
-    $http.get('recipes/'+ $stateParams.id).then(function(response){
-      vm.recipe = response.data;
-    });
+
+ $http.get('recipes/'+ $stateParams.id).then(function(response){
+   vm.recipe = response.data;
+ });
 
 
 //////////////////// WELCOME.HTML ////////////////////
@@ -140,11 +128,16 @@ vm.editRecipe = editRecipe;
   }
 
   function startDeleteIngredient(ingredient_id){
-    vm.recipe.$delete({ingredient_id: ingredient_id}).then(function(info){
-      RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
-        vm.recipe = resp;
+    $http.delete('recipes/'+ $stateParams.id, {params:{ingredient_id: ingredient_id}}).then(function(){
+      $http.get('recipes/'+ $stateParams.id).then(function(resp){
+        vm.recipe = resp.data;
       });
     });
+    // vm.recipe.$delete({ingredient_id: ingredient_id}).then(function(info){
+    //   RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
+    //     vm.recipe = resp;
+    //   });
+    // });
   }
 
   function deleteRecipeShow(recipe_id){

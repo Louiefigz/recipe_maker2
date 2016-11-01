@@ -19,7 +19,8 @@ function CategoriesController($scope, $http, $state, $stateParams, CategoryFacto
   vm.deleteCategory = deleteCategory;
   vm.createCategory = createCategory;
   vm.newCategory = "";
-  vm.newCategory = new CategoryFactory();
+  //////////////////  $resource   ////////////////
+  // vm.newCategory = new CategoryFactory();
 
   vm.showCreateCategory = false;
   vm.showSearch = true;
