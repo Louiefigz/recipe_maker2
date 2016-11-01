@@ -107,9 +107,15 @@ vm.editRecipe = editRecipe;
   }
 
   function addNewRecipe(){
-    vm.newRecipe.$save(function() {
-    vm.recipes = RecipeFactory.query();
+    $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
+      $http.get('recipes').then(function(resp){
+        vm.recipes = resp.data;
+      });
     });
+
+    // vm.newRecipe.$save(function() {
+    // vm.recipes = RecipeFactory.query();
+    // });
   }
 
   function startDeleteRecipe(){
