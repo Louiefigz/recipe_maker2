@@ -244,10 +244,18 @@ function startAddCategory(){
 
 
   function createCategory(){
-    vm.newCategory.$save(function (){
-      vm.allCategories= CategoryFactory.query();
-      vm.newCategory.name = "";
+
+    $http.post('categories', {name: vm.newCategory.name}).then(function(){
+      $http.get('categories').then(function(response){
+        vm.allCategories = response.data;
+        vm.newCategory.name = "";
+      });
     });
+    ////////   $resource   //////////
+    // vm.newCategory.$save(function (){
+    //   vm.allCategories= CategoryFactory.query();
+    //   vm.newCategory.name = "";
+    // });
   }
 
   function deleteCategory(category_id){
