@@ -61,7 +61,7 @@ vm.showAllRecipesInDatabase = false;
 vm.selectCatRecipe = selectCatRecipe;
 vm.selectedRecipe = selectedRecipe;
 vm.category = CategoryFactory.get({ id: $stateParams.id });
-vm.newRecipeCategory = new RecipeFactory();
+// vm.newRecipeCategory = new RecipeFactory();
 
 RecipeFactory.query().$promise.then(function(data){
   vm.allRecipes = data;
@@ -139,12 +139,19 @@ CategoryFactory.query().$promise.then(function(data){
   // Function above not currently working //
 
   function createRecipeCategory(){
-    vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
-      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
-        vm.category= data;
+    $http.post('recipes/', {recipe: {name: vm.newRecipeCategory.name, category_id: $stateParams.id}}).then(function(resp){
+      $http.get('categories/'+ $stateParams.id).then(function(resp){
+        vm.category = resp.data;
       });
     });
-    vm.newCategory.name = "";
+    vm.newRecipeCategory.name = "";
+
+    // vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
+    //   CategoryFactory.get({id: $stateParams.id}).$promise.then(function(data){
+    //     vm.category= data;
+    //   });
+    // });
+    // vm.newCategory.name = "";
   }
 
 

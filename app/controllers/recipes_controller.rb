@@ -16,13 +16,12 @@ class RecipesController < ApplicationController
   end
 
   def create
-
     # add more validations here so repeate recipes aren't made
     recipe = Recipe.find_or_create_by(recipe_params)
 
     if recipe.save
-      if params[:category_id].present?
-        recipe.recipe_categories.create(category_id: params[:category_id].to_i)
+      if params[:recipe][:category_id].present?
+        recipe.recipe_categories.create(category_id: params[:recipe][:category_id].to_i)
       end
       render json: { message: 'Recipe successfully created' }
     else
