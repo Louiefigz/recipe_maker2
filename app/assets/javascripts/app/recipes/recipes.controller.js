@@ -177,15 +177,16 @@ vm.editRecipe = editRecipe;
   }
 
 ///////////// CATEGORYSHOW.HTML AND RECIPE.HTML //////////
-  function deleteRecipe(recipe_id){
-    for(var i=0; i<vm.recipes.length; i++){
+function deleteRecipe(recipe_id){
+  for(var i=0; i<vm.recipes.length; i++){
       if (vm.recipes[i].id == recipe_id){
-        vm.recipes[i].$delete({recipe_id: recipe_id})
+        $http.delete('recipes/'+ recipe_id, {params:{recipe_id: recipe_id}}).then(function(){
+          $http.get('recipes').then(function(resp){
+            vm.recipes = resp.data;
+          })
+        });
       }
     }
-    vm.recipes = RecipeFactory.query();
-    // vm.recipe.$delete({recipe_id: recipe_id});
-    //   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
   }
 
 
