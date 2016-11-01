@@ -128,8 +128,9 @@ vm.editRecipe = editRecipe;
   }
 
   function startDeleteIngredient(ingredient_id){
-    $http.delete('recipes/'+ $stateParams.id, {params:{ingredient_id: ingredient_id}}).then(function(){
+    $http.put('recipes/'+ $stateParams.id + '/destroy_join', {ingredient_id: ingredient_id}).then(function(){
       $http.get('recipes/'+ $stateParams.id).then(function(resp){
+        debugger;
         vm.recipe = resp.data;
       });
     });
@@ -163,11 +164,12 @@ vm.editRecipe = editRecipe;
 /////////////// NEW-INGREDIENT-DIRECTIVE /////////////////
   function updateRecipe(){
     // debugger;
-    vm.recipe.ingredients.push(vm.newIngredient);
+    // vm.recipe.ingredients.push(vm.newIngredient);
 
     $http.put('recipes/'+ $stateParams.id, {ingredients: vm.newIngredient.name}).then(function(resp){
       // debugger;
-      $http.get('recipes/'+ $stateParams.id).then(function(){
+      $http.get('recipes/'+ $stateParams.id).then(function(resp){
+        vm.recipe = resp.data;
         vm.newIngredient = "";
       });
     });
