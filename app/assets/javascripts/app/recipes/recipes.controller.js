@@ -1,6 +1,18 @@
 function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, CategoryFactory, currentRecipeService){
 
   var vm = this;
+  vm.searchRecipekey2 = "";
+
+  vm.goToOnSpace = goToOnSpace;
+
+  function goToOnSpace(){
+    // debugger;
+    if(event.keyCode === 32){
+      console.log('vm is ', vm)
+      console.log('this is ', this)
+      vm.searchRecipekey2 = vm.searchRecipeKeyword;
+    };
+  };
 
 
   // vm.startEditRecipe = startEditRecipe;
@@ -23,7 +35,13 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   });
 
   vm.newRecipe = new RecipeFactory();
-  vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+
+  ////////////  $resource call  ////////
+  // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
+
+    $http.get('recipes/'+ $stateParams.id).then(function(response){
+      vm.recipe = response.data;
+    });
 
 
 //////////////////// WELCOME.HTML ////////////////////
@@ -103,7 +121,11 @@ vm.editRecipe = editRecipe;
 
 
   function editRecipe(){
-    vm.recipe.$update(getRecipe);
+    debugger;
+    // $resource call. Does not work because I used http previously
+    // vm.recipe.$update(getRecipe);
+
+    $http.put('recipes/'+ $stateParams.id, {name: vm.recipe.name});
      vm.showEditRecipeName = false;
   }
 

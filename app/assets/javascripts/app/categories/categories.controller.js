@@ -119,7 +119,10 @@ CategoryFactory.query().$promise.then(function(data){
 
   }
 
+
+// Function not currently working
   function editCategoryName(){
+    // $http.put("categories/"+ $stateParams.id)
     vm.category.$update(getCategory);
     vm.showEditCategoryName = false;
     vm.showAddRecipe = false;
@@ -132,6 +135,8 @@ CategoryFactory.query().$promise.then(function(data){
   function getCategory(){
     vm.category = CategoryFactory.get({id: $stateParams.id})
   }
+
+  // Function above not currently working //
 
   function createRecipeCategory(){
     vm.newRecipeCategory.$save({category_id: $stateParams.id}).then(function(){
@@ -182,25 +187,42 @@ CategoryFactory.query().$promise.then(function(data){
 
 
   function selectedRecipe(recipe_id){
-    this.category.$update({category_id: $stateParams.id, recipe_id: recipe_id}).then(function(check){
-      var alertCheck = check;
-      CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category){
-        if(category.recipes.length !== alertCheck.recipes.length){
-          vm.showAlertSuccess = true;
-          vm.showAlertFail = false;
-          var recipe = category.recipes[category.recipes.length -1].name;
-          catAlertService.setSuccess(category.name, recipe);
-          vm.success ="";
-          vm.success = catAlertService.getSuccess();
 
-        }else{
-          vm.showAlertFail = true;
-          vm.showAlertSuccess = false;
-          vm.fail = "";
-          vm.fail = "This Recipe is already in the " + vm.category.name + " category";
-        };
-      });
-    });
+    // var firstlength= $('li[class^="list-group-item"]').length;
+    //   $http.put("categories/" + $stateParams.id, {category_id: $stateParams.id, recipe_id: recipe_id})
+    //        .then(function(response){
+    //          console.log("A");
+    //          console.log(response);
+    //          //debugger;
+    //         //  firstlength.push(response.data.recipes.length);
+    //       });
+    //        $http.get('categories/'+ $stateParams.id)
+    //             .then(function(category){
+    //               console.log("B");
+    //               debugger;
+    //        })
+    vm.category.$update({category_id: $stateParams.id, recipe_id: recipe_id})
+                .then(function(response){
+                  CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category) {
+                    if(category.recipes.length !== response.recipes.length){
+                      vm.showAlertSuccess = true;
+                      vm.showAlertFail = false;
+                      var recipe = category.recipes[category.recipes.length -1].name;
+                      catAlertService.setSuccess(category.name, recipe);
+                      vm.success ="";
+                      vm.success = catAlertService.getSuccess();
+
+                    }else{
+                      vm.showAlertFail = true;
+                      vm.showAlertSuccess = false;
+                      vm.fail = "";
+                      vm.fail = "This Recipe is already in the " + vm.category.name + " category";
+                    };
+                  });
+                })
+                // .catch(function(error) {
+                //   console.log('the error is ', error)
+                // })
   };
 
 

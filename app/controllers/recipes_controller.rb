@@ -34,13 +34,13 @@ class RecipesController < ApplicationController
     # binding.pry
 
     recipe = Recipe.find(params[:id])
-    ingredient = Ingredient.find_or_create_by(name: ingredient_params)
+
 
     recipe.update(recipe_params)
     if recipe.save
 
-      if ingredient.present?
-        # binding.pry
+      if params[:ingredients].present?
+        ingredient = Ingredient.find_or_create_by(name: ingredient_params)
         recipe.recipe_ingredients.find_or_create_by(ingredient_id: ingredient.id)
       end
     end
