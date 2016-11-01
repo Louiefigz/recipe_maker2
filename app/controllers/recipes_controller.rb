@@ -33,16 +33,16 @@ class RecipesController < ApplicationController
     # binding.pry
 
     recipe = Recipe.find(params[:id])
-
-
-    recipe.update(recipe_params)
-    if recipe.save
-
-      if params[:ingredients].present?
-        ingredient = Ingredient.find_or_create_by(name: ingredient_params)
-        recipe.recipe_ingredients.find_or_create_by(ingredient_id: ingredient.id)
-      end
+    if params[:ingredients].present?
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredients])
+      recipe.recipe_ingredients.find_or_create_by(ingredient_id: ingredient.id)
     end
+
+    if params[:recipe][:name].present?
+    recipe.update(recipe_params)
+    recipe.save
+    end
+
   end
 
   def destroy
@@ -60,6 +60,6 @@ class RecipesController < ApplicationController
     end
 
     def ingredient_params
-      params.require(:ingredients).last[:name]
+      params.require(:ingredients).permit(:name)
     end
 end

@@ -100,7 +100,7 @@ vm.editRecipe = editRecipe;
         vm.recipes = resp.data;
       });
     });
-
+    vm.newRecipe.name = "";
     // vm.newRecipe.$save(function() {
     // vm.recipes = RecipeFactory.query();
     // });
@@ -162,11 +162,19 @@ vm.editRecipe = editRecipe;
 
 /////////////// NEW-INGREDIENT-DIRECTIVE /////////////////
   function updateRecipe(){
+    // debugger;
     vm.recipe.ingredients.push(vm.newIngredient);
-    vm.recipe.$update(function() {
-      vm.recipe = RecipeFactory.get({ id: $stateParams.id });
-      vm.newIngredient = { ingredient: "" };
+
+    $http.put('recipes/'+ $stateParams.id, {ingredients: vm.newIngredient.name}).then(function(resp){
+      // debugger;
+      $http.get('recipes/'+ $stateParams.id).then(function(){
+        vm.newIngredient = "";
+      });
     });
+    // vm.recipe.$update(function() {
+    //   vm.recipe = RecipeFactory.get({ id: $stateParams.id });
+    //   vm.newIngredient = { ingredient: "" };
+    // });
   }
 
 ///////////// CATEGORYSHOW.HTML AND RECIPE.HTML //////////
