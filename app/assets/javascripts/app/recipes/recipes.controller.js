@@ -142,8 +142,11 @@ vm.editRecipe = editRecipe;
   }
 
   function deleteRecipeShow(recipe_id){
-    vm.recipe.$delete({recipe_id: recipe_id});
-    $state.go('home.welcome');
+
+    $http.delete('recipes/' + $stateParams.id, {params:{recipe_id: recipe_id}}).then(function(){
+      $state.go('home.recipes');
+    });
+    // vm.recipe.$delete({recipe_id: recipe_id});
   }
 
   function  reloadWelcomePageRecipe(data){
