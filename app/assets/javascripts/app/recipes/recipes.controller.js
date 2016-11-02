@@ -6,6 +6,9 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   // vm.showEditRecipeForm = false;
 
   // vm.startFullRecipe = startFullRecipe;
+  //vm.recipe = recipeShowObject.data;
+
+  // debugger;
 
   vm.newIngredient = { ingredient: "" };
 
@@ -30,10 +33,15 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
  // $http.get('recipes/'+ $stateParams.id).then(function(response){
  //   vm.recipe = response.data;
  // });
-debugger;
- RecipesService.getRecipe($stateParams.id).then(function(resp){
-   vm.recipe = resp;
- })
+
+
+ ////////////////////////////////
+ if ($stateParams.id) {
+   RecipesService.getRecipe($stateParams.id).then(function(resp){
+     vm.recipe = resp;
+   })
+ }
+
 
 
  //vm.recipe =
@@ -247,4 +255,4 @@ function recipe_show(data){
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'CategoryFactory', 'RecipesService',  'currentRecipeService', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'CategoryFactory', 'RecipesService', 'currentRecipeService', RecipesController]);

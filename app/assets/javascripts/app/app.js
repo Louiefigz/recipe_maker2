@@ -6,24 +6,49 @@ angular
       .state('home', {
         url: '/',
         templateUrl:'home.html',
-        controller: 'HomeController as vm'
+        controller: 'HomeController as vm',
+        resolve: {
+          recipeShowObject: function () {
+            return {};
+          }
+        }
       })
       .state('home.ingredients', {
         url: 'ingredients',
         templateUrl: 'ingredients.html',
-        controller: 'IngredientsController as vm'
+        controller: 'IngredientsController as vm',
+        resolve: {
+						recipeShowObject: function () {
+							return {};
+						}
+          }
       })
       .state('home.recipes', {
         url: 'recipes',
         templateUrl: 'recipes.html',
-        controller: 'RecipesController as vm'
+        controller: 'RecipesController as vm',
+        resolve: {
+						recipeShowObject: function () {
+							return {};
+						}
+          }
       })
       .state('home.welcome', {
         url: 'welcome',
         templateUrl: 'welcome.html',
-        controller: 'RecipesController as vm'
+        controller: 'RecipesController as vm',
+        resolve: {
+						recipeShowObject: function () {
+							return {};
+						}
+          }
       })
       .state('home.recipeShow', {
+        resolve: {
+          recipeShowObject: function($http, $stateParams){
+            return $http.get('recipes/'+ $stateParams.id);
+          }
+        },
         url: 'recipes/:id',
         templateUrl: 'recipeShow.html',
         controller: 'RecipesController as vm'
@@ -31,12 +56,22 @@ angular
       .state('home.categories', {
         url: 'categories',
         templateUrl: 'categoriesHome.html',
-        controller: 'CategoriesController as vm'
+        controller: 'CategoriesController as vm',
+        resolve: {
+						recipeShowObject: function () {
+							return {};
+						}
+          }
       })
       .state('home.categoryShow', {
         url: 'categories/:id',
         templateUrl: 'categoryShow.html',
-        controller: 'CategoriesController as vm'
+        controller: 'CategoriesController as vm',
+        resolve: {
+						recipeShowObject: function () {
+							return {};
+						}
+          }
       });
 
 
