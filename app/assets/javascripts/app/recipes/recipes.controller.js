@@ -1,4 +1,4 @@
-function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, CategoryFactory, currentRecipeService){
+function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, CategoryFactory, RecipesService, currentRecipeService){
 
   var vm = this;
 
@@ -27,10 +27,22 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
 
- $http.get('recipes/'+ $stateParams.id).then(function(response){
-   vm.recipe = response.data;
- });
+ // $http.get('recipes/'+ $stateParams.id).then(function(response){
+ //   vm.recipe = response.data;
+ // });
+debugger;
+ RecipesService.getRecipe($stateParams.id).then(function(resp){
+   vm.recipe = resp;
+ })
 
+
+ //vm.recipe =
+ // debugger;
+ // vm.recipe.then(function(resp){
+ //   debugger;
+ //
+ // })
+// debugger;
 
 //////////////////// WELCOME.HTML ////////////////////
 vm.recipe_show = recipe_show;
@@ -122,7 +134,6 @@ vm.editRecipe = editRecipe;
 
 
   function editRecipe(){
-    debugger;
     // $resource call. Does not work because I used http previously
     // vm.recipe.$update(getRecipe);
 
@@ -236,4 +247,4 @@ function recipe_show(data){
 
 angular
   .module('app')
-  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'CategoryFactory', 'currentRecipeService', RecipesController]);
+  .controller('RecipesController', ['$scope', '$http', '$state', '$stateParams', 'RecipeFactory', 'CategoryFactory', 'RecipesService',  'currentRecipeService', RecipesController]);

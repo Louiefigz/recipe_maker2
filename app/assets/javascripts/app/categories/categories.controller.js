@@ -202,22 +202,24 @@ CategoryFactory.query().$promise.then(function(data){
   function selectedRecipe(recipe_id){
 
       $http.put('categories/' + $stateParams.id + '/update_recipe_join', {category_id: $stateParams.id, recipe_id: recipe_id})
-           .then(function(response){
-            if(response.data.recipes.length > vm.category.recipes.length){
-              vm.category.recipes = response.data.recipes;
-               vm.showAlertSuccess = true;
-               vm.showAlertFail = false;
-               var recipe = vm.category.recipes[vm.category.recipes.length -1].name;
-               catAlertService.setSuccess(response.data.category.name, recipe);
-               vm.success ="";
-               vm.success = catAlertService.getSuccess();
-            } else {
-                vm.showAlertFail = true;
-                vm.showAlertSuccess = false;
-                vm.fail = "";
-                vm.fail = "This Recipe is already in the " + vm.category.name + " category";
-              };
-          });
+           .then(setSelectedRecipe);
+
+  function setSelectedRecipe(response){
+    if(response.data.recipes.length > vm.category.recipes.length){
+      vm.category.recipes = response.data.recipes;
+       vm.showAlertSuccess = true;
+       vm.showAlertFail = false;
+       var recipe = vm.category.recipes[vm.category.recipes.length -1].name;
+       catAlertService.setSuccess(response.data.category.name, recipe);
+       vm.success ="";
+       vm.success = catAlertService.getSuccess();
+    } else {
+        vm.showAlertFail = true;
+        vm.showAlertSuccess = false;
+        vm.fail = "";
+        vm.fail = "This Recipe is already in the " + vm.category.name + " category";
+      };
+  }
 
 
     // var firstLength= vm.category.recipes.length;
