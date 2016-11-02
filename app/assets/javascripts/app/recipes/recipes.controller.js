@@ -130,7 +130,7 @@ vm.editRecipe = editRecipe;
   function startDeleteIngredient(ingredient_id){
     $http.put('recipes/'+ $stateParams.id + '/destroy_join', {ingredient_id: ingredient_id}).then(function(){
       $http.get('recipes/'+ $stateParams.id).then(function(resp){
-        debugger;
+        // debugger;
         vm.recipe = resp.data;
       });
     });

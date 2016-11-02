@@ -201,39 +201,45 @@ CategoryFactory.query().$promise.then(function(data){
 
   function selectedRecipe(recipe_id){
 
-    // var firstlength= $('li[class^="list-group-item"]').length;
-    //   $http.put("categories/" + $stateParams.id, {category_id: $stateParams.id, recipe_id: recipe_id})
-    //        .then(function(response){
-    //          console.log("A");
-    //          console.log(response);
-    //          //debugger;
-    //         //  firstlength.push(response.data.recipes.length);
-    //       });
-    //        $http.get('categories/'+ $stateParams.id)
-    //             .then(function(category){
-    //               console.log("B");
-    //               debugger;
-    //        })
-    var firstLength= vm.category.recipes.length;
-    vm.category.$update({category_id: $stateParams.id, recipe_id: recipe_id})
-                .then(function(response){
-                  CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category) {
-                    if(category.recipes.length > firstLength){
-                      vm.showAlertSuccess = true;
-                      vm.showAlertFail = false;
-                      var recipe = category.recipes[category.recipes.length -1].name;
-                      catAlertService.setSuccess(category.name, recipe);
-                      vm.success ="";
-                      vm.success = catAlertService.getSuccess();
+      $http.put('categories/' + $stateParams.id + '/update_recipe_join', {category_id: $stateParams.id, recipe_id: recipe_id})
+           .then(function(response){
+            if(response.data.recipes.length > vm.category.recipes.length){
+              vm.category.recipes = response.data.recipes;
+               vm.showAlertSuccess = true;
+               vm.showAlertFail = false;
+               var recipe = vm.category.recipes[vm.category.recipes.length -1].name;
+               catAlertService.setSuccess(response.data.category.name, recipe);
+               vm.success ="";
+               vm.success = catAlertService.getSuccess();
+            } else {
+                vm.showAlertFail = true;
+                vm.showAlertSuccess = false;
+                vm.fail = "";
+                vm.fail = "This Recipe is already in the " + vm.category.name + " category";
+              };
+          });
 
-                    }else{
-                      vm.showAlertFail = true;
-                      vm.showAlertSuccess = false;
-                      vm.fail = "";
-                      vm.fail = "This Recipe is already in the " + vm.category.name + " category";
-                    };
-                  });
-                })
+
+    // var firstLength= vm.category.recipes.length;
+    // vm.category.$update({category_id: $stateParams.id, recipe_id: recipe_id})
+    //             .then(function(response){
+    //               CategoryFactory.get({id: $stateParams.id}).$promise.then(function(category) {
+    //                 if(category.recipes.length > firstLength){
+    //                   vm.showAlertSuccess = true;
+    //                   vm.showAlertFail = false;
+    //                   var recipe = category.recipes[category.recipes.length -1].name;
+    //                   catAlertService.setSuccess(category.name, recipe);
+    //                   vm.success ="";
+    //                   vm.success = catAlertService.getSuccess();
+    //
+    //                 }else{
+    //                   vm.showAlertFail = true;
+    //                   vm.showAlertSuccess = false;
+    //                   vm.fail = "";
+    //                   vm.fail = "This Recipe is already in the " + vm.category.name + " category";
+    //                 };
+    //               });
+    //             })
                 // .catch(function(error) {
                 //   console.log('the error is ', error)
                 // })

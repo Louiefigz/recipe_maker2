@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :categories
 
   put 'recipes/:id/destroy_join', to: 'recipes#destroy_join'
+  put 'categories/:id/update_recipe_join', to: 'categories#update_recipe_join'
+
 
     root 'home#index'
 

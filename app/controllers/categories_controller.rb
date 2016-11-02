@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    # binding.pry
+    # binding.pry`
     category = Category.find_or_create_by(category_params)
     # if params[:recipe].present?
     #
@@ -21,19 +21,19 @@ class CategoriesController < ApplicationController
 # Change this method
   def update
     # binding.pry
-    if params[:category_id].present?
-      category = Category.find(params[:category_id].to_i)
-      if category.recipe_categories.where(recipe_id: params[:recipe_id].to_i).present?
-        existingRecipe = Recipe.find_by(id: params[:recipe_id]).name
-        render json:  category
-      else
-        category.recipe_categories.create(recipe_id: params[:recipe_id].to_i)
-        render json: category
-      end
-    else
+
       category = Category.find(params[:id])
       category.update(name: params[:name])
+
+  end
+
+  def update_recipe_join
+    # binding.pry
+    category = Category.find(params[:id].to_i)
+    if !category.recipe_categories.where(recipe_id: params[:recipe_id].to_i).present?
+      category.recipe_categories.create(recipe_id: params[:recipe_id].to_i)
     end
+    render json: {category: category, recipes: category.recipes}
   end
 
   def destroy
