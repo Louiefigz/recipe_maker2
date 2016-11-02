@@ -6,7 +6,6 @@ angular
     var currentRecipe = {};
 
     var setRecipe = function(recipe){
-      debugger;
       currentRecipe = recipe;
     };
 

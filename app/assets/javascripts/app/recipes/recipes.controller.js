@@ -55,9 +55,16 @@ vm.startDeleteRecipe= startDeleteRecipe;
   //** newIngredientForm.html directive **//
 vm.updateRecipe = updateRecipe;
   //** end of directive ** //
-RecipeFactory.query().$promise.then(function(data){
-  vm.lastRecipes = data.splice(-5);
+
+$http.get('recipes').then(function(resp){
+  vm.lastRecipes = resp.data.splice(-5);
 });
+
+
+// RecipeFactory.query().$promise.then(function(data){
+//   vm.lastRecipes = data.splice(-5);
+// });
+
 vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
 vm.showEditRecipeButton = false;
 vm.showEditRecipeName = false;
