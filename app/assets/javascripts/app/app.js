@@ -44,14 +44,14 @@ angular
           }
       })
       .state('home.recipeShow', {
+        url: 'recipes/:id',
+        templateUrl: 'recipeShow.html',
+        controller: 'RecipesController as vm',
         resolve: {
           recipeShowObject: function($http, $stateParams){
             return $http.get('recipes/'+ $stateParams.id);
           }
         },
-        url: 'recipes/:id',
-        templateUrl: 'recipeShow.html',
-        controller: 'RecipesController as vm'
       })
       .state('home.categories', {
         url: 'categories',

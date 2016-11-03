@@ -2,13 +2,8 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
 
   var vm = this;
 
-  // vm.startEditRecipe = startEditRecipe;
-  // vm.showEditRecipeForm = false;
-
-  // vm.startFullRecipe = startFullRecipe;
   //vm.recipe = recipeShowObject.data;
 
-  // debugger;
 
   vm.newIngredient = { ingredient: "" };
 
@@ -34,7 +29,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
  //   vm.recipe = response.data;
  // });
 
-
+// debugger;
  ////////////////////////////////
  if ($stateParams.id) {
    RecipesService.getRecipe($stateParams.id).then(function(resp){
@@ -122,11 +117,15 @@ vm.editRecipe = editRecipe;
   }
 
   function addNewRecipe(){
-    $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
-      $http.get('recipes').then(function(resp){
-        vm.recipes = resp.data;
+      RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
+        vm.recipes.push(resp.data);
       });
-    });
+    // $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
+    //   $http.get('recipes').then(function(resp){
+    //     vm.recipes = resp.data;
+    //   });
+    // });
+
     vm.newRecipe.name = "";
     // vm.newRecipe.$save(function() {
     // vm.recipes = RecipeFactory.query();

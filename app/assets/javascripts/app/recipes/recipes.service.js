@@ -1,28 +1,21 @@
 (function(){
-
-
-
 function RecipesService($http, $q){
   return{
-    getRecipe: getRecipe
+    getRecipe: getRecipe,
+    createNewRecipe: createNewRecipe
   };
 
     function getRecipe(state){
-
-
       var request = $http.get('recipes/'+ state);
+             return request.then(handleSuccess);
+     }
 
-      // var request = $http({
-      //              method: "get",
-      //              url: 'recipes/'+ state,
-      //              params: {
-      //                  action: "get"
-      //              }
-      //          });
-              //  debugger;
-               return request.then(handleSuccess);
-           }
 
+     function createNewRecipe(name){
+      //  debugger;
+       return $http.post('recipes', {name: name});
+
+     }
 
     function handleSuccess(response){
       // debugger;
@@ -30,13 +23,6 @@ function RecipesService($http, $q){
 
     }
 
-
-    // this.getRecipes = function(){
-    // $http.get('recipes/'+ $stateParams.id).then(function(response){
-    //   // debugger;
-    //     return  vm.recipe = response.data;
-    //     });
-    // };
 
 
 }

@@ -23,7 +23,7 @@ class RecipesController < ApplicationController
       if params[:recipe][:category_id].present?
         recipe.recipe_categories.create(category_id: params[:recipe][:category_id].to_i)
       end
-      render json: { message: 'Recipe successfully created' }
+      render json: recipe
     else
       render json: { message: 'Recipe was not created' }
     end
@@ -46,7 +46,7 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    # binding.pry 
+    # binding.pry
       Recipe.find(params[:recipe_id].to_i).delete
   end
 
