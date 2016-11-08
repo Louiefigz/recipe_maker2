@@ -193,7 +193,7 @@ vm.editRecipe = editRecipe;
   function updateRecipe(){
     // debugger;
     // vm.recipe.ingredients.push(vm.newIngredient);
-
+    debugger;
     $http.put('recipes/'+ $stateParams.id, {ingredients: vm.newIngredient.name}).then(function(resp){
       // debugger;
       $http.get('recipes/'+ $stateParams.id).then(function(resp){
