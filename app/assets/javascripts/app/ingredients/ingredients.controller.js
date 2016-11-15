@@ -52,10 +52,12 @@ function filterIngredients(){
 //Form for creating new ingredients
   function createIngredient(){
 
-    vm.newIngredient.$save(function(){
-      vm.allIngredients = IngredientFactory.query();
-      vm.newIngredient.name ="";
-    });
+    vm.newIngredient.$save()
+                    .$promise.then(function(response){
+                      console.log(response)
+                      vm.allIngredients = IngredientFactory.query();
+                      vm.newIngredient.name ="";
+                    })
   }
 
   function deleteIngredient(ingredient_id){
@@ -67,7 +69,7 @@ function filterIngredients(){
       }
     }
   }
-  
+
   function startDeleteButton(){
     vm.showDeleteButton = !vm.showDeleteButton;
   }

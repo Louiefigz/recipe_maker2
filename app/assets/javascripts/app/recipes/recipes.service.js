@@ -13,7 +13,13 @@ function RecipesService($http, $q){
 
      function createNewRecipe(name){
       //  debugger;
-       return $http.post('recipes', {name: name});
+       return $http.post('recipes', {name: name})
+                    .then(function(response) {
+                      console.log(response)
+                    })
+                    .catch(function(err) {
+                      console.log(err)
+                    })
 
      }
 
