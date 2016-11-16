@@ -54,6 +54,7 @@ vm.showFullRecipe = false;
 ////////////////////END OF WELCOME.HTML ////////////////////
 
 ///////////////// RECIPES.HTML ///////////////////////////
+
 vm.showSearch = true;
 vm.showAddRecipe = false;
 vm.addNewRecipe = addNewRecipe;
@@ -130,10 +131,11 @@ vm.editRecipe = editRecipe;
     //   });
     // });
 
+    // debugger;
     vm.newRecipe.$save(function() {
     vm.recipes = RecipeFactory.query();
-    });
     vm.newRecipe.name = "";
+    });
   }
 
   function startDeleteRecipe(){

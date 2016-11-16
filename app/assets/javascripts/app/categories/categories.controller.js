@@ -62,7 +62,8 @@ vm.showAllRecipesInDatabase = false;
 vm.selectCatRecipe = selectCatRecipe;
 vm.selectedRecipe = selectedRecipe;
 vm.category = CategoryFactory.get({ id: $stateParams.id });
-// vm.newRecipeCategory = new RecipeFactory();
+vm.newRecipeCategory = new RecipeFactory();
+
 
 $http.get('recipes').then(function(resp){
   vm.allRecipes = resp.data;
