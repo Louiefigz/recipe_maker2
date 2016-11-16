@@ -127,6 +127,7 @@ vm.editRecipe = editRecipe;
       // debugger;
       console.log("b")
       $http.get('recipes').then(function(resp){
+        console.log("c")
         vm.recipes = resp.data;
       });
     });
