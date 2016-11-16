@@ -72,6 +72,7 @@ vm.updateRecipe = updateRecipe;
   //** end of directive ** //
 
 $http.get('recipes').then(function(resp){
+  debugger;
   vm.lastRecipes = resp.data.splice(-5);
 });
 
