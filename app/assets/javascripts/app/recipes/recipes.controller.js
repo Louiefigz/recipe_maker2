@@ -123,20 +123,17 @@ vm.editRecipe = editRecipe;
       // });
       // debugger;
       //new update
-      console.log("a");
-    $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
-      // debugger;
-      console.log("b");
-      $http.get('recipes').then(function(resp){
-        console.log("c");
-        vm.recipes = resp.data;
-      });
-    });
 
-    vm.newRecipe.name = "";
-    // vm.newRecipe.$save(function() {
-    // vm.recipes = RecipeFactory.query();
+    // $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
+    //   $http.get('recipes').then(function(resp){
+    //     vm.recipes = resp.data;
+    //   });
     // });
+
+    vm.newRecipe.$save(function() {
+    vm.recipes = RecipeFactory.query();
+    });
+    vm.newRecipe.name = "";
   }
 
   function startDeleteRecipe(){
