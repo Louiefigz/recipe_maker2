@@ -122,6 +122,7 @@ vm.editRecipe = editRecipe;
       //   // vm.recipes.push(resp.data);
       // });
       // debugger;
+      //new update
       console.log("a");
     $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
       // debugger;
