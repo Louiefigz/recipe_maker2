@@ -34,7 +34,7 @@ class RecipesController < ApplicationController
 
     recipe = Recipe.find(params[:id])
     if params[:ingredients].present?
-      ingredient = Ingredient.find_or_create_by(name: params[:ingredients])
+      ingredient = Ingredient.find_or_create_by(name: params[:ingredients][0][:name])
       recipe.recipe_ingredients.find_or_create_by(ingredient_id: ingredient.id)
     end
 
@@ -55,13 +55,13 @@ class RecipesController < ApplicationController
       RecipeIngredient.where(:recipe_id=>params[:id].to_i, :ingredient_id=>params[:ingredient_id].to_i).destroy_all
   end
 
-  private
+private
 
     def recipe_params
       params.require(:recipe).permit(:name)
     end
 
     def ingredient_params
-      params.require(:ingredients).permit(:name)
+      params.require(:ingredients)[0].permit(:ingredient, :name)
     end
 end
