@@ -16,6 +16,7 @@ class RecipesController < ApplicationController
   end
 
   def create
+    binding.pry
     # add more validations here so repeate recipes aren't made
     recipe = Recipe.find_or_create_by(recipe_params)
 

@@ -72,7 +72,7 @@ vm.updateRecipe = updateRecipe;
   //** end of directive ** //
 
 $http.get('recipes').then(function(resp){
-  debugger;
+  // debugger;
   vm.lastRecipes = resp.data.splice(-5);
 });
 
@@ -116,16 +116,18 @@ vm.editRecipe = editRecipe;
     vm.searchKey ="";
     vm.showSearch = false;
   }
-
+  //
   function addNewRecipe(){
-      RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
-        vm.recipes.push(resp.data);
+      // RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
+      //   // vm.recipes.push(resp.data);
+      // });
+      // debugger;
+    $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
+      // debugger;
+      $http.get('recipes').then(function(resp){
+        vm.recipes = resp.data;
       });
-    // $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
-    //   $http.get('recipes').then(function(resp){
-    //     vm.recipes = resp.data;
-    //   });
-    // });
+    });
 
     vm.newRecipe.name = "";
     // vm.newRecipe.$save(function() {
