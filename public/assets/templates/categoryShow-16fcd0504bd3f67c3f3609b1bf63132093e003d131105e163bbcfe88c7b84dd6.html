@@ -70,7 +70,8 @@
             <div ng-show="vm.showAllAssociatedRecipes == true">
              <div ng-repeat="recipe in (vm.category.recipes | filter: vm.searchKey).slice((vm.currentPage -1) * vm.PerPage, vm.currentPage * vm.PerPage) ">
                   <li class="list-group-item"><a ui-sref="home.recipeShow({id: recipe.id})">{{recipe.name}}</a>
-                    <button class="button" ng-show="vm.showDeleteButtonRecipeCategory == true" ng-click="vm.deleteRecipeCategory(recipe.id)">Delete Ingredient</button>
+
+                    <button class="button" ng-show="vm.showDeleteButtonRecipeCategory == true" ng-click="vm.deleteRecipeCategory(recipe.id)">Delete Ingredient</button> <!--destroy join table relationship for recipe. -->
                   </li>
 
               </div>
@@ -95,9 +96,10 @@
             items-per-page="vm.PerPage">
           </uib-pagination>
         </div>
-          <!-- </div> -->
-        </div>
+      </div>
     </div>
+
+
 
 
 
