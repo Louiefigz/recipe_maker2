@@ -1,0 +1,101 @@
+<div class="padding">
+  <div class="container-fluid text-center">
+    <div class="row content" style="">
+      <div class="col-sm-2 sidenav">
+      </div> <!-- sidenav-->
+      <div class="col-sm-8 text-left">
+
+
+
+        <h3 align="center">All Categories</h3>
+          <div class="col-sm-6 col-sm-offset-4">
+            <div ng-show="vm.showCreateCategory==true">
+            <form ng-submit="vm.createCategory()">
+              <input class="form-control input-lg"
+                    type="text"
+                    ng-model="vm.newCategory.name"
+                    placeholder="Add New Category"
+                    required>
+            </form>
+          </div>
+        </div>
+
+
+          <div ng-show="vm.showSearch==true">
+            <div class ="col-sm-6 col-sm-offset-4">
+              <input class ="form-control input-lg"
+              placeholder ="Search For Category"
+              ng-model ="vm.searchKey" />
+            </div>
+          </div>
+
+
+
+
+      <!-- <div ng-show="vm.showAddIngredient == true"> -->
+        <div class="col-sm-6 col-sm-offset-4">
+          <!-- <form ng-submit="vm.createIngredient()">
+            <input class="form-control input-lg"
+                  type="text"
+                  ng-model="vm.newIngredient.ingredient"
+                  placeholder="Add New Ingredient"
+                  required>
+          </form> -->
+          <!-- <add-ingredient-form></add-ingredient-form> -->
+        <!-- </div> -->
+      </div> <!--col-sm-6 col-sm-offset-4-->
+
+        <div class="padding">
+          <div class="list-group">
+       <div ng-repeat="cat in (vm.allCategories | filter: vm.searchKey).slice((vm.currentPage - 1) * vm.PerPage, vm.currentPage * vm.PerPage)">
+
+
+            <li class="list-group-item"><a ui-sref="home.categoryShow({id: cat.id})">{{cat.name}}</a>
+
+              <button class="button" ng-show="vm.showDeleteButton == true" ng-click="vm.deleteCategory(cat.id)">Delete Category</button>
+            </li>
+
+        </div>
+      </div>
+
+            <uib-pagination
+            total-items="(vm.allCategories | filter: vm.searchKey).length"
+            ng-model="vm.currentPage"
+            items-per-page="vm.PerPage">
+          </uib-pagination>
+          <!-- </div>  -->
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+
+      <div class="col-sm-2 sidenav">
+
+        <div class="well">
+          <button  ng-click="vm.startAddCategory()">Create Category</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.filterCategories()">Search Category</button>
+        </div>
+        <div class="well">
+          <button ng-click="vm.startDeleteButton()">Delete any Recipe</button>
+        </div>
+      </div>
+</div>
+</div>
+
+
+
+
+
+
+  <footer id="footer_help" class="container-fluid text-center">
+    <p>"Pick Ingredients that are questionable"</p>
+  </footer>
+</div>
