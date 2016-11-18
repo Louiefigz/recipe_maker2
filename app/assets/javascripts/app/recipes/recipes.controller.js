@@ -22,14 +22,7 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
   vm.newRecipe = new RecipeFactory();
 
   ////////////  $resource call  ////////
-  // vm.recipe = RecipeFactory.get({ id: $stateParams.id })
 
-
- // $http.get('recipes/'+ $stateParams.id).then(function(response){
- //   vm.recipe = response.data;
- // });
-
-// debugger;
  ////////////////////////////////
  if ($stateParams.id) {
    RecipesService.getRecipe($stateParams.id).then(function(resp){
@@ -39,13 +32,6 @@ function RecipesController($scope, $http, $state, $stateParams, RecipeFactory, C
 
 
 
- //vm.recipe =
- // debugger;
- // vm.recipe.then(function(resp){
- //   debugger;
- //
- // })
-// debugger;
 
 //////////////////// WELCOME.HTML ////////////////////
 vm.recipe_show = recipe_show;
@@ -72,15 +58,11 @@ vm.updateRecipe = updateRecipe;
   //** end of directive ** //
 
 $http.get('recipes').then(function(resp){
-  // debugger;
-  // debugger;
+
   vm.lastRecipes = resp.data.splice(-5);
 });
 
 
-// RecipeFactory.query().$promise.then(function(data){
-//   vm.lastRecipes = data.splice(-5);
-// });
 
 vm.reloadWelcomePageRecipe = reloadWelcomePageRecipe;
 vm.showEditRecipeButton = false;
@@ -119,20 +101,11 @@ vm.editRecipe = editRecipe;
   }
 
   function addNewRecipe(){
-      // RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
-      //   debugger;
-      //   vm.recipes.push(resp.data);
-      // });
-    // $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
-    //   $http.get('recipes').then(function(resp){
-    //     vm.recipes = resp.data;
-    //   });
-    // });
+      RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
+        vm.recipes.push(resp.data);
+      });
 
-    vm.newRecipe.$save(function() {
-    vm.recipes = RecipeFactory.query();
-    vm.newRecipe.name = "";
-    });
+    vm.newRecipe = new RecipeFactory;
   }
 
   function startDeleteRecipe(){
@@ -144,8 +117,6 @@ vm.editRecipe = editRecipe;
 
 
   function editRecipe(){
-    // $resource call. Does not work because I used http previously
-    // vm.recipe.$update(getRecipe);
 
     $http.put('recipes/'+ $stateParams.id, {name: vm.recipe.name});
      vm.showEditRecipeName = false;
@@ -162,11 +133,7 @@ vm.editRecipe = editRecipe;
         vm.recipe = resp.data;
       });
     });
-    // vm.recipe.$delete({ingredient_id: ingredient_id}).then(function(info){
-    //   RecipeFactory.get({ id: $stateParams.id }).$promise.then(function(resp){
-    //     vm.recipe = resp;
-    //   });
-    // });
+
   }
 
   function deleteRecipeShow(recipe_id){
@@ -174,7 +141,6 @@ vm.editRecipe = editRecipe;
     $http.delete('recipes/' + $stateParams.id, {params:{recipe_id: recipe_id}}).then(function(){
       $state.go('home.recipes');
     });
-    // vm.recipe.$delete({recipe_id: recipe_id});
   }
 
   function  reloadWelcomePageRecipe(data){
@@ -194,20 +160,13 @@ vm.editRecipe = editRecipe;
 
 /////////////// NEW-INGREDIENT-DIRECTIVE /////////////////
   function updateRecipe(){
-    // debugger;
-    // vm.recipe.ingredients.push(vm.newIngredient);
-    debugger;
     $http.put('recipes/'+ $stateParams.id, {ingredients: vm.newIngredient.name}).then(function(resp){
-      // debugger;
       $http.get('recipes/'+ $stateParams.id).then(function(resp){
         vm.recipe = resp.data;
         vm.newIngredient = "";
       });
     });
-    // vm.recipe.$update(function() {
-    //   vm.recipe = RecipeFactory.get({ id: $stateParams.id });
-    //   vm.newIngredient = { ingredient: "" };
-    // });
+
   }
 
 ///////////// CATEGORYSHOW.HTML AND RECIPE.HTML //////////
