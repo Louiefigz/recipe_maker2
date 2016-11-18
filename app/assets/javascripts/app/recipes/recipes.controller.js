@@ -72,7 +72,8 @@ vm.updateRecipe = updateRecipe;
   //** end of directive ** //
 
 $http.get('recipes').then(function(resp){
-  debugger;
+  // debugger;
+  // debugger;
   vm.lastRecipes = resp.data.splice(-5);
 });
 
@@ -118,19 +119,20 @@ vm.editRecipe = editRecipe;
   }
 
   function addNewRecipe(){
-      RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
-        vm.recipes.push(resp.data);
-      });
+      // RecipesService.createNewRecipe(vm.newRecipe.name).then(function(resp){
+      //   debugger;
+      //   vm.recipes.push(resp.data);
+      // });
     // $http.post('recipes', {name: vm.newRecipe.name}).then(function(){
     //   $http.get('recipes').then(function(resp){
     //     vm.recipes = resp.data;
     //   });
     // });
 
+    vm.newRecipe.$save(function() {
+    vm.recipes = RecipeFactory.query();
     vm.newRecipe.name = "";
-    // vm.newRecipe.$save(function() {
-    // vm.recipes = RecipeFactory.query();
-    // });
+    });
   }
 
   function startDeleteRecipe(){
