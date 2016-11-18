@@ -24,6 +24,13 @@ Include tests
 Explain why the changes are worth adding
 If not sure if I'll accept feature, start by creating an issue.
 
+##Current Branches
+There are two important branches associated with this repository. The Master and rollback_commit2.
+
+1. The master branch uses $http calls to Rails, use of service, custom routes to make the code more easily read. It is still under development.
+2. rollback_commit2 branch uses $resource to make calls to the backend. This branch has been deployed onto Heroku. You may view the app here - https://angular-recipe-maker.herokuapp.com/#/recipes
+
+
 
 ##License
 
